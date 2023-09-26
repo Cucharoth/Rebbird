@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rebbird</title>
+    <link rel="stylesheet" href="/src/main/resources/static/styles/index-body-style.css">
+    <link rel="stylesheet" href="/src/main/resources/static/styles/index-header-style.css">
+    <link rel="stylesheet" href="/src/main/resources/static/styles/onPost-style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+
+<body>
+    <header>
+        <nav class="header-nav main-bg">
+            <div class="header-logo-container main-bg">
+                <div class="header-logo">
+                    <a href="" class="rebbird-logo">Rebbird</a>
+                </div>
+            </div>
+            <div class="header-category-container">
+                <div class="header-category third-bg">~/Category</div>
+            </div>
+            <div class="search-container">
+                <div class="header-search-bar">
+                    <form class="input-group">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Buscar en Rebbird"
+                            aria-label="Search">
+                        <button class="search-button primary-bg" type="submit">
+                            <img src="/src/main/resources/static/assests/Magnifying Glass.png" alt="search-icon"
+                                class="search-icon">
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="header-user-log">
+                <div class="user-profile">
+                    <button class="user-profile-btn">
+                        <div class="user-profile-img-div">
+                            <img src="/src/main/resources/static/assests/Cover/1.png" alt="user-profile-img"
+                                class="user-profile-img">
+                        </div>
+                        <div class="user-profile-name">User name</div>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="main main-bg">
+        <div class="category-container main-bg">
+            <div class="category-title-container">
+                <div class="category-title">TEMAS</div>
+            </div>
+            <div class="button-container main-bg">
+                <button class="category-btn">~/Videojuegos</button>
+                <button class="category-btn">~/Deportes</button>
+                <button class="category-btn">~/Arte</button>
+                <button class="category-btn">~/Música</button>
+                <button class="category-btn">~/Programación</button>
+                <button class="category-btn">~/Noticias</button>
+            </div>
+        </div>
+        <div class="content-container main-bg">
+            <div class="content-header-create-post third-bg">
+                <div class="create-post-container third-bg">
+                    <form class="input-group">
+                        <div class="user-profile-img-div">
+                            <img src="assests/Cover/1.png" alt="user-profile-img" class="user-profile-img">
+                        </div>
+                        <input class="form-control mr-sm-2" type="search" placeholder="Nueva publicación"
+                            aria-label="Search">
+                        <button class="create-post-btn primary-bg" type="submit">
+                            <span class="material-icons arrow-up-icn">arrow_circle_up</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="content-main main-bg">
+                <div class="post-container-login">
+                    <div class="post bg-4 third-bg">
+                        <div class="post-header">
+                            <div class="post-title-div">
+                                <a href="" class="post-title">Dolor sit amet consectetur adipiscing elit pellentesque
+                                    habitant morbi tristique. Sed blandit libero volutpat sed. Etiam non quam lacus
+                                    suspendisse faucibus. Ridiculus mus mauris vitae ultricies leo integer malesuada
+                                    nunc. Pretium nibh ipsum consequat nisl vel.</a>
+                            </div>
+                            <div class="post-category">Música</div>
+                        </div>
+                        <div class="post-content">
+                            <div class="post-user-div">
+                                <div class="post-user-img">
+                                    <img src="assests/Cover/4.png" alt="post-user-img" class="user-pfl-img">
+                                </div>
+                                <div class="post-user-name">
+                                    User name
+                                </div>
+                            </div>
+                            <div class="post-reaction-div">
+                                <div class="reaction-value">10</div>
+                                <div class="reactions">
+                                    <div>
+                                        <button class="like-btn">
+                                            <img src="assests/like.png" alt="like-img" class="like-btn-img">
+                                        </button>
+                                        <button class="dislike-btn">
+                                            <img src="assests/dislike.png" alt="dislike-img" class="dislike-btn-img">
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="post-footer">
+                            <div class="post-comments-div">
+                                <div class="post-comments">Comments:</div>
+                                <div class="post-comments-value">3</div>
+                            </div>
+                            <div class="delete-post-container">
+                                <button class="delete-post-btn">
+                                    <span class="material-icons block-icon">block</span>
+                                </button>
+                            </div>
+                            <div class="post-date">23-03-22</div>
+                        </div>
+                    </div>
+                    <div class="post bg-4 third-bg">
+                        <div class="post-header">
+                            <div class="post-title-div">
+                                <a href="" class="post-title">Dolor sit amet consectetur adipiscing elit pellentesque
+                                    habitant morbi tristique. Sed blandit libero volutpat sed. Etiam non quam lacus
+                                    suspendisse faucibus. Ridiculus mus mauris vitae ultricies leo integer malesuada
+                                    nunc. Pretium nibh ipsum consequat nisl vel.</a>
+                            </div>
+                            <div class="post-category">Música</div>
+                        </div>
+                        <div class="post-content">
+                            <div class="post-user-div">
+                                <div class="post-user-img">
+                                    <img src="assests/Cover/4.png" alt="post-user-img" class="user-pfl-img">
+                                </div>
+                                <div class="post-user-name">
+                                    User name
+                                </div>
+                            </div>
+                            <div class="post-reaction-div">
+                                <div class="reaction-value">10</div>
+                                <div class="reactions">
+                                    <div>
+                                        <button class="like-btn">
+                                            <img src="assests/like.png" alt="like-img" class="like-btn-img">
+                                        </button>
+                                        <button class="dislike-btn">
+                                            <img src="assests/dislike.png" alt="dislike-img" class="dislike-btn-img">
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="post-footer">
+                            <div class="post-comments-div">
+                                <div class="post-comments">Comments:</div>
+                                <div class="post-comments-value">3</div>
+                            </div>
+                            <div class="delete-post-container">
+                                <button class="delete-post-btn">
+                                    <span class="material-icons block-icon">block</span>
+                                </button>
+                            </div>
+                            <div class="post-date">23-03-22</div>
+                        </div>
+                    </div>
+                    <div class="post bg-4 third-bg">
+                        <div class="post-header">
+                            <div class="post-title-div">
+                                <a href="" class="post-title">Dolor sit amet consectetur adipiscing elit pellentesque
+                                    habitant morbi tristique. Sed blandit libero volutpat sed. Etiam non quam lacus
+                                    suspendisse faucibus. Ridiculus mus mauris vitae ultricies leo integer malesuada
+                                    nunc. Pretium nibh ipsum consequat nisl vel.</a>
+                            </div>
+                            <div class="post-category">Música</div>
+                        </div>
+                        <div class="post-content">
+                            <div class="post-user-div">
+                                <div class="post-user-img">
+                                    <img src="assests/Cover/4.png" alt="post-user-img" class="user-pfl-img">
+                                </div>
+                                <div class="post-user-name">
+                                    User name
+                                </div>
+                            </div>
+                            <div class="post-reaction-div">
+                                <div class="reaction-value">10</div>
+                                <div class="reactions">
+                                    <div>
+                                        <button class="like-btn">
+                                            <img src="assests/like.png" alt="like-img" class="like-btn-img">
+                                        </button>
+                                        <button class="dislike-btn">
+                                            <img src="assests/dislike.png" alt="dislike-img" class="dislike-btn-img">
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="post-footer">
+                            <div class="post-comments-div">
+                                <div class="post-comments">Comments:</div>
+                                <div class="post-comments-value">3</div>
+                            </div>
+                            <div class="delete-post-container">
+                                <button class="delete-post-btn">
+                                    <span class="material-icons block-icon">block</span>
+                                </button>
+                            </div>
+                            <div class="post-date">23-03-22</div>
+                        </div>
+                    </div>
+                    <div class="post bg-4 third-bg">
+                        <div class="post-header">
+                            <div class="post-title-div">
+                                <a href="" class="post-title">Dolor sit amet consectetur adipiscing elit pellentesque
+                                    habitant morbi tristique. Sed blandit libero volutpat sed. Etiam non quam lacus
+                                    suspendisse faucibus. Ridiculus mus mauris vitae ultricies leo integer malesuada
+                                    nunc. Pretium nibh ipsum consequat nisl vel.</a>
+                            </div>
+                            <div class="post-category">Música</div>
+                        </div>
+                        <div class="post-content">
+                            <div class="post-user-div">
+                                <div class="post-user-img">
+                                    <img src="assests/Cover/4.png" alt="post-user-img" class="user-pfl-img">
+                                </div>
+                                <div class="post-user-name">
+                                    User name
+                                </div>
+                            </div>
+                            <div class="post-reaction-div">
+                                <div class="reaction-value">10</div>
+                                <div class="reactions">
+                                    <div>
+                                        <button class="like-btn">
+                                            <img src="assests/like.png" alt="like-img" class="like-btn-img">
+                                        </button>
+                                        <button class="dislike-btn">
+                                            <img src="assests/dislike.png" alt="dislike-img" class="dislike-btn-img">
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="post-footer">
+                            <div class="post-comments-div">
+                                <div class="post-comments">Comments:</div>
+                                <div class="post-comments-value">3</div>
+                            </div>
+                            <div class="delete-post-container">
+                                <button class="delete-post-btn">
+                                    <span class="material-icons block-icon">block</span>
+                                </button>
+                            </div>
+                            <div class="post-date">23-03-22</div>
+                        </div>
+                    </div>
+                    <div class="post bg-4 third-bg">
+                        <div class="post-header">
+                            <div class="post-title-div">
+                                <a href="" class="post-title">Dolor sit amet consectetur adipiscing elit pellentesque
+                                    habitant morbi tristique. Sed blandit libero volutpat sed. Etiam non quam lacus
+                                    suspendisse faucibus. Ridiculus mus mauris vitae ultricies leo integer malesuada
+                                    nunc. Pretium nibh ipsum consequat nisl vel.</a>
+                            </div>
+                            <div class="post-category">Música</div>
+                        </div>
+                        <div class="post-content">
+                            <div class="post-user-div">
+                                <div class="post-user-img">
+                                    <img src="assests/Cover/4.png" alt="post-user-img" class="user-pfl-img">
+                                </div>
+                                <div class="post-user-name">
+                                    User name
+                                </div>
+                            </div>
+                            <div class="post-reaction-div">
+                                <div class="reaction-value">10</div>
+                                <div class="reactions">
+                                    <div>
+                                        <button class="like-btn">
+                                            <img src="assests/like.png" alt="like-img" class="like-btn-img">
+                                        </button>
+                                        <button class="dislike-btn">
+                                            <img src="assests/dislike.png" alt="dislike-img" class="dislike-btn-img">
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="post-footer">
+                            <div class="post-comments-div">
+                                <div class="post-comments">Comments:</div>
+                                <div class="post-comments-value">3</div>
+                            </div>
+                            <div class="delete-post-container">
+                                <button class="delete-post-btn">
+                                    <span class="material-icons block-icon">block</span>
+                                </button>
+                            </div>
+                            <div class="post-date">23-03-22</div>
+                        </div>
+                    </div>
+                    <div class="post bg-4 third-bg">
+                        <div class="post-header">
+                            <div class="post-title-div">
+                                <a href="" class="post-title">Dolor sit amet consectetur adipiscing elit pellentesque
+                                    habitant morbi tristique. Sed blandit libero volutpat sed. Etiam non quam lacus
+                                    suspendisse faucibus. Ridiculus mus mauris vitae ultricies leo integer malesuada
+                                    nunc. Pretium nibh ipsum consequat nisl vel.</a>
+                            </div>
+                            <div class="post-category">Música</div>
+                        </div>
+                        <div class="post-content">
+                            <div class="post-user-div">
+                                <div class="post-user-img">
+                                    <img src="assests/Cover/4.png" alt="post-user-img" class="user-pfl-img">
+                                </div>
+                                <div class="post-user-name">
+                                    User name
+                                </div>
+                            </div>
+                            <div class="post-reaction-div">
+                                <div class="reaction-value">10</div>
+                                <div class="reactions">
+                                    <div>
+                                        <button class="like-btn">
+                                            <img src="assests/like.png" alt="like-img" class="like-btn-img">
+                                        </button>
+                                        <button class="dislike-btn">
+                                            <img src="assests/dislike.png" alt="dislike-img" class="dislike-btn-img">
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="post-footer">
+                            <div class="post-comments-div">
+                                <div class="post-comments">Comments:</div>
+                                <div class="post-comments-value">3</div>
+                            </div>
+                            <div class="delete-post-container">
+                                <button class="delete-post-btn">
+                                    <span class="material-icons block-icon">block</span>
+                                </button>
+                            </div>
+                            <div class="post-date">23-03-22</div>
+                        </div>
+                    </div>
+                    <div class="post bg-4 third-bg">
+                        <div class="post-header">
+                            <div class="post-title-div">
+                                <a href="" class="post-title">Dolor sit amet consectetur adipiscing elit pellentesque
+                                    habitant morbi tristique. Sed blandit libero volutpat sed. Etiam non quam lacus
+                                    suspendisse faucibus. Ridiculus mus mauris vitae ultricies leo integer malesuada
+                                    nunc. Pretium nibh ipsum consequat nisl vel.</a>
+                            </div>
+                            <div class="post-category">Música</div>
+                        </div>
+                        <div class="post-content">
+                            <div class="post-user-div">
+                                <div class="post-user-img">
+                                    <img src="assests/Cover/4.png" alt="post-user-img" class="user-pfl-img">
+                                </div>
+                                <div class="post-user-name">
+                                    User name
+                                </div>
+                            </div>
+                            <div class="post-reaction-div">
+                                <div class="reaction-value">10</div>
+                                <div class="reactions">
+                                    <div>
+                                        <button class="like-btn">
+                                            <img src="assests/like.png" alt="like-img" class="like-btn-img">
+                                        </button>
+                                        <button class="dislike-btn">
+                                            <img src="assests/dislike.png" alt="dislike-img" class="dislike-btn-img">
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="post-footer">
+                            <div class="post-comments-div">
+                                <div class="post-comments">Comments:</div>
+                                <div class="post-comments-value">3</div>
+                            </div>
+                            <div class="delete-post-container">
+                                <button class="delete-post-btn">
+                                    <span class="material-icons block-icon">block</span>
+                                </button>
+                            </div>
+                            <div class="post-date">23-03-22</div>
+                        </div>
+                    </div>
+                    <div class="post bg-4 third-bg">
+                        <div class="post-header">
+                            <div class="post-title-div">
+                                <a href="" class="post-title">Dolor sit amet consectetur adipiscing elit pellentesque
+                                    habitant morbi tristique. Sed blandit libero volutpat sed. Etiam non quam lacus
+                                    suspendisse faucibus. Ridiculus mus mauris vitae ultricies leo integer malesuada
+                                    nunc. Pretium nibh ipsum consequat nisl vel.</a>
+                            </div>
+                            <div class="post-category">Música</div>
+                        </div>
+                        <div class="post-content">
+                            <div class="post-user-div">
+                                <div class="post-user-img">
+                                    <img src="assests/Cover/4.png" alt="post-user-img" class="user-pfl-img">
+                                </div>
+                                <div class="post-user-name">
+                                    User name
+                                </div>
+                            </div>
+                            <div class="post-reaction-div">
+                                <div class="reaction-value">10</div>
+                                <div class="reactions">
+                                    <div>
+                                        <button class="like-btn">
+                                            <img src="assests/like.png" alt="like-img" class="like-btn-img">
+                                        </button>
+                                        <button class="dislike-btn">
+                                            <img src="assests/dislike.png" alt="dislike-img" class="dislike-btn-img">
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="post-footer">
+                            <div class="post-comments-div">
+                                <div class="post-comments">Comments:</div>
+                                <div class="post-comments-value">3</div>
+                            </div>
+                            <div class="delete-post-container">
+                                <button class="delete-post-btn">
+                                    <span class="material-icons block-icon">block</span>
+                                </button>
+                            </div>
+                            <div class="post-date">23-03-22</div>
+                        </div>
+                    </div>
+                    <div class="post bg-4 third-bg">
+                        <div class="post-header">
+                            <div class="post-title-div">
+                                <a href="" class="post-title">Dolor sit amet consectetur adipiscing elit pellentesque
+                                    habitant morbi tristique. Sed blandit libero volutpat sed. Etiam non quam lacus
+                                    suspendisse faucibus. Ridiculus mus mauris vitae ultricies leo integer malesuada
+                                    nunc. Pretium nibh ipsum consequat nisl vel.</a>
+                            </div>
+                            <div class="post-category">Música</div>
+                        </div>
+                        <div class="post-content">
+                            <div class="post-user-div">
+                                <div class="post-user-img">
+                                    <img src="assests/Cover/4.png" alt="post-user-img" class="user-pfl-img">
+                                </div>
+                                <div class="post-user-name">
+                                    User name
+                                </div>
+                            </div>
+                            <div class="post-reaction-div">
+                                <div class="reaction-value">10</div>
+                                <div class="reactions">
+                                    <div>
+                                        <button class="like-btn">
+                                            <img src="assests/like.png" alt="like-img" class="like-btn-img">
+                                        </button>
+                                        <button class="dislike-btn">
+                                            <img src="assests/dislike.png" alt="dislike-img" class="dislike-btn-img">
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="post-footer">
+                            <div class="post-comments-div">
+                                <div class="post-comments">Comments:</div>
+                                <div class="post-comments-value">3</div>
+                            </div>
+                            <div class="delete-post-container">
+                                <button class="delete-post-btn">
+                                    <span class="material-icons block-icon">block</span>
+                                </button>
+                            </div>
+                            <div class="post-date">23-03-22</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
