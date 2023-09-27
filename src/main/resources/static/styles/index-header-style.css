@@ -98,7 +98,7 @@ li a {
     display: flex;
     border-radius: 50px;
     height: 72px;
-    width: 166px;
+    padding: 0 20px;
     align-items: center;
     justify-content: center;
     font-family: Roboto;
@@ -254,4 +254,3 @@ li a {
     align-items: center;
     transition: color 0.35s;
 }
-
