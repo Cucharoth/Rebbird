@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="https://www.thymeLeaf.org" lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="/src/main/resources/static/styles/index-body-style.css">
     <link rel="stylesheet" href="/src/main/resources/static/styles/index-header-style.css">
     <link rel="stylesheet" href="/src/main/resources/static/styles/onPost-style.css">
+    <link rel="stylesheet" th:href="@{/css/index-header-style.css}">
+    <link rel="stylesheet" th:href="@{/css/index-body-style.css}">
+    <link rel="stylesheet" th:href="@{/css/onPost-style.css}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -25,7 +28,7 @@
                 </div>
             </div>
             <div class="header-category-container">
-                <div class="header-category third-bg">~/Category</div>
+                <div class="header-category third-bg">~/Videojuegos</div>
             </div>
             <div class="search-container">
                 <div class="header-search-bar">
@@ -46,7 +49,9 @@
                             <img src="/src/main/resources/static/assests/Cover/1.png" alt="user-profile-img"
                                 class="user-profile-img">
                         </div>
-                        <div class="user-profile-name">Cucharoth</div>
+                        <div class="user-profile-name" th:text=${user}>
+                            Cucharoth
+                        </div>
                     </button>
                 </div>
             </div>
@@ -84,10 +89,11 @@
             </div>
             <div class="content-main main-bg">
                 <div class="post-container-login">
-                    <div class="post bg-4 third-bg">
+                    <div class="post bg-4 third-bg" th:each="post : ${posts}">
                         <div class="post-header">
                             <div class="post-title-div">
-                                <a href="/src/main/resources/templates/on-post-nologin.html" class="post-title">
+                                <a th:text="${post.getTitle()}" href="/src/main/resources/templates/on-post-login.html"
+                                    class="post-title">
                                     In-game ignore…let’s make it better!</a>
                             </div>
                             <div class="post-category">Videojuegos</div>
@@ -95,10 +101,9 @@
                         <div class="post-content">
                             <div class="post-user-div">
                                 <div class="post-user-img">
-                                    <img src="/src/main/resources/static/assests/Cover/2.png" alt="post-user-img"
-                                        class="user-pfl-img">
+                                    <img th:src="@{/img/profile-img/1.png}" alt="post-user-img" class="user-pfl-img">
                                 </div>
-                                <div class="post-user-name">
+                                <div class="post-user-name" th:text="${post.getUser().getNombre()}">
                                     Perl
                                 </div>
                             </div>
@@ -123,306 +128,7 @@
                                 <div class="post-comments">Comments:</div>
                                 <div class="post-comments-value">6</div>
                             </div>
-                            <div class="post-date">23-03-22</div>
-                        </div>
-                    </div>
-                    <div class="post bg-4 third-bg">
-                        <div class="post-header">
-                            <div class="post-title-div">
-                                <a href="/src/main/resources/templates/on-post-nologin.html" class="post-title">
-                                    Chris Metzen is back?</a>
-                            </div>
-                            <div class="post-category">Videojuegos</div>
-                        </div>
-                        <div class="post-content">
-                            <div class="post-user-div">
-                                <div class="post-user-img">
-                                    <img src="/src/main/resources/static/assests/Cover/1.png" alt="post-user-img"
-                                        class="user-pfl-img">
-                                </div>
-                                <div class="post-user-name">
-                                    Cucharoth
-                                </div>
-                            </div>
-                            <div class="post-reaction-div">
-                                <div class="reaction-value">10</div>
-                                <div class="reactions">
-                                    <div>
-                                        <button class="like-btn">
-                                            <img src="/src/main/resources/static/assests/like.png" alt="like-img"
-                                                class="like-btn-img">
-                                        </button>
-                                        <button class="dislike-btn">
-                                            <img src="/src/main/resources/static/assests/dislike.png" alt="dislike-img"
-                                                class="dislike-btn-img">
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="post-footer">
-                            <div class="post-comments-div">
-                                <div class="post-comments">Comments:</div>
-                                <div class="post-comments-value">3</div>
-                            </div>
-                            <div class="delete-post-container">
-                                <button class="delete-post-btn">
-                                    <span class="material-icons block-icon">block</span>
-                                </button>
-                            </div>
-                            <div class="post-date">23-03-22</div>
-                        </div>
-                    </div>
-                    <div class="post bg-4 third-bg">
-                        <div class="post-header">
-                            <div class="post-title-div">
-                                <a href="/src/main/resources/templates/on-post-nologin.html" class="post-title">
-                                    Taunka Allied Race Megathread</a>
-                            </div>
-                            <div class="post-category">Videojuegos</div>
-                        </div>
-                        <div class="post-content">
-                            <div class="post-user-div">
-                                <div class="post-user-img">
-                                    <img src="/src/main/resources/static/assests/Cover/6.png" alt="post-user-img"
-                                        class="user-pfl-img">
-                                </div>
-                                <div class="post-user-name">
-                                    Zitga
-                                </div>
-                            </div>
-                            <div class="post-reaction-div">
-                                <div class="reaction-value">10</div>
-                                <div class="reactions">
-                                    <div>
-                                        <button class="like-btn">
-                                            <img src="/src/main/resources/static/assests/like.png" alt="like-img"
-                                                class="like-btn-img">
-                                        </button>
-                                        <button class="dislike-btn">
-                                            <img src="/src/main/resources/static/assests/dislike.png" alt="dislike-img"
-                                                class="dislike-btn-img">
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="post-footer">
-                            <div class="post-comments-div">
-                                <div class="post-comments">Comments:</div>
-                                <div class="post-comments-value">3</div>
-                            </div>
-                            <div class="post-date">23-03-22</div>
-                        </div>
-                    </div>
-                    <div class="post bg-4 third-bg">
-                        <div class="post-header">
-                            <div class="post-title-div">
-                                <a href="/src/main/resources/templates/on-post-nologin.html" class="post-title">
-                                    We need m+ automatic queue</a>
-                            </div>
-                            <div class="post-category">Videojuegos</div>
-                        </div>
-                        <div class="post-content">
-                            <div class="post-user-div">
-                                <div class="post-user-img">
-                                    <img src="/src/main/resources/static/assests/Cover/1.png" alt="post-user-img"
-                                        class="user-pfl-img">
-                                </div>
-                                <div class="post-user-name">
-                                    Quazzix
-                                </div>
-                            </div>
-                            <div class="post-reaction-div">
-                                <div class="reaction-value">10</div>
-                                <div class="reactions">
-                                    <div>
-                                        <button class="like-btn">
-                                            <img src="/src/main/resources/static/assests/like.png" alt="like-img"
-                                                class="like-btn-img">
-                                        </button>
-                                        <button class="dislike-btn">
-                                            <img src="/src/main/resources/static/assests/dislike.png" alt="dislike-img"
-                                                class="dislike-btn-img">
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="post-footer">
-                            <div class="post-comments-div">
-                                <div class="post-comments">Comments:</div>
-                                <div class="post-comments-value">3</div>
-                            </div>
-                            <div class="post-date">23-03-22</div>
-                        </div>
-                    </div>
-                    <div class="post bg-4 third-bg">
-                        <div class="post-header">
-                            <div class="post-title-div">
-                                <a href="/src/main/resources/templates/on-post-nologin.html" class="post-title">
-                                    PSA for players who pug m+</a>
-                            </div>
-                            <div class="post-category">Videojuegos</div>
-                        </div>
-                        <div class="post-content">
-                            <div class="post-user-div">
-                                <div class="post-user-img">
-                                    <img src="/src/main/resources/static/assests/Cover/4.png" alt="post-user-img"
-                                        class="user-pfl-img">
-                                </div>
-                                <div class="post-user-name">
-                                    Floweret
-                                </div>
-                            </div>
-                            <div class="post-reaction-div">
-                                <div class="reaction-value">10</div>
-                                <div class="reactions">
-                                    <div>
-                                        <button class="like-btn">
-                                            <img src="/src/main/resources/static/assests/like.png" alt="like-img"
-                                                class="like-btn-img">
-                                        </button>
-                                        <button class="dislike-btn">
-                                            <img src="/src/main/resources/static/assests/dislike.png" alt="dislike-img"
-                                                class="dislike-btn-img">
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="post-footer">
-                            <div class="post-comments-div">
-                                <div class="post-comments">Comments:</div>
-                                <div class="post-comments-value">3</div>
-                            </div>
-                            <div class="post-date">23-03-22</div>
-                        </div>
-                    </div>
-                    <div class="post bg-4 third-bg">
-                        <div class="post-header">
-                            <div class="post-title-div">
-                                <a href="/src/main/resources/templates/on-post-nologin.html" class="post-title">
-                                    Classic and Classic HC are proof that a change is needed</a>
-                            </div>
-                            <div class="post-category">Videojuegos</div>
-                        </div>
-                        <div class="post-content">
-                            <div class="post-user-div">
-                                <div class="post-user-img">
-                                    <img src="/src/main/resources/static/assests/Cover/4.png" alt="post-user-img"
-                                        class="user-pfl-img">
-                                </div>
-                                <div class="post-user-name">
-                                    Bøunty
-                                </div>
-                            </div>
-                            <div class="post-reaction-div">
-                                <div class="reaction-value">10</div>
-                                <div class="reactions">
-                                    <div>
-                                        <button class="like-btn">
-                                            <img src="/src/main/resources/static/assests/like.png" alt="like-img"
-                                                class="like-btn-img">
-                                        </button>
-                                        <button class="dislike-btn">
-                                            <img src="/src/main/resources/static/assests/dislike.png" alt="dislike-img"
-                                                class="dislike-btn-img">
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="post-footer">
-                            <div class="post-comments-div">
-                                <div class="post-comments">Comments:</div>
-                                <div class="post-comments-value">3</div>
-                            </div>
-                            <div class="post-date">23-03-22</div>
-                        </div>
-                    </div>
-                    <div class="post bg-4 third-bg">
-                        <div class="post-header">
-                            <div class="post-title-div">
-                                <a href="/src/main/resources/templates/on-post-nologin.html" class="post-title">
-                                    Gear Update and Trial Accounts</a>
-                            </div>
-                            <div class="post-category">Videojuegos</div>
-                        </div>
-                        <div class="post-content">
-                            <div class="post-user-div">
-                                <div class="post-user-img">
-                                    <img src="/src/main/resources/static/assests/Cover/4.png" alt="post-user-img"
-                                        class="user-pfl-img">
-                                </div>
-                                <div class="post-user-name">
-                                    Noedesha
-                                </div>
-                            </div>
-                            <div class="post-reaction-div">
-                                <div class="reaction-value">10</div>
-                                <div class="reactions">
-                                    <div>
-                                        <button class="like-btn">
-                                            <img src="/src/main/resources/static/assests/like.png" alt="like-img"
-                                                class="like-btn-img">
-                                        </button>
-                                        <button class="dislike-btn">
-                                            <img src="/src/main/resources/static/assests/dislike.png" alt="dislike-img"
-                                                class="dislike-btn-img">
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="post-footer">
-                            <div class="post-comments-div">
-                                <div class="post-comments">Comments:</div>
-                                <div class="post-comments-value">3</div>
-                            </div>
-                            <div class="post-date">23-03-22</div>
-                        </div>
-                    </div>
-                    <div class="post bg-4 third-bg">
-                        <div class="post-header">
-                            <div class="post-title-div">
-                                <a href="/src/main/resources/templates/on-post-nologin.html" class="post-title">
-                                    Garrosh Skip</a>
-                            </div>
-                            <div class="post-category">Videojuegos</div>
-                        </div>
-                        <div class="post-content">
-                            <div class="post-user-div">
-                                <div class="post-user-img">
-                                    <img src="/src/main/resources/static/assests/Cover/4.png" alt="post-user-img"
-                                        class="user-pfl-img">
-                                </div>
-                                <div class="post-user-name">
-                                    Revculter
-                                </div>
-                            </div>
-                            <div class="post-reaction-div">
-                                <div class="reaction-value">10</div>
-                                <div class="reactions">
-                                    <div>
-                                        <button class="like-btn">
-                                            <img src="/src/main/resources/static/assests/like.png" alt="like-img"
-                                                class="like-btn-img">
-                                        </button>
-                                        <button class="dislike-btn">
-                                            <img src="/src/main/resources/static/assests/dislike.png" alt="dislike-img"
-                                                class="dislike-btn-img">
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="post-footer">
-                            <div class="post-comments-div">
-                                <div class="post-comments">Comments:</div>
-                                <div class="post-comments-value">3</div>
-                            </div>
-                            <div class="post-date">23-03-22</div>
+                            <div class="post-date" th:text="${post.getDate()}">23-03-22</div>
                         </div>
                     </div>
                 </div>

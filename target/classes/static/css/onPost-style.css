@@ -316,6 +316,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    height: 60px;
     padding: 0;
     border-radius: 10px;
 }
@@ -324,7 +325,7 @@
     flex: 1;
     display: flex;
     justify-content: left;
-    align-items: start;
+    align-items: center;
 }
 
 .comentar-post-btn {
@@ -351,6 +352,7 @@
     flex: 1;
     display: none;
     flex-direction: column;
+    margin-top: 10px;
     padding: 10px 10px;
     border-radius: 10px;
 }

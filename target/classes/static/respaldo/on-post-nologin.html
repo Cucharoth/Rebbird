@@ -13,12 +13,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-        crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 </head>
 
 <body>
@@ -26,7 +20,7 @@
         <nav class="header-nav main-bg">
             <div class="header-logo-container main-bg">
                 <div class="header-logo">
-                    <a href="/src/main/resources/templates/index-login.html" class="rebbird-logo">Rebbird</a>
+                    <a href="/src/main/resources/templates/index-noLogin.html" class="rebbird-logo">Rebbird</a>
                 </div>
             </div>
             <div class="header-category-container">
@@ -38,20 +32,22 @@
                         <input class="form-control mr-sm-2" type="search" placeholder="Buscar en Rebbird"
                             aria-label="Search">
                         <button class="search-button primary-bg" type="submit">
+
                             <img src="/src/main/resources/static/assests/Magnifying Glass.png" alt="search-icon"
                                 class="search-icon">
                         </button>
                     </form>
                 </div>
             </div>
-            <div class="header-user-log">
-                <div class="user-profile">
-                    <button class="user-profile-btn">
-                        <div class="user-profile-img-div">
-                            <img src="/src/main/resources/static/assests/Cover/1.png" alt="user-profile-img"
-                                class="user-profile-img">
-                        </div>
-                        <div class="user-profile-name">Cucharoth</div>
+            <div class="header-user-nolog">
+                <div class="user-nolog-login">
+                    <button class="user-button-login">
+                        Login
+                    </button>
+                </div>
+                <div class="user-nolog-signin">
+                    <button class="user-button-signin">
+                        Signin
                     </button>
                 </div>
             </div>
@@ -73,7 +69,7 @@
         </div>
         <div class="content-container main-bg">
             <div class="content-main main-bg">
-                <div id="post-container" class="on-post-container-login third-bg">
+                <div class="on-post-container third-bg">
                     <div class="main-post bg-4">
                         <div class="main-post-author-div">
                             <div class="main-post-author">
@@ -240,71 +236,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="comentar-post-container main-bg">
-                    <div class="comentar-post main-bg">
-                        <button id="comentar-post-btn" class="comentar-post-btn"
-                            onclick="setCommentImputVisibility()">Comentar
-                            publicación</button>
-                        <div id="comentar-post-imput-div" class="third-bg">
-                            <div class="comentar-post-imput">
-                                <textarea required name="body" id="summernote" class="summernote-onpost"></textarea>
-                            </div>
-                            <div class="footer-comentar-imput">
-                                <div class="send-comentario">
-                                    <button class="send-comentario-btn primary-btn">Comentar</button>
-                                </div>
-                                <div id="back-from-comment">
-                                    <button id="back-from-comment-btn" class="primary-btn"
-                                        onclick="setCommentVisBackFromImput()">Volver</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
-        </script>
-    <script type="text/javascript">
-        function setCommentImputVisibility() {
-            var comentar_post_imput = document.getElementById("comentar-post-imput-div");
-            var comentar_post_btn = document.getElementById("comentar-post-btn");
-            var post_container = document.getElementById("post-container");
-            console.log(post_container.scrollHeight);
-            post_container.style.maxHeight = '600px';
-            comentar_post_imput.style.display = 'flex'
-            comentar_post_btn.style.display = 'none';
-        }
-
-        function setCommentVisBackFromImput() {
-            var comentar_post_imput = document.getElementById("comentar-post-imput-div");
-            var comentar_post_btn = document.getElementById("comentar-post-btn");
-            var post_container = document.getElementById("post-container");
-            post_container.style.maxHeight = '800px';
-            comentar_post_imput.style.display = 'none';
-            comentar_post_btn.style.display = 'flex';
-        }
-    </script>
-    <script>
-        $('#summernote').summernote({
-            placeholder: 'Ingrese aquí su comentario.',
-            tabsize: 2,
-            height: 150,
-            width: 1194,
-            focus: true,
-            disableResizeEditor: true,
-            toolbar: [
-                ['font', ['bold', 'underline', 'clear']],
-                ['color', ['color']],
-                ['para', ['ul', 'ol', 'paragraph']],
-                ['table', ['table']],
-                ['insert', ['link', 'picture', 'video']],
-                ['view', ['codeview', 'help']]
-            ]
-        });
-    </script>
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

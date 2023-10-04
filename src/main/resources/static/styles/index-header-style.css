@@ -98,7 +98,8 @@ li a {
     display: flex;
     border-radius: 50px;
     height: 72px;
-    padding: 0 20px;
+    padding: 0 15px;
+    margin: 0 2px;
     align-items: center;
     justify-content: center;
     font-family: Roboto;
@@ -253,4 +254,24 @@ li a {
     overflow: hidden;
     align-items: center;
     transition: color 0.35s;
+}
+
+.primary-btn {
+    display: flex;
+    background-color: #029270;
+    color: #EBFFFA;
+    font-family: Roboto;
+    font-size: 18px;
+    font-weight: bold;
+    align-items: center;
+    border-radius: 20px !important;
+    border: none;
+    padding: 5px 10px;
+    margin: 0;
+    transition: color 0.25s, background-color 0.35s;
+}
+
+.primary-btn:hover {
+    background-color: #87FDE1;
+    color: #212529;
 }
