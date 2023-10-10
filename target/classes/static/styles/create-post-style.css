@@ -1,0 +1,92 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
+
+.imagen-usuario{
+    object-fit: contain;
+    height: 30px;
+    width: 30px;
+}
+
+.main-div{
+    background-color: #083C30;
+    border-radius: 20px;
+}
+
+.input-design{
+    border-radius: 20px;
+    height: 40px;
+    width: 600px;
+    border-width: 0px;
+}
+
+.button-update{
+    border-radius: 50%;
+    background-color: #029270;
+    border-width: 1px;
+    border-color: black;
+    width: 45px;
+    height: 45px;
+}
+
+.button-update:hover{
+    background-color: #87FDE1 !important;
+}
+
+.image-update{
+    width: 20px;
+    height: 30px;
+}
+
+.image-user{
+    width: 40px;
+    height: 40px;
+}
+
+.text-post{
+    font-family: "Roboto Mono", monospace !important;
+    color: #EBFFFA;
+    font-size: larger;
+}
+
+.button-drop{
+    background-color: #029270;
+    border-radius: 20px;
+    font-size: medium;
+}
+
+.dropdown-menu{
+    background-color: #029270 !important;
+    border-radius: 20px;
+    font-size: medium;
+}
+
+.dropdown-item{
+    font-family: "Roboto Mono", monospace !important;
+    color: #EBFFFA !important;
+    font-size: medium;
+}
+
+.dropdown-item:hover{
+    background-color: #87FDE1 !important;
+}
+
+.button-realizar{
+    background-color: #029270;
+    border-radius: 20px;
+    font-size: medium;
+}
+
+.button-realizar:hover{
+    background-color: #87FDE1 !important;
+}
+
+.tox .tox-toolbar__group {
+    background-color: #029270 !important;
+}
+
+.tox .tox-tbtn:hover{
+    background-color: #87FDE1 !important;
+}
+
+textarea .contenido-post{
+    font-family: "Roboto Mono", monospace !important;
+}

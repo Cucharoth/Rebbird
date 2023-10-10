@@ -1,0 +1,56 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
+
+.body {
+  background-color: rgb(8, 60, 48);
+}
+
+.navbar {
+  background-color: rgb(0, 30, 23) !important;
+}
+
+.boton-color {
+  color: white !important;
+  border-color: rgb(8, 60, 48) !important;
+  background-color: rgb(8, 60, 48) !important;
+  font-family: "Roboto Mono", monospace !important;
+}
+
+.navbar-brand {
+  color: rgb(235, 255, 250) !important;
+}
+
+.message-card {
+  background-color: rgb(0, 30, 23);
+  border-radius: 20px;
+}
+
+.form-card {
+  min-width: 700px;
+  background-color: rgb(0, 30, 23);
+  border-radius: 20px;
+}
+
+.text-input {
+  color: white !important;
+}
+
+.boton {
+  color: white !important;
+  background-color: rgb(2, 148, 112) !important;
+  border-color: rgb(2, 148, 112) !important;
+  font-family: "Roboto Mono", monospace !important;
+  border-radius: 20px !important;
+}
+
+.boton:hover{
+  background-color: #87FDE1 !important;
+}
+
+.acceso {
+  color: white;
+  text-decoration: none;
+}
+
+.texto-fuente {
+  font-family: "Roboto Mono", monospace;
+}
