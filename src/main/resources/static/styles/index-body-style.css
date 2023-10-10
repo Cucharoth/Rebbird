@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,700;1,400&display=swap');
+
 .main {
     display: flex;
     flex-direction: row;
@@ -65,6 +67,8 @@
 }
 
 .crear-publicacion-btn {
+    display: flex;
+    text-decoration: none;
     background-color: #029270;
     color: #212529;
     font-family: Roboto;
@@ -340,6 +344,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .delete-post-btn {
+    text-decoration: none;
     background-color: #21252900;
     display: flex;
     border: none;
@@ -349,4 +354,20 @@ body::-webkit-scrollbar-thumb {
 .block-icon {
     color: #D23C3C;
     font-size: 30px !important;
+}
+
+.close {
+    border-style: none;
+    border-radius: 50%;
+    font-size: 15px;
+}
+
+#borrar-publicacion-modal {
+    color: #EBFFFA;
+    border-color: #212529 !important;
+}
+
+.modal-footer {
+    background-color: #083C30 !important;
+    border-color: #212529 !important;
 }

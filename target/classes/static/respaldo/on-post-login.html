@@ -26,7 +26,7 @@
         <nav class="header-nav main-bg">
             <div class="header-logo-container main-bg">
                 <div class="header-logo">
-                    <a href="/src/main/resources/templates/index-login.html" class="rebbird-logo">Rebbird</a>
+                    <a href="/src/main/resources/static/respaldo/index-login.html" class="rebbird-logo">Rebbird</a>
                 </div>
             </div>
             <div class="header-category-container">
@@ -46,13 +46,13 @@
             </div>
             <div class="header-user-log">
                 <div class="user-profile">
-                    <button class="user-profile-btn">
+                    <a href="panel_usuario_historial.html" class="user-profile-btn">
                         <div class="user-profile-img-div">
                             <img src="/src/main/resources/static/assests/Cover/1.png" alt="user-profile-img"
                                 class="user-profile-img">
                         </div>
                         <div class="user-profile-name">Cucharoth</div>
-                    </button>
+                    </a>
                 </div>
             </div>
         </nav>
@@ -272,7 +272,8 @@
             var comentar_post_imput = document.getElementById("comentar-post-imput-div");
             var comentar_post_btn = document.getElementById("comentar-post-btn");
             var post_container = document.getElementById("post-container");
-            post_container.style.maxHeight = '650px';
+            console.log(post_container.scrollHeight);
+            post_container.style.maxHeight = '600px';
             comentar_post_imput.style.display = 'flex'
             comentar_post_btn.style.display = 'none';
         }
@@ -283,7 +284,7 @@
             var post_container = document.getElementById("post-container");
             post_container.style.maxHeight = '800px';
             comentar_post_imput.style.display = 'none';
-            comentar_post_btn.style.display = 'block';
+            comentar_post_btn.style.display = 'flex';
         }
     </script>
     <script>

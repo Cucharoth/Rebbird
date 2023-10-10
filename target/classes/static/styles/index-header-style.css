@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,700;1,400&display=swap');
+
 a {
     text-decoration: none;
 }
@@ -167,20 +169,26 @@ li a {
 }
 
 .user-button-login {
+    display: flex;
     font-weight: bold;
+    text-decoration: none;
+    justify-content: center;
     margin-left: 10px;
     border-radius: 10px;
     background-color: #029270;
     color: #212529;
     transition: background-color 0.35s, color 0.35s;
-    width: 150px;
+    width: 150px !important;
     border: none;
 }
 
 .user-button-signin {
+    display: flex;
     font-weight: bold;
     margin-left: 10px;
     border-radius: 10px;
+    text-decoration: none;
+    justify-content: center;
     background-color: #083C30;
     color: #EBFFFA;
     transition: background-color 0.35s, color 0.35s;
@@ -216,6 +224,7 @@ li a {
     display: flex;
     background-color: #029270;
     align-items: center;
+    text-decoration: none;
     padding: 5px 10px;
     border-radius: 10px;
     border: none;
@@ -264,7 +273,7 @@ li a {
     font-size: 18px;
     font-weight: bold;
     align-items: center;
-    border-radius: 20px !important;
+    border-radius: 15px !important;
     border: none;
     padding: 5px 10px;
     margin: 0;
@@ -272,6 +281,26 @@ li a {
 }
 
 .primary-btn:hover {
+    background-color: #87FDE1;
+    color: #212529;
+}
+
+.secondary-btn {
+    display: flex;
+    background-color: #333;
+    color: #EBFFFA;
+    font-family: Roboto;
+    font-size: 18px;
+    font-weight: bold;
+    align-items: center;
+    border-radius: 15px !important;
+    border: none;
+    padding: 5px 10px;
+    margin: 0;
+    transition: color 0.25s, background-color 0.35s;
+}
+
+.secondary-btn:hover {
     background-color: #87FDE1;
     color: #212529;
 }
