@@ -1,6 +1,8 @@
 package com.ufro.Rebbird.model;
 
 import java.sql.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -24,16 +26,58 @@ public class Post {
     @Column(name = "content_publicacion", nullable = false, columnDefinition = "TEXT")
     private String content;
 
+    @Column(name = "cant_comentarios", nullable = false)
+    private int commentsAmount;
+
+    @Column(name = "cant_reaccion", nullable = false)
+    private int reactionAmount;
+
     @ManyToOne
     @JoinColumn(name = "author_id")
-    private User user;
+    private User author;
 
-    public Post(Long id, String title, Date date, String content, User user) {
+    @ManyToOne
+    @JoinColumn(name = "categoria_id")
+    private Category category;
+
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Comment> comment = new HashSet<>();
+
+    public Post(Long id, String title, Date date, String content, int commentsAmount, int reactionAmount, User author,
+            Category category, Set<Comment> comment) {
         this.id = id;
         this.title = title;
         this.date = date;
         this.content = content;
-        this.user = user;
+        this.commentsAmount = commentsAmount;
+        this.reactionAmount = reactionAmount;
+        this.author = author;
+        this.category = category;
+        this.comment = comment;
+    }
+
+    public int getCommentsAmount() {
+        return commentsAmount;
+    }
+
+    public void setCommentsAmount(int commentsAmount) {
+        this.commentsAmount = commentsAmount;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public Set<Comment> getComment() {
+        return comment;
+    }
+
+    public void setComment(Set<Comment> comment) {
+        this.comment = comment;
     }
 
     public Post() {
@@ -71,12 +115,20 @@ public class Post {
         this.content = content;
     }
 
-    public User getUser() {
-        return user;
+    public User getAuthor() {
+        return author;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setAuthor(User author) {
+        this.author = author;
+    }
+
+    public int getReactionAmount() {
+        return reactionAmount;
+    }
+
+    public void setReactionAmount(int reactionAmount) {
+        this.reactionAmount = reactionAmount;
     }
 
 }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -8,6 +9,9 @@
     <link rel="stylesheet" href="/src/main/resources/static/styles/index-body-style.css">
     <link rel="stylesheet" href="/src/main/resources/static/styles/index-header-style.css">
     <link rel="stylesheet" href="/src/main/resources/static/styles/onPost-style.css">
+    <link rel="stylesheet" th:href="@{/css/index-header-style.css}">
+    <link rel="stylesheet" th:href="@{/css/index-body-style.css}">
+    <link rel="stylesheet" th:href="@{/css/onPost-style.css}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
@@ -22,55 +26,13 @@
 </head>
 
 <body>
-    <header>
-        <nav class="header-nav main-bg">
-            <div class="header-logo-container main-bg">
-                <div class="header-logo">
-                    <a href="/src/main/resources/templates/index-login.html" class="rebbird-logo">Rebbird</a>
-                </div>
-            </div>
-            <div class="header-category-container">
-                <div class="header-category third-bg">~/Videojuegos</div>
-            </div>
-            <div class="search-container">
-                <div class="header-search-bar">
-                    <form class="input-group">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Buscar en Rebbird"
-                            aria-label="Search">
-                        <button class="search-button primary-bg" type="submit">
-                            <img src="/src/main/resources/static/assests/Magnifying Glass.png" alt="search-icon"
-                                class="search-icon">
-                        </button>
-                    </form>
-                </div>
-            </div>
-            <div class="header-user-log">
-                <div class="user-profile">
-                    <button class="user-profile-btn">
-                        <div class="user-profile-img-div">
-                            <img src="/src/main/resources/static/assests/Cover/1.png" alt="user-profile-img"
-                                class="user-profile-img">
-                        </div>
-                        <div class="user-profile-name">Cucharoth</div>
-                    </button>
-                </div>
-            </div>
-        </nav>
-    </header>
+    <!-- Header -->
+    <header th:insert="~{fragments/general.html :: header}"></header>
+
     <main class="main main-bg">
-        <div class="category-container main-bg">
-            <div class="category-title-container">
-                <div class="category-title">TEMAS</div>
-            </div>
-            <div class="button-container main-bg">
-                <button class="category-btn">~/Videojuegos</button>
-                <button class="category-btn">~/Deportes</button>
-                <button class="category-btn">~/Arte</button>
-                <button class="category-btn">~/Música</button>
-                <button class="category-btn">~/Programación</button>
-                <button class="category-btn">~/Noticias</button>
-            </div>
-        </div>
+        <!-- Sidebar -->
+        <div th:replace="~{fragments/general.html :: sidebar}"></div>
+
         <div class="content-container main-bg">
             <div class="content-main main-bg">
                 <div id="post-container" class="on-post-container-login third-bg">
@@ -78,21 +40,22 @@
                         <div class="main-post-author-div">
                             <div class="main-post-author">
                                 <div class="main-post-author-img">
-                                    <img src="/src/main/resources/static/assests/Cover/6.png" alt="author-pfl-img"
-                                        class="main-post-author-pfl-img">
+                                    <img src="" alt="author-pfl-img" class="main-post-author-pfl-img">
                                 </div>
-                                <div class="main-post-author-name">Perl</div>
+                                <div th:text="${post.getAuthor().getName()}" class="main-post-author-name">Perl</div>
                             </div>
                         </div>
                         <div class="main-post-header">
-                            <div class="main-post-title">In-game ignore…let’s make it better!.</div>
+                            <div th:text="${post.getTitle()}" class="main-post-title">In-game ignore…let’s make it
+                                better!.</div>
                             <div class="main-post-info">
-                                <div class="main-post-category">Videojuegos</div>
-                                <div class="main-post-date">23-09-23</div>
+                                <div th:text="${post.getCategory.getName}" class="main-post-category">Videojuegos</div>
+                                <div th:text="${post.getDate}" class="main-post-date">23-09-23</div>
                             </div>
                         </div>
                         <div class="main-post-content-div">
-                            <div class="main-post-content">I want to start off by making it clear, that this is regards
+                            <div th:text="${post.getContent}" class="main-post-content">I want to start off by making it
+                                clear, that this is regards
                                 to how the IN-GAME ignore function works. Please do not mistake this for a thread about
                                 the forums. This is specifically regarding the in-game ignore feature. <br><br>
 
@@ -126,116 +89,22 @@
                             </div>
                         </div>
                     </div>
-                    <div class="main-post-comment bg-4">
-                        <div class="comment-header">
-                            <div class="comment-author">
-                                <div class="comment-author-img">
-                                    <img src="/src/main/resources/static/assests/Cover/3.png" alt="cmnt-author-pfl-img"
-                                        class="comment-author-pfl-img">
+                    <div class="main-post-comment-container">
+                        <div class="main-post-comment bg-4">
+                            <div class="comment-header">
+                                <div class="comment-author">
+                                    <div class="comment-author-img">
+                                        <img src="/src/main/resources/static/assests/Cover/3.png"
+                                            alt="cmnt-author-pfl-img" class="comment-author-pfl-img">
+                                    </div>
+                                    <div class="main-post-author-name">Puntme</div>
                                 </div>
-                                <div class="main-post-author-name">Puntme</div>
+                                <div class="comment-date">25-09-23</div>
                             </div>
-                            <div class="comment-date">25-09-23</div>
-                        </div>
-                        <div class="comment-content-container">
-                            <div class="comment-content">
-                                Agree. I never understood why this wasnt implemented from the beginning.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="main-post-comment bg-4">
-                        <div class="comment-header">
-                            <div class="comment-author">
-                                <div class="comment-author-img">
-                                    <img src="/src/main/resources/static/assests/Cover/3.png" alt="cmnt-author-pfl-img"
-                                        class="comment-author-pfl-img">
+                            <div class="comment-content-container">
+                                <div class="comment-content">
+                                    Agree. I never understood why this wasnt implemented from the beginning.
                                 </div>
-                                <div class="main-post-author-name">Semicasual</div>
-                            </div>
-                            <div class="comment-date">25-09-23</div>
-                        </div>
-                        <div class="comment-content-container">
-                            <div class="comment-content">
-                                It is infuriating ignoring/reporting the multi-paragraph guild addon spam + invite on
-                                every single character I log on, and having to dedicate an ignore spot to their generic
-                                brandless rerolled spam-bot alts. Oh, it’s been 5 minutes and they just deleted it +
-                                rerolled another toon and now are spamming all 10+ of my toons again every time I relog?
-                                Yay. <br><br>
-
-                                My account placing you on ignore should ignore your entire account when it comes to
-                                contacting my account for any reason.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="main-post-comment bg-4">
-                        <div class="comment-header">
-                            <div class="comment-author">
-                                <div class="comment-author-img">
-                                    <img src="/src/main/resources/static/assests/Cover/3.png" alt="cmnt-author-pfl-img"
-                                        class="comment-author-pfl-img">
-                                </div>
-                                <div class="main-post-author-name">Doobly</div>
-                            </div>
-                            <div class="comment-date">25-09-23</div>
-                        </div>
-                        <div class="comment-content-container">
-                            <div class="comment-content">
-                                first:
-                                i would like to thank you for taking your time to write this lovely post regarding the
-                                in-game ignore function. <br><br>
-
-                                second:
-                                well, that is just how the in-game world in world of warcraft operates.<br><br>
-
-                                even if you were removed from the in-game friends list, then they could always just do a
-                                /who to see if you are online.<br><br>
-
-                                third:
-                                i dont think it is that much of a hassle to place a person on ignore a couple times in
-                                game, it only takes a few seconds.<br><br>
-
-                                in conclusion, i believe that the current ignore system works fine, i genuinely don’t
-                                think there are any issues with it, currently.
-
-                                thanks again for sharing your opinion.
-
-                                take care everyone and have a wonderful day
-                            </div>
-                        </div>
-                    </div>
-                    <div class="main-post-comment bg-4">
-                        <div class="comment-header">
-                            <div class="comment-author">
-                                <div class="comment-author-img">
-                                    <img src="/src/main/resources/static/assests/Cover/3.png" alt="cmnt-author-pfl-img"
-                                        class="comment-author-pfl-img">
-                                </div>
-                                <div class="main-post-author-name">Thundertotem</div>
-                            </div>
-                            <div class="comment-date">25-09-23</div>
-                        </div>
-                        <div class="comment-content-container">
-                            <div class="comment-content">
-                                Very much in agreement on this.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="main-post-comment bg-4">
-                        <div class="comment-header">
-                            <div class="comment-author">
-                                <div class="comment-author-img">
-                                    <img src="/src/main/resources/static/assests/Cover/3.png" alt="cmnt-author-pfl-img"
-                                        class="comment-author-pfl-img">
-                                </div>
-                                <div class="main-post-author-name">Bravik</div>
-                            </div>
-                            <div class="comment-date">25-09-23</div>
-                        </div>
-                        <div class="comment-content-container">
-                            <div class="comment-content">
-                                At face value this isn’t a bad idea, but think of how the receiving player would view
-                                the strike. I can see escalation being used if this were the case. An ignore is silent,
-                                for the most part, unless the player keeps trying to communicate with you.
                             </div>
                         </div>
                     </div>

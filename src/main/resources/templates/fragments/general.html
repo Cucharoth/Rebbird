@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thymeleaf Fragments</title>
+    <link rel="stylesheet" href="/src/main/resources/static/css/index-body-style.css">
+    <link rel="stylesheet" href="/src/main/resources/static/css/index-header-style.css">
+    <link rel="stylesheet" href="/src/main/resources/static/css/onPost-style.css">
+    <link rel="stylesheet" th:href="@{/css/index-header-style.css}">
+    <link rel="stylesheet" th:href="@{/css/index-body-style.css}">
+    <link rel="stylesheet" th:href="@{/css/onPost-style.css}">
+</head>
+
+<body>
+    <!-- Header -->
+    <header th:fragment="header">
+        <nav class="header-nav main-bg">
+            <div class="header-logo-container main-bg">
+                <div class="header-logo">
+                    <a href="" class="rebbird-logo">Rebbird</a>
+                </div>
+            </div>
+            <div class="header-category-container">
+                <div class="header-category third-bg">~/Videojuegos</div>
+            </div>
+            <div class="search-container">
+                <div class="header-search-bar">
+                    <form class="input-group">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Buscar en Rebbird"
+                            aria-label="Search">
+                        <button class="search-button primary-bg" type="submit">
+                            <img th:src="@{/img/Magnifying Glass.png}" alt="search-icon" class="search-icon">
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="header-user-log">
+                <div class="user-profile">
+                    <button class="user-profile-btn">
+                        <div class="user-profile-img-div">
+                            <img src="/src/main/resources/static/assests/Cover/1.png" alt="user-profile-img"
+                                class="user-profile-img">
+                        </div>
+                        <div class="user-profile-name" th:text=${user}>
+                            Cucharoth
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Sidebar -->
+    <div class="category-container main-bg" th:fragment="sidebar">
+        <div class="category-title-container">
+            <div class="category-title">TEMAS</div>
+        </div>
+        <div class="button-container main-bg">
+            <button class="category-btn">~/Videojuegos</button>
+            <button class="category-btn">~/Deportes</button>
+            <button class="category-btn">~/Arte</button>
+            <button class="category-btn">~/Música</button>
+            <button class="category-btn">~/Programación</button>
+            <button class="category-btn">~/Noticias</button>
+        </div>
+    </div>
+
+</body>
+
+</html>

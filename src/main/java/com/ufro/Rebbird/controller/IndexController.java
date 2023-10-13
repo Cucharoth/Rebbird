@@ -24,11 +24,15 @@ public class IndexController {
     @Autowired
     private PostService postService;
 
+    @Autowired
+    private UserService userService;
+
     @GetMapping
-    public String index(Model model) {
-        List<Post> posts = postService.getPosts();
-        
-        
+    public String index(@RequestParam(value = "id") int categoryId, Model model) {
+        Iterable<Post> posts = postService.findAllByCategoryIdOrderByDateDesc(categoryId);
+
+        // User user = userService.getUser(0);
+
         model.addAttribute("posts", posts);
         return "index-login";
     }

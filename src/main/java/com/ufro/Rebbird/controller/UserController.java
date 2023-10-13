@@ -30,7 +30,7 @@ public class UserController {
     public String profile(@RequestParam(value = "id") int id, Model model) {
         User user = userService.getUser(id).orElse(null);
 
-        model.addAttribute("user", user.getNombre());
+        model.addAttribute("user", user.getName());
         return "index-login";
     }
 

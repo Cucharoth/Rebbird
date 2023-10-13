@@ -15,7 +15,7 @@ public class User {
     private int id;
 
     @Column(name = "nombre_usuario", nullable = false, unique = true, length = 15)
-    private String nombre;
+    private String name;
 
     @Column(name = "password_usuario", nullable = false, length = 18)
     private String password;
@@ -26,8 +26,11 @@ public class User {
     @Column(name = "perfil_usuario_id", nullable = true)
     private Integer perfil;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Post> posts = new HashSet<>();
+
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Comment> comment = new HashSet<>();
 
     public int getId() {
         return id;
@@ -37,12 +40,12 @@ public class User {
         this.id = id;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getName() {
+        return name;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombre(String name) {
+        this.name = name;
     }
 
     public String getPassword() {

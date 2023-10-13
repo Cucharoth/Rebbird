@@ -7,9 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.ufro.Rebbird.model.User;
+import com.ufro.Rebbird.model.Post;
 import com.ufro.Rebbird.service.PostService;
-import com.ufro.Rebbird.service.UserService;
 
 @Controller
 @RequestMapping(path = "/post")
@@ -19,10 +18,10 @@ public class PostController {
     private PostService postService;
 
     @GetMapping
-    public String profile(@RequestParam(value = "id") int id, Model model) {
-        // User user = userService.getUser(id).orElse(null);
+    public String profile(@RequestParam(value = "id") Long id, Model model) {
+        Post post = postService.findById(id);
 
-        // model.addAttribute("user", user.getNombre());
-        return "index-login";
+        model.addAttribute("post", post);
+        return "on-post-login";
     }
 }

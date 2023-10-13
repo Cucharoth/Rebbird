@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeLeaf.org" lang="en">
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -20,57 +21,13 @@
 </head>
 
 <body>
-    <header>
-        <nav class="header-nav main-bg">
-            <div class="header-logo-container main-bg">
-                <div class="header-logo">
-                    <a href="" class="rebbird-logo">Rebbird</a>
-                </div>
-            </div>
-            <div class="header-category-container">
-                <div class="header-category third-bg">~/Videojuegos</div>
-            </div>
-            <div class="search-container">
-                <div class="header-search-bar">
-                    <form class="input-group">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Buscar en Rebbird"
-                            aria-label="Search">
-                        <button class="search-button primary-bg" type="submit">
-                            <img src="/src/main/resources/static/assests/Magnifying Glass.png" alt="search-icon"
-                                class="search-icon">
-                        </button>
-                    </form>
-                </div>
-            </div>
-            <div class="header-user-log">
-                <div class="user-profile">
-                    <button class="user-profile-btn">
-                        <div class="user-profile-img-div">
-                            <img src="/src/main/resources/static/assests/Cover/1.png" alt="user-profile-img"
-                                class="user-profile-img">
-                        </div>
-                        <div class="user-profile-name" th:text=${user}>
-                            Cucharoth
-                        </div>
-                    </button>
-                </div>
-            </div>
-        </nav>
-    </header>
+    <!-- Header -->
+    <header th:insert="~{fragments/general.html :: header}"></header>
+
     <main class="main main-bg">
-        <div class="category-container main-bg">
-            <div class="category-title-container">
-                <div class="category-title">TEMAS</div>
-            </div>
-            <div class="button-container main-bg">
-                <button class="category-btn">~/Videojuegos</button>
-                <button class="category-btn">~/Deportes</button>
-                <button class="category-btn">~/Arte</button>
-                <button class="category-btn">~/Música</button>
-                <button class="category-btn">~/Programación</button>
-                <button class="category-btn">~/Noticias</button>
-            </div>
-        </div>
+        <!-- Sidebar -->
+        <div th:replace="~{fragments/general.html :: sidebar}"></div>
+
         <div class="content-container main-bg">
             <div class="content-header-create-post third-bg">
                 <div class="create-post-container third-bg">
@@ -92,32 +49,30 @@
                     <div class="post bg-4 third-bg" th:each="post : ${posts}">
                         <div class="post-header">
                             <div class="post-title-div">
-                                <a th:text="${post.getTitle()}" href="/src/main/resources/templates/on-post-login.html"
+                                <a th:text="${post.getTitle()}" th:href="@{/post(id=${post.getId()}) }"
                                     class="post-title">
                                     In-game ignore…let’s make it better!</a>
                             </div>
-                            <div class="post-category">Videojuegos</div>
+                            <div th:text="${post.category.name}" class="post-category">Videojuegos</div>
                         </div>
                         <div class="post-content">
                             <div class="post-user-div">
                                 <div class="post-user-img">
                                     <img th:src="@{/img/profile-img/1.png}" alt="post-user-img" class="user-pfl-img">
                                 </div>
-                                <div class="post-user-name" th:text="${post.getUser().getNombre()}">
+                                <div class="post-user-name" th:text="${post.getAuthor().getName()}">
                                     Perl
                                 </div>
                             </div>
                             <div class="post-reaction-div">
-                                <div class="reaction-value">10</div>
+                                <div th:text="${post.getReactionAmount()}" class="reaction-value">10</div>
                                 <div class="reactions">
                                     <div>
                                         <button class="like-btn">
-                                            <img src="/src/main/resources/static/assests/like.png" alt="like-img"
-                                                class="like-btn-img">
+                                            <img th:src="@{/img/like.png}" alt="like-img" class="like-btn-img">
                                         </button>
                                         <button class="dislike-btn">
-                                            <img src="/src/main/resources/static/assests/dislike.png" alt="dislike-img"
-                                                class="dislike-btn-img">
+                                            <img th:src="@{/img/dislike.png}" alt="dislike-img" class="dislike-btn-img">
                                         </button>
                                     </div>
                                 </div>
@@ -126,7 +81,7 @@
                         <div class="post-footer">
                             <div class="post-comments-div">
                                 <div class="post-comments">Comments:</div>
-                                <div class="post-comments-value">6</div>
+                                <div th:text="${post.getCommentsAmount()}" class="post-comments-value">6</div>
                             </div>
                             <div class="post-date" th:text="${post.getDate()}">23-03-22</div>
                         </div>
