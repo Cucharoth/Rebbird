@@ -156,18 +156,27 @@ li a {
 }
 
 .user-nolog-login {
+    display: flex;
+    text-decoration: none;
+    justify-content: center;
     font-family: Roboto;
     font-size: 24px;
     font-weight: bold;
 }
 
-.user-nolog-signin {
+.user-nolog-register {
+    display: flex;
+    text-decoration: none;
+    justify-content: center;
     font-family: Roboto;
     font-size: 24px;
 }
 
 .user-button-login {
+    display: flex;
     font-weight: bold;
+    text-decoration: none;
+    justify-content: center;
     margin-left: 10px;
     border-radius: 10px;
     background-color: #029270;
@@ -177,8 +186,11 @@ li a {
     border: none;
 }
 
-.user-button-signin {
+.user-button-register {
+    display: flex;
     font-weight: bold;
+    text-decoration: none;
+    justify-content: center;
     margin-left: 10px;
     border-radius: 10px;
     background-color: #083C30;
@@ -193,7 +205,7 @@ li a {
     color: #212529;
 }
 
-.user-button-signin:hover {
+.user-button-register:hover {
     background-color: #87FDE1;
     color: #212529;
 }

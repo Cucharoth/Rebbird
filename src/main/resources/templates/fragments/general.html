@@ -36,7 +36,9 @@
                     </form>
                 </div>
             </div>
-            <div class="header-user-log">
+
+            <!-- User Login -->
+            <div th:if="${userLogin}" class="header-user-log">
                 <div class="user-profile">
                     <button class="user-profile-btn">
                         <div class="user-profile-img-div">
@@ -46,7 +48,25 @@
                         <div class="user-profile-name" th:text=${user}>
                             Cucharoth
                         </div>
+                        <form th:action="@{/logout}" method="post">
+                            <input type="submit" value="Sign Out" />
+                        </form>
                     </button>
+                </div>
+            </div>
+
+
+            <!-- User noLog -->
+            <div th:unless="${userLogin}" class="header-user-nolog">
+                <div class="user-nolog-login">
+                    <a href="log-in.html" class="user-button-login">
+                        Login
+                    </a>
+                </div>
+                <div class="user-nolog-register">
+                    <a href="sign-in.html" class="user-button-register">
+                        Register
+                    </a>
                 </div>
             </div>
         </nav>

@@ -1,13 +1,31 @@
 package com.ufro.Rebbird.model;
 
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
-import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.ufro.Rebbird.model.Role;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Table(name = "usuario")
-public class User {
+@Transactional
+@Table(name = "usuario", uniqueConstraints = {@UniqueConstraint(columnNames = {"nombre_usuario"})})
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,9 +33,9 @@ public class User {
     private int id;
 
     @Column(name = "nombre_usuario", nullable = false, unique = true, length = 15)
-    private String name;
+    private String username;
 
-    @Column(name = "password_usuario", nullable = false, length = 18)
+    @Column(name = "password_usuario", nullable = false, length = 255)
     private String password;
 
     @Column(name = "tipo_usuario_id", nullable = false)
@@ -26,11 +44,15 @@ public class User {
     @Column(name = "perfil_usuario_id", nullable = true)
     private Integer perfil;
 
-    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Post> posts = new HashSet<>();
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role", nullable = true)
+    private Role role ;
 
-    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Comment> comment = new HashSet<>();
+    // @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    // private Set<Post> posts = new HashSet<>();
+
+    // @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    // private Set<Comment> comment = new HashSet<>();
 
     public int getId() {
         return id;
@@ -41,11 +63,11 @@ public class User {
     }
 
     public String getName() {
-        return name;
+        return username;
     }
 
     public void setNombre(String name) {
-        this.name = name;
+        this.username= name;
     }
 
     public String getPassword() {
@@ -70,6 +92,31 @@ public class User {
 
     public void setPerfil(Integer perfil) {
         this.perfil = perfil;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority((role.name())));
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 
 }

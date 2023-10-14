@@ -1,5 +1,6 @@
 package com.ufro.Rebbird.controller;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,13 +28,22 @@ public class IndexController {
     @Autowired
     private UserService userService;
 
+    // user logeado
     @GetMapping
-    public String index(@RequestParam(value = "id") int categoryId, Model model) {
+    public String index(@RequestParam(value = "id") int categoryId, Model model, Principal p) {
         Iterable<Post> posts = postService.findAllByCategoryIdOrderByDateDesc(categoryId);
 
+        System.out.println(p);
         // User user = userService.getUser(0);
 
         model.addAttribute("posts", posts);
+
+        if (p != null) {
+            model.addAttribute("userLogin", true);
+        } else {
+            model.addAttribute("userLogin", false);
+        }
+
         return "index-login";
     }
 
