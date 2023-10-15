@@ -24,7 +24,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Transactional
-@Table(name = "usuario", uniqueConstraints = {@UniqueConstraint(columnNames = {"nombre_usuario"})})
+@Table(name = "usuario", uniqueConstraints = { @UniqueConstraint(columnNames = { "nombre_usuario" }) })
 public class User implements UserDetails {
 
     @Id
@@ -38,20 +38,28 @@ public class User implements UserDetails {
     @Column(name = "password_usuario", nullable = false, length = 255)
     private String password;
 
-    @Column(name = "tipo_usuario_id", nullable = false)
-    private int tipoUsuario;
-
     @Column(name = "perfil_usuario_id", nullable = true)
     private Integer perfil;
 
+    @ManyToOne
+    @JoinColumn(name = "img_perfil_id", columnDefinition = "int default 1")
+    private ProfileImg profileImg;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = true)
-    private Role role ;
+    private Role role;
 
-    // @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    // TODO: Esta es la forma correcta de crear la relacion, pero da error por el
+    // 'FetchType.LAZY'
+    // el fix rapido es no colocarlo, en caso de error con las relaciones, revisar
+    // aqui.
+
+    // @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch =
+    // FetchType.LAZY)
     // private Set<Post> posts = new HashSet<>();
 
-    // @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    // @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch =
+    // FetchType.LAZY)
     // private Set<Comment> comment = new HashSet<>();
 
     public int getId() {
@@ -67,7 +75,7 @@ public class User implements UserDetails {
     }
 
     public void setNombre(String name) {
-        this.username= name;
+        this.username = name;
     }
 
     public String getPassword() {
@@ -76,14 +84,6 @@ public class User implements UserDetails {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public int getTipoUsuario() {
-        return tipoUsuario;
-    }
-
-    public void setTipoUsuario(int tipoUsuario) {
-        this.tipoUsuario = tipoUsuario;
     }
 
     public Integer getPerfil() {

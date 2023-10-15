@@ -287,3 +287,23 @@ li a {
     background-color: #87FDE1;
     color: #212529;
 }
+
+.secondary-btn {
+    display: flex;
+    background-color: #333;
+    color: #EBFFFA;
+    font-family: Roboto;
+    font-size: 18px;
+    font-weight: bold;
+    align-items: center;
+    border-radius: 15px !important;
+    border: none;
+    padding: 5px 10px;
+    margin: 0;
+    transition: color 0.25s, background-color 0.35s;
+}
+
+.secondary-btn:hover {
+    background-color: #87FDE1;
+    color: #212529;
+}

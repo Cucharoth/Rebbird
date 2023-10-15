@@ -24,17 +24,40 @@
     <!-- Header -->
     <header th:insert="~{fragments/general.html :: header}"></header>
 
+    <!-- TODO: AÑADIR LOGICA-->
+    <!-- Delete post modal -->
     <main class="main main-bg">
+        <div class="modal fade" id="borrar-publicacion-modal" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header primary-bg">
+                        <h5 class="modal-title" id="borrarPublicacionModalLabel">Borrar publicación</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body third-bg">
+                        ¿Desea borrar esta publicación? <br>
+                        ¡Esta acción es permanente!
+                    </div>
+                    <div class="modal-footer third-bg">
+                        <button type="button" class="secondary-btn" data-dismiss="modal">Volver</button>
+                        <button type="button" class="primary-btn">Borrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Sidebar -->
         <div th:replace="~{fragments/general.html :: sidebar}"></div>
 
         <div class="content-container main-bg">
-            <div class="content-header-create-post third-bg">
+            <div th:if="${userLogin}" class="content-header-create-post third-bg">
                 <div class="create-post-container third-bg">
                     <form class="input-group">
                         <div class="user-profile-img-div">
-                            <img src="/src/main/resources/static/assests/Cover/1.png" alt="user-profile-img"
-                                class="user-profile-img">
+                            <img th:src="@{${userProfileImg}}" alt="user-profile-img" class="user-profile-img">
                         </div>
                         <input class="form-control mr-sm-2" type="search" placeholder="Nueva publicación"
                             aria-label="Search">
@@ -44,6 +67,15 @@
                     </form>
                 </div>
             </div>
+            <div th:unless="${userLogin}" class="content-header main-bg">
+                <div class=" crear-publicacion-container">
+                    <a th:href="@{/login/from-create-post}" href="" class="crear-publicacion-btn">Crear
+                        publicación</a>
+                </div>
+            </div>
+
+            <!-- TODO: ADD MESSAGE WHEN NO POST-->
+            <!-- Posts -->
             <div class="content-main main-bg">
                 <div class="post-container-login">
                     <div class="post bg-4 third-bg" th:each="post : ${posts}">
@@ -58,7 +90,8 @@
                         <div class="post-content">
                             <div class="post-user-div">
                                 <div class="post-user-img">
-                                    <img th:src="@{/img/profile-img/1.png}" alt="post-user-img" class="user-pfl-img">
+                                    <img th:src="@{${post.author.profileImg.link}}" alt="post-user-img"
+                                        class="user-pfl-img">
                                 </div>
                                 <div class="post-user-name" th:text="${post.getAuthor().getName()}">
                                     Perl
@@ -83,6 +116,12 @@
                                 <div class="post-comments">Comments:</div>
                                 <div th:text="${post.getCommentsAmount()}" class="post-comments-value">6</div>
                             </div>
+                            <div th:if="${post.author.id} == ${userId}" class="delete-post-container">
+                                <a type="button" data-toggle="modal" data-target="#borrar-publicacion-modal"
+                                    class="delete-post-btn">
+                                    <span class="material-icons block-icon">block</span>
+                                </a>
+                            </div>
                             <div class="post-date" th:text="${post.getDate()}">23-03-22</div>
                         </div>
                     </div>
@@ -90,8 +129,14 @@
             </div>
         </div>
     </main>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
 </body>
 

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rebbird</title>
+    <link rel="stylesheet" href="/src/main/resources/static/styles/index-body-style.css">
+    <link rel="stylesheet" href="/src/main/resources/static/styles/index-header-style.css">
+    <link rel="stylesheet" href="/src/main/resources/static/styles/onPost-style.css">
+    <link rel="stylesheet" th:href="@{/css/index-header-style.css}">
+    <link rel="stylesheet" th:href="@{/css/index-body-style.css}">
+    <link rel="stylesheet" th:href="@{/css/onPost-style.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+
+<body>
+    <!-- Header -->
+    <header th:insert="~{fragments/general.html :: header}"></header>
+
+    <!-- TODO: AÑADIR LOGICA-->
+    <!-- Delete post modal -->
+    <main class="main main-bg">
+        <div class="modal fade" id="borrar-publicacion-modal" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header primary-bg">
+                        <h5 class="modal-title" id="borrarPublicacionModalLabel">Borrar publicación</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body third-bg">
+                        ¿Desea borrar esta publicación? <br>
+                        ¡Esta acción es permanente!
+                    </div>
+                    <div class="modal-footer third-bg">
+                        <button type="button" class="secondary-btn" data-dismiss="modal">Volver</button>
+                        <button type="button" class="primary-btn">Borrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div th:replace="~{fragments/general.html :: sidebar}"></div>
+
+        <div class="content-container main-bg">
+            <div th:if="${userLogin}" class="content-header-create-post third-bg">
+                <div class="create-post-container third-bg">
+                    <form class="input-group">
+                        <div class="user-profile-img-div">
+                            <img th:src="@{${userProfileImg}}" alt="user-profile-img" class="user-profile-img">
+                        </div>
+                        <input class="form-control mr-sm-2" type="search" placeholder="Nueva publicación"
+                            aria-label="Search">
+                        <button class="create-post-btn primary-bg" type="submit">
+                            <span class="material-icons arrow-up-icn">arrow_circle_up</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div th:unless="${userLogin}" class="content-header main-bg">
+                <div class=" crear-publicacion-container">
+                    <a th:href="@{/login/from-create-post}" href="" class="crear-publicacion-btn">Crear
+                        publicación</a>
+                </div>
+            </div>
+
+            <!-- TODO: ADD MESSAGE WHEN NO POST-->
+            <!-- Posts -->
+            <div class="content-main main-bg">
+                <div class="post-container-login">
+                    <div class="post bg-4 third-bg" th:each="post : ${posts}">
+                        <div class="post-header">
+                            <div class="post-title-div">
+                                <a th:text="${post.getTitle()}" th:href="@{/post(id=${post.getId()}) }"
+                                    class="post-title">
+                                    In-game ignore…let’s make it better!</a>
+                            </div>
+                            <div th:text="${post.category.name}" class="post-category">Videojuegos</div>
+                        </div>
+                        <div class="post-content">
+                            <div class="post-user-div">
+                                <div class="post-user-img">
+                                    <img th:src="@{${post.author.profileImg.link}}" alt="post-user-img"
+                                        class="user-pfl-img">
+                                </div>
+                                <div class="post-user-name" th:text="${post.getAuthor().getName()}">
+                                    Perl
+                                </div>
+                            </div>
+                            <div class="post-reaction-div">
+                                <div th:text="${post.getReactionAmount()}" class="reaction-value">10</div>
+                                <div class="reactions">
+                                    <div>
+                                        <button class="like-btn">
+                                            <img th:src="@{/img/like.png}" alt="like-img" class="like-btn-img">
+                                        </button>
+                                        <button class="dislike-btn">
+                                            <img th:src="@{/img/dislike.png}" alt="dislike-img" class="dislike-btn-img">
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="post-footer">
+                            <div class="post-comments-div">
+                                <div class="post-comments">Comments:</div>
+                                <div th:text="${post.getCommentsAmount()}" class="post-comments-value">6</div>
+                            </div>
+                            <div th:if="${post.author.id} == ${userId}" class="delete-post-container">
+                                <a type="button" data-toggle="modal" data-target="#borrar-publicacion-modal"
+                                    class="delete-post-btn">
+                                    <span class="material-icons block-icon">block</span>
+                                </a>
+                            </div>
+                            <div class="post-date" th:text="${post.getDate()}">23-03-22</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

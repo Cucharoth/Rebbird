@@ -19,11 +19,12 @@
         <nav class="header-nav main-bg">
             <div class="header-logo-container main-bg">
                 <div class="header-logo">
-                    <a href="" class="rebbird-logo">Rebbird</a>
+                    <a th:href="@{/index?id=1}" class="rebbird-logo">Rebbird</a>
                 </div>
             </div>
             <div class="header-category-container">
-                <div class="header-category third-bg">~/Videojuegos</div>
+                <div th:if="${categoryName} != null" th:text="'~/' + ${categoryName}" class="header-category third-bg">
+                    ~/Videojuegos</div>
             </div>
             <div class="search-container">
                 <div class="header-search-bar">
@@ -42,16 +43,15 @@
                 <div class="user-profile">
                     <button class="user-profile-btn">
                         <div class="user-profile-img-div">
-                            <img src="/src/main/resources/static/assests/Cover/1.png" alt="user-profile-img"
-                                class="user-profile-img">
+                            <img th:src="@{${userProfileImg}}" alt="user-profile-img" class="user-profile-img">
                         </div>
-                        <div class="user-profile-name" th:text=${user}>
+                        <div class="user-profile-name" th:text=${userName}>
                             Cucharoth
                         </div>
-                        <form th:action="@{/logout}" method="post">
-                            <input type="submit" value="Sign Out" />
-                        </form>
                     </button>
+                    <form th:action="@{/logout}" method="post">
+                        <input type="submit" value="Sign Out" />
+                    </form>
                 </div>
             </div>
 
@@ -78,12 +78,15 @@
             <div class="category-title">TEMAS</div>
         </div>
         <div class="button-container main-bg">
-            <button class="category-btn">~/Videojuegos</button>
-            <button class="category-btn">~/Deportes</button>
-            <button class="category-btn">~/Arte</button>
-            <button class="category-btn">~/Música</button>
-            <button class="category-btn">~/Programación</button>
-            <button class="category-btn">~/Noticias</button>
+            <a th:href="@{/index?id=1}" class="category-btn">~/Videojuegos</a>
+            <a th:href="@{/index?id=2}" class="category-btn">~/Series</a>
+            <a th:href="@{/index?id=3}" class="category-btn">~/Películas</a>
+            <a th:href="@{/index?id=4}" class="category-btn">~/Música</a>
+            <a th:href="@{/index?id=5}" class="category-btn">~/Ciencia</a>
+            <a th:href="@{/index?id=6}" class="category-btn">~/Deportes</a>
+            <a th:href="@{/index?id=7}" class="category-btn">~/Mundo</a>
+            <a th:href="@{/index?id=8}" class="category-btn">~/Política</a>
+            <a th:href="@{/index?id=9}" class="category-btn">~/Programación</a>
         </div>
     </div>
 

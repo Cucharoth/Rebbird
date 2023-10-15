@@ -24,7 +24,12 @@
             </a>
         </div>
     </nav>
+
     <div class="d-flex flex-column justify-content-center align-items-center container-fluid h-100 pt-5 mt-5">
+        <div th:if="${fromCreatePost}"
+            class="text-center d-flex flex-column justify-content-center align-items-center container-fluid message-card col-sm-6 col-md-5 col-lg-3">
+            <p class="text-input texto-fuente pt-3">¡Para crear una publicacion necesitas acceder al sistema!</p>
+        </div>
         <form th:action="@{/login}" method="post" class="pt-5">
             <div class="form-card px-5 pb-3">
                 <div class="input_usuario">

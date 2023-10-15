@@ -35,7 +35,9 @@ public class SecurityConfig {
                 .authorizeHttpRequests(
                         authRequest -> {
                             authRequest.requestMatchers("/css/**", "/img/**").permitAll();
-                            authRequest.requestMatchers("/auth/**", "/index/**", "/register/**, /new-user/**")
+                            authRequest
+                                    .requestMatchers("/auth/**", "/index/**", "/register/**, /new-user/**", "/login/**",
+                                            "/post/**")
                                     .permitAll();
                             // authRequest.requestMatchers("/index-login/**").hasRole("USER");
                             authRequest.anyRequest().authenticated();
