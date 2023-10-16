@@ -19,8 +19,8 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
 
-        <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-        <script>
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
         tinymce.init({
             selector: '#contenido-post',
             width: '1200',
@@ -29,7 +29,7 @@
             content_style: "body { background-color: #083C30; color: #EBFFFA; }",
             toolbar: 'undo redo | bold italic | alignleft aligncenter alignright'
         });
-        </script>
+    </script>
 
     <title>Crear publicación | Rebbird</title>
 </head>
@@ -39,7 +39,7 @@
         <nav class="header-nav main-bg">
             <div class="header-logo-container main-bg">
                 <div class="header-logo">
-                    <a href="/src/main/resources/templates/index-noLogin.html" class="rebbird-logo">Rebbird</a>
+                    <a href="index-login.html" class="rebbird-logo">Rebbird</a>
                 </div>
             </div>
             <div class="header-category-container">
@@ -57,11 +57,16 @@
                 </div>
             </div>
             <div class="header-user-nolog">
-                <div class="user-nolog-login">
-                    <button class="user-button-login">
-                        <img src="../img/User icon.png" class="imagen-usuario ms-1 me-2 mb-1">
-                        Usuario
-                    </button>
+                <div class="user-profile">
+                    <a href="panel_usuario_historial.html" class="user-profile-btn">
+                        <div class="user-profile-img-div">
+                            <img src="/src/main/resources/static/assests/Cover/1.png" alt="user-profile-img"
+                                class="user-profile-img">
+                        </div>
+                        <div class="user-profile-name" th:text=${User.getNombre()}>
+                            Cucharoth
+                        </div>
+                    </a>
                 </div>
             </div>
         </nav>
@@ -84,7 +89,7 @@
         <div class="w-100">
             <div class="w-100 mb-2">
                 <div class="main-div ps-3 py-3">
-                    <img src="../img/User icon.png" class="image-user me-3 mb-1">
+                    <img src="../img/user_img/1.png" class="image-user me-3 mb-1">
                     <input type="search" class="input-design me-3" name="" id="">
                     <button type="submit" class="button-update mb-1 p-1"><img class="image-update"
                             src="../img/up-arrow.png"></button>
@@ -100,9 +105,9 @@
                     <div class="pt-5">
                         <label class="text-post mx-5" for="input-post">Contenido:<span
                                 style="color: red;">*</span></label>
-                                <div class="ms-5">
-                                    <textarea id="contenido-post">Ingresar aquí el contenido de tu publicación</textarea>
-                                </div>
+                        <div class="ms-5">
+                            <textarea id="contenido-post">Ingresar aquí el contenido de tu publicación</textarea>
+                        </div>
                     </div>
                     <div class="pt-5">
                         <label class="text-post mx-5" for="button-dropdown">Categoria publicación:<span
