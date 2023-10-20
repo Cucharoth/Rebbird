@@ -11,15 +11,20 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.ufro.Rebbird.model.ProfileImg;
 import com.ufro.Rebbird.model.User;
 import com.ufro.Rebbird.model.utils.Role;
+import com.ufro.Rebbird.service.ProfileImgService;
 import com.ufro.Rebbird.service.UserService;
 
+import lombok.AllArgsConstructor;
+
 @Controller
+@AllArgsConstructor
 public class authController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
+    private final ProfileImgService profileImgService;
 
     @RequestMapping("/login")
     public String logIn(Model model) {
@@ -42,14 +47,17 @@ public class authController {
             // model.addAttribute("userId", userId);
         }
 
-        return "sign-in";
+        return "register";
     }
 
     @PostMapping("/new-user")
     public String newUser(@ModelAttribute User user) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        ProfileImg profileImg = profileImgService.findById(1);
         user.setPassword(encoder.encode(user.getPassword()));
         user.setRole(Role.USER);
+        if (profileImg != null)
+            user.setProfileImg(profileImg);
         userService.save(user);
         return "redirect:/login";
     }

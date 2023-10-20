@@ -78,6 +78,7 @@ public class IndexController {
         }
     }
 
+    
     private List<List<Object>> addUserReaction(User user, Iterable<Post> currentPosts) {
         List<List<Object>> posts = new ArrayList<List<Object>>();
         if (user != null) {
@@ -121,8 +122,8 @@ public class IndexController {
         Iterable<Post> postsResult = postService.findAllByTitleContainingIgnoreCaseOrderByDateDesc(keyword);
 
         if (postsResult != null) {
-            model.addAttribute("posts", postsResult);
             model.addAttribute("categoryName", "Búsqueda");
+            model.addAttribute("postsEmptyCheck", postsResult);
             if (principal != null) {
                 String userName = principal.getName();
                 User user = userService.findByUserName(userName);
@@ -130,6 +131,9 @@ public class IndexController {
                 model.addAttribute("userName", user.getName());
                 model.addAttribute("userProfileImg", user.getProfileImg().getLink());
                 model.addAttribute("userLogin", true);
+                model.addAttribute("posts", addUserReaction(user, postsResult));
+            } else {
+                model.addAttribute("posts", addUserReaction(null, postsResult));
             }
             return "index";
         } else {

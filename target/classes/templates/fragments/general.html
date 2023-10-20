@@ -59,12 +59,12 @@
             <!-- User noLog -->
             <div th:unless="${userLogin}" class="header-user-nolog">
                 <div class="user-nolog-login">
-                    <a href="log-in.html" class="user-button-login">
+                    <a th:href="@{/login}" class="user-button-login">
                         Login
                     </a>
                 </div>
                 <div class="user-nolog-register">
-                    <a href="sign-in.html" class="user-button-register">
+                    <a th:href="@{/register}" class="user-button-register">
                         Register
                     </a>
                 </div>

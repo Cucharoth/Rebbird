@@ -423,8 +423,22 @@ body::-webkit-scrollbar-thumb {
     border-color: #212529 !important;
 }
 
-.content-message-container {
+.modal-body {
     display: flex;
+    flex-direction: column;
+    color: #EBFFFA;
+    justify-content: center;
+}
+
+.modal-post-title {
+    display: flex;
+    font-style: italic;
+    margin: 0 10px;
+    height: 40px;
+    align-items: center;
+}
+
+.content-message-container {
     padding: 10px 10px;
     border-radius: 10px;
 }
@@ -433,4 +447,9 @@ body::-webkit-scrollbar-thumb {
     display: flex;
     font-size: 20px;
     color: #EBFFFA;
+}
+
+.warning-color {
+    color: #D23C3C;
+    font-weight: bold;
 }

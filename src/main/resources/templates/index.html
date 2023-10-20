@@ -26,30 +26,12 @@
     <!-- Header -->
     <header th:insert="~{fragments/general.html :: header}"></header>
 
-    <!-- TODO: AÑADIR LOGICA-->
-    <!-- Delete post modal -->
+
     <main class="main main-bg">
-        <div class="modal fade" id="borrar-publicacion-modal" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header primary-bg">
-                        <h5 class="modal-title" id="borrarPublicacionModalLabel">Borrar publicación</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body third-bg">
-                        ¿Desea borrar esta publicación? <br>
-                        ¡Esta acción es permanente!
-                    </div>
-                    <div class="modal-footer third-bg">
-                        <button type="button" class="secondary-btn" data-dismiss="modal">Volver</button>
-                        <button type="button" class="primary-btn">Borrar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+        <!-- TODO: AÑADIR LOGICA-->
+        <!-- Delete post modal -->
+
 
         <!-- Sidebar -->
         <div th:replace="~{fragments/general.html :: sidebar}"></div>
@@ -84,6 +66,37 @@
                 </div>
                 <div class="post-container-login">
                     <div class="post bg-4 third-bg" th:each="postInfo : ${posts}">
+
+                        <!-- Delete post modal -->
+                        <div th:id="borrar-publicacion-modal+${postInfo[0].id}" class="modal fade"
+                            id="borrar-publicacion-modal" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header primary-bg">
+                                        <h5 class="modal-title" id="borrarPublicacionModalLabel">Borrar publicación</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body third-bg">
+                                        <span>¿Desea borrar esta publicación?</span>
+                                        <span th:text="${postInfo[0].title}" class="modal-post-title"></span>
+                                        <span class="warning-color">¡Esta acción es permanente!</span>
+                                    </div>
+                                    <div class="modal-footer third-bg">
+                                        <button type="button" class="secondary-btn" data-dismiss="modal">Volver</button>
+                                        <form
+                                            th:action="@{/post/delete(postId=${postInfo[0].id}, categoryId=${postInfo[0].category.id})}"
+                                            th:method="post">
+                                            <button type="submit" class="primary-btn">Borrar</button>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="post-header">
                             <div class="post-title-div">
                                 <a th:text="${postInfo[0].getTitle()}" th:href="@{/post(id=${postInfo[0].getId()}) }"
@@ -158,7 +171,8 @@
                             </div>
                             <div th:if="${postInfo[0].author.id} == ${userId}" class="delete-post-container">
                                 <a type="button" data-toggle="modal" data-target="#borrar-publicacion-modal"
-                                    class="delete-post-btn">
+                                    class="delete-post-btn"
+                                    th:attr="data-target='#borrar-publicacion-modal'+${postInfo[0].id}">
                                     <span class="material-icons block-icon">block</span>
                                 </a>
                             </div>
