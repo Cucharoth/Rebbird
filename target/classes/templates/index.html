@@ -14,6 +14,8 @@
     <link rel="stylesheet" th:href="@{/css/onPost-style.css}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -74,55 +76,93 @@
                 </div>
             </div>
 
-            <!-- TODO: ADD MESSAGE WHEN NO POST-->
+
             <!-- Posts -->
             <div class="content-main main-bg">
+                <div th:unless="${postsEmptyCheck.iterator().hasNext()}" class="content-message-container third-bg">
+                    <div class="content-message">No existen publicaciones con estas características :[</div>
+                </div>
                 <div class="post-container-login">
-                    <div class="post bg-4 third-bg" th:each="post : ${posts}">
+                    <div class="post bg-4 third-bg" th:each="postInfo : ${posts}">
                         <div class="post-header">
                             <div class="post-title-div">
-                                <a th:text="${post.getTitle()}" th:href="@{/post(id=${post.getId()}) }"
+                                <a th:text="${postInfo[0].getTitle()}" th:href="@{/post(id=${postInfo[0].getId()}) }"
                                     class="post-title">
                                     In-game ignore…let’s make it better!</a>
                             </div>
-                            <div th:text="${post.category.name}" class="post-category">Videojuegos</div>
+                            <div th:text="${postInfo[0].category.name}" class="post-category">Videojuegos</div>
                         </div>
                         <div class="post-content">
                             <div class="post-user-div">
                                 <div class="post-user-img">
-                                    <img th:src="@{${post.author.profileImg.link}}" alt="post-user-img"
+                                    <img th:src="@{${postInfo[0].author.profileImg.link}}" alt="post-user-img"
                                         class="user-pfl-img">
                                 </div>
-                                <div class="post-user-name" th:text="${post.getAuthor().getName()}">
+                                <div class="post-user-name" th:text="${postInfo[0].getAuthor().getName()}">
                                     Perl
                                 </div>
                             </div>
                             <div class="post-reaction-div">
-                                <div th:text="${post.getReactionAmount()}" class="reaction-value">10</div>
-                                <div class="reactions">
-                                    <div>
-                                        <button class="like-btn">
-                                            <img th:src="@{/img/like.png}" alt="like-img" class="like-btn-img">
+                                <div th:text="${postInfo[0].getReactionAmount()}" class="reaction-value">10</div>
+
+                                <!-- With user logged in -->
+                                <div th:if="${userLogin}" class="reactions">
+                                    <form
+                                        th:action="@{/reaction(type='like', post-id=${postInfo[0].id}, category-id=${postInfo[0].category.id})}"
+                                        method="post" class="reaction-form">
+                                        <button type="submit" class="like-btn">
+                                            <span th:if="${postInfo[2]}" alt="dislike-img"
+                                                class="material-symbols-outlined like-btn-icon-active">thumb_up</span>
+                                            <span th:unless="${postInfo[2]}" alt="dislike-img"
+                                                class="material-symbols-outlined like-btn-icon">thumb_up</span>
                                         </button>
-                                        <button class="dislike-btn">
-                                            <img th:src="@{/img/dislike.png}" alt="dislike-img" class="dislike-btn-img">
+                                    </form>
+                                    <form
+                                        th:action="@{/reaction(type='dislike', post-id=${postInfo[0].id}, category-id=${postInfo[0].category.id})}"
+                                        method="post" class="reaction-form">
+                                        <button type="submit" class="dislike-btn">
+                                            <span th:if="!${postInfo[2]} AND ${postInfo[1]}" alt="dislike-img"
+                                                class="material-symbols-outlined dislike-btn-icon-active">thumb_down</span>
+                                            <span th:if="${postInfo[2]} OR !${postInfo[1]}" alt=" dislike-img"
+                                                class="material-symbols-outlined dislike-btn-icon">thumb_down</span>
+
                                         </button>
-                                    </div>
+                                    </form>
+                                </div>
+
+                                <!-- With Visitor -->
+                                <div th:unless="${userLogin}" class="reactions">
+                                    <form
+                                        th:action="@{/reaction(type='like', post-id=${postInfo[0].id}, category-id=${postInfo[0].category.id})}"
+                                        method="post" class="reaction-form">
+                                        <button type="submit" class="like-btn">
+                                            <span alt="dislike-img"
+                                                class="material-symbols-outlined like-btn-icon">thumb_up</span>
+                                        </button>
+                                    </form>
+                                    <form
+                                        th:action="@{/reaction(type='dislike', post-id=${postInfo[0].id}, category-id=${postInfo[0].category.id})}"
+                                        method="post" class="reaction-form">
+                                        <button type="submit" class="dislike-btn">
+                                            <span alt="dislike-img"
+                                                class="material-symbols-outlined dislike-btn-icon">thumb_down</span>
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                         <div class="post-footer">
                             <div class="post-comments-div">
                                 <div class="post-comments">Comments:</div>
-                                <div th:text="${post.getCommentsAmount()}" class="post-comments-value">6</div>
+                                <div th:text="${postInfo[0].getCommentsAmount()}" class="post-comments-value">6</div>
                             </div>
-                            <div th:if="${post.author.id} == ${userId}" class="delete-post-container">
+                            <div th:if="${postInfo[0].author.id} == ${userId}" class="delete-post-container">
                                 <a type="button" data-toggle="modal" data-target="#borrar-publicacion-modal"
                                     class="delete-post-btn">
                                     <span class="material-icons block-icon">block</span>
                                 </a>
                             </div>
-                            <div class="post-date" th:text="${post.getDate()}">23-03-22</div>
+                            <div class="post-date" th:text="${postInfo[0].getDate()}">23-03-22</div>
                         </div>
                     </div>
                 </div>

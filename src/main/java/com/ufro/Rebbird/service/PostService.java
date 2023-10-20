@@ -36,7 +36,11 @@ public class PostService extends GenericService<Post, Long> {
         return postRepository.findAllByCategoryIdOrderByDateDesc(categoryId);
     }
 
-    public int countAllByPostId(Long postId){
+    public int countAllByPostId(Long postId) {
         return commentRepository.countAllByPostId(postId);
+    }
+
+    public Iterable<Post> findAllByTitleContainingIgnoreCaseOrderByDateDesc(String keyword) {
+        return postRepository.findAllByTitleContainingIgnoreCaseOrderByDateDesc(keyword);
     }
 }

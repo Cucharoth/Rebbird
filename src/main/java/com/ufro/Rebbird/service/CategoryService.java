@@ -1,7 +1,5 @@
 package com.ufro.Rebbird.service;
 
-import java.util.Optional;
-
 import org.springframework.stereotype.Service;
 
 import com.ufro.Rebbird.model.Category;

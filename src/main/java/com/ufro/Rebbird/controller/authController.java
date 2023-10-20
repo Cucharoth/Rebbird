@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.ufro.Rebbird.model.Role;
 import com.ufro.Rebbird.model.User;
+import com.ufro.Rebbird.model.utils.Role;
 import com.ufro.Rebbird.service.UserService;
 
 @Controller

@@ -5,19 +5,15 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 import com.ufro.Rebbird.repository.UserRepository;
-
-import static org.springframework.security.config.Customizer.withDefaults;
 
 import lombok.RequiredArgsConstructor;
 
@@ -36,11 +32,13 @@ public class SecurityConfig {
                         authRequest -> {
                             authRequest.requestMatchers("/css/**", "/img/**").permitAll();
                             authRequest
-                                    .requestMatchers("/auth/**", "/index/**", "/register/**, /new-user/**", "/login/**",
-                                            "/post/**")
+                                    .requestMatchers("/", "/auth/**", "/index/**", "/register/**", "/new-user/**",
+                                            "/login/**",
+                                            "/post/**",
+                                            "/search/**")
                                     .permitAll();
                             // authRequest.requestMatchers("/index-login/**").hasRole("USER");
-                            authRequest.anyRequest().authenticated();
+                            authRequest.anyRequest().authenticated(); // TODO: REMOVE THIS BEFORE RELEASE
                         })
                 .formLogin((form) -> form
                         .loginPage("/login")

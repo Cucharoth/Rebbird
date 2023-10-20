@@ -1,16 +1,14 @@
 package com.ufro.Rebbird.model;
 
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ufro.Rebbird.model.Role;
+import com.ufro.Rebbird.model.utils.Role;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

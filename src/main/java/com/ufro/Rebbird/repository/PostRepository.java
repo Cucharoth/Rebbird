@@ -1,6 +1,8 @@
 package com.ufro.Rebbird.repository;
 
 import com.ufro.Rebbird.model.Post;
+
+
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -13,6 +15,6 @@ public interface PostRepository extends CrudRepository<Post, Long> {
 
     Iterable<Post> findAllByOrderByDateDesc();
 
-    // Post findById();
+    Iterable<Post> findAllByTitleContainingIgnoreCaseOrderByDateDesc(String keyword);
 
 }
