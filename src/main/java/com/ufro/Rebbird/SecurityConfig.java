@@ -34,7 +34,7 @@ public class SecurityConfig {
                             authRequest
                                     .requestMatchers("/", "/auth/**", "/index/**", "/register/**", "/new-user/**",
                                             "/login/**",
-                                            "/post/**",
+                                            "/post",
                                             "/search/**")
                                     .permitAll();
                             // authRequest.requestMatchers("/index-login/**").hasRole("USER");

@@ -4,6 +4,7 @@
     padding-left: 30px;
     padding-right: 30px;
     height: 914px;
+    overflow: hidden;
 }
 
 .category-container {

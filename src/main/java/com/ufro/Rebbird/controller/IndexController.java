@@ -78,7 +78,6 @@ public class IndexController {
         }
     }
 
-    
     private List<List<Object>> addUserReaction(User user, Iterable<Post> currentPosts) {
         List<List<Object>> posts = new ArrayList<List<Object>>();
         if (user != null) {
@@ -149,8 +148,7 @@ public class IndexController {
      * @param postId       id de la publicación con la que se ha interactuado
      * @param categoryId   categoría de la publicación con que se ha interactuado
      * @param principal    principal proporcionado por Spring Security, representa
-     *                     el
-     *                     usuario autorizado.
+     *                     el usuario autorizado.
      * @return <i>View</i> manejado por Thymeleaf.
      * 
      */
