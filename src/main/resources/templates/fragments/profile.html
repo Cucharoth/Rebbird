@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../styles/panel_usuario_style.css">
+    <link rel="stylesheet" th:href="@{/css/panel_usuario_style.css}">
+</head>
+
+<body>
+    <!-- header -->
+    <header th:fragment="header">
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" th:href="@{/index?id=1}">Rebbird</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- content header -->
+    <div th:fragment="content-header" class="row">
+        <div class="col-3">
+            <img th:src="@{${user.profileImg.link}}" alt="prfl-img" class="mx-auto d-block main-profile-img">
+        </div>
+        <div class="col-9">
+            <h1 th:text="${user.name}">My name</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus ducimus commodi,
+                incidunt culpa consequuntur obcaecati tempora quisquam amet cupiditate accusamus
+                maiores dolore impedit architecto accusantium dolores? Laboriosam aperiam et velit!</p>
+        </div>
+    </div>
+
+    <!-- sidebar -->
+    <div th:fragment="sidebar" class="col-3">
+        <div class="menu-panel">
+            <div class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link text-white" th:href="@{/index?id=1}">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="panel_usuario_historial.html">Historial</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="panel_usuario_conf.html">Configuración</a>
+                </li>
+                <li class="nav-item">
+                    <form th:action="@{/logout}" method="post" class="logout-div">
+                        <button type="submit" value="Sign Out" class="sign-out-btn">Logout</button>
+                    </form>
+                </li>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

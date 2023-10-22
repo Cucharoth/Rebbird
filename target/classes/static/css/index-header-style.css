@@ -1,5 +1,5 @@
 a {
-    text-decoration: none;
+    text-decoration: none !important;
 }
 
 body {
@@ -311,4 +311,11 @@ li a {
 .secondary-btn:hover {
     background-color: #87FDE1;
     color: #212529;
+}
+
+.sign-out-btn {
+    display: flex;
+    color: #212529;
+    border-radius: 10px !important;
+    margin-left: 10px;
 }

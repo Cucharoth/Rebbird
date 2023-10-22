@@ -160,6 +160,7 @@ public class IndexController {
      * @return <i>View</i> manejado por Thymeleaf.
      * 
      */
+    @HxRequest
     @PostMapping(path = "/reaction")
     public String reactions(
             @RequestParam("type") String reactionType,
@@ -169,7 +170,6 @@ public class IndexController {
             Model model) {
         Post post = postService.findById(postId);
         if (post != null) {
-            System.out.println("we here -------- with type: " + reactionType);
             User user = userService.findByUserName(principal.getName());
             Post postUpdated = manageReaction(reactionType, post, user);
 
@@ -177,7 +177,6 @@ public class IndexController {
             List<Post> posts = new ArrayList<>();
             posts.add(postUpdated);
             model.addAttribute("posts", addUserReaction(user, posts));
-            System.out.println(addUserReaction(user, posts).get(0).toString());
 
             return "fragments/post.html :: reaction";
         } else {
@@ -190,6 +189,17 @@ public class IndexController {
         return "redirect:/index?id=1&page=1";
     }
 
+    /**
+     * Maneja paginado para búsquedas de <i>Post</i> filtrado por categorías.
+     * 
+     * @param categoryId categoría del los post mostrar
+     * @param page       pagina actual a mostrar
+     * @param model      modelo proporcionado por Spring.
+     * @param principal  principal proporcionado por Spring Security, representa el
+     *                   usuario autorizado.
+     * @return <i>View</i> manejado por Thymeleaf.
+     * 
+     */
     @HxRequest
     @GetMapping(path = "/index/")
     public String page(

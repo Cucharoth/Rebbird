@@ -17,15 +17,20 @@
     <!-- Header -->
     <header th:fragment="header">
         <nav class="header-nav main-bg">
+            <!-- logo -->
             <div class="header-logo-container main-bg">
                 <div class="header-logo">
                     <a th:href="@{/index?id=1}" class="rebbird-logo">Rebbird</a>
                 </div>
             </div>
+
+            <!-- category -->
             <div class="header-category-container">
                 <div th:if="${categoryName} != null" th:text="'~/' + ${categoryName}" class="header-category third-bg">
                     ~/Videojuegos</div>
             </div>
+
+            <!-- search bar -->
             <div class="search-container">
                 <div class="header-search-bar">
                     <form th:action="@{/search}" class="input-group" method="get">
@@ -41,16 +46,20 @@
             <!-- User Login -->
             <div th:if="${userLogin}" class="header-user-log">
                 <div class="user-profile">
-                    <button class="user-profile-btn">
+                    <a th:href="@{/profile(id=${userId})}" class="user-profile-btn">
                         <div class="user-profile-img-div">
                             <img th:src="@{${userProfileImg}}" alt="user-profile-img" class="user-profile-img">
                         </div>
                         <div class="user-profile-name" th:text=${userName}>
                             Cucharoth
                         </div>
-                    </button>
-                    <form th:action="@{/logout}" method="post">
-                        <input type="submit" value="Sign Out" />
+                    </a>
+                    <form th:action="@{/logout}" method="post" class="sign-out-btn">
+                        <button type="submit" value="Sign Out" class="sign-out-btn primary-btn">
+                            <span class="material-symbols-outlined">
+                                logout
+                            </span>
+                        </button>
                     </form>
                 </div>
             </div>

@@ -17,7 +17,6 @@ import com.ufro.Rebbird.model.User;
 import com.ufro.Rebbird.service.UserService;
 
 @Controller
-@RequestMapping(path = "/profile")
 public class UserController {
 
     @Autowired
