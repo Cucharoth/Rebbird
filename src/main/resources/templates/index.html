@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:hx="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="UTF-8">
@@ -20,6 +21,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://unpkg.com/htmx.org@1.9.6"
+        integrity="sha384-FhXw7b6AlE/jyjlZH5iHa/tTe9EpJ1Y55RjcgPbjeWMskSxZt1v9qkxLJWNJaGni"
+        crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -28,10 +32,6 @@
 
 
     <main class="main main-bg">
-
-        <!-- TODO: AÑADIR LOGICA-->
-        <!-- Delete post modal -->
-
 
         <!-- Sidebar -->
         <div th:replace="~{fragments/general.html :: sidebar}"></div>
@@ -58,13 +58,14 @@
                 </div>
             </div>
 
-
             <!-- Posts -->
             <div class="content-main main-bg">
                 <div th:unless="${postsEmptyCheck.iterator().hasNext()}" class="content-message-container third-bg">
                     <div class="content-message">No existen publicaciones con estas características :[</div>
                 </div>
-                <div class="post-container-login">
+                <div class="post-container-login" id="posts">
+
+                    <!-- Post iteration -->
                     <div class="post bg-4 third-bg" th:each="postInfo : ${posts}">
 
                         <!-- Delete post modal -->
@@ -97,6 +98,7 @@
                             </div>
                         </div>
 
+                        <!-- header -->
                         <div class="post-header">
                             <div class="post-title-div">
                                 <a th:text="${postInfo[0].getTitle()}" th:href="@{/post(id=${postInfo[0].getId()}) }"
@@ -105,6 +107,8 @@
                             </div>
                             <div th:text="${postInfo[0].category.name}" class="post-category">Videojuegos</div>
                         </div>
+
+                        <!-- content -->
                         <div class="post-content">
                             <div class="post-user-div">
                                 <div class="post-user-img">
@@ -115,24 +119,28 @@
                                     Perl
                                 </div>
                             </div>
+
+                            <!-- reaction -->
                             <div class="post-reaction-div">
                                 <div th:text="${postInfo[0].getReactionAmount()}" class="reaction-value">10</div>
 
                                 <!-- With user logged in -->
-                                <div th:if="${userLogin}" class="reactions">
+                                <div th:if="${userLogin}" class="reactions" id="reactions-login">
                                     <form
-                                        th:action="@{/reaction(type='like', post-id=${postInfo[0].id}, category-id=${postInfo[0].category.id})}"
-                                        method="post" class="reaction-form">
+                                        hx:post="|/reaction?type=like&post-id=${postInfo[0].id}&category-id=${postInfo[0].category.id}|"
+                                        hx-target="closest .post-reaction-div" hx-swap="outerHTML"
+                                        hx-select="#post-reaction-div" method="post" class="reaction-form">
                                         <button type="submit" class="like-btn">
-                                            <span th:if="${postInfo[2]}" alt="dislike-img"
+                                            <span th:if="${postInfo[2]}" alt="like-img"
                                                 class="material-symbols-outlined like-btn-icon-active">thumb_up</span>
-                                            <span th:unless="${postInfo[2]}" alt="dislike-img"
+                                            <span th:unless="${postInfo[2]}" alt="like-img"
                                                 class="material-symbols-outlined like-btn-icon">thumb_up</span>
                                         </button>
                                     </form>
                                     <form
-                                        th:action="@{/reaction(type='dislike', post-id=${postInfo[0].id}, category-id=${postInfo[0].category.id})}"
-                                        method="post" class="reaction-form">
+                                        hx:post="|/reaction?type=dislike&post-id=${postInfo[0].id}&category-id=${postInfo[0].category.id}|"
+                                        hx-target="closest .post-reaction-div" hx-swap="outerHTML"
+                                        hx-select="#post-reaction-div" method="post" class="reaction-form" id="here">
                                         <button type="submit" class="dislike-btn">
                                             <span th:if="!${postInfo[2]} AND ${postInfo[1]}" alt="dislike-img"
                                                 class="material-symbols-outlined dislike-btn-icon-active">thumb_down</span>
@@ -164,6 +172,8 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- footer -->
                         <div class="post-footer">
                             <div class="post-comments-div">
                                 <div class="post-comments">Comments:</div>
@@ -179,8 +189,21 @@
                             <div class="post-date" th:text="${postInfo[0].getDate()}">23-03-22</div>
                         </div>
                     </div>
+
+                    <!-- Infinite scrolling-->
+                    <div th:remove="!${postsEmptyCheck.iterator().hasNext()} OR ${isSearch} ? all">
+                        <div hx:get="|/index/?id=${posts.iterator().next()[0].category.id}&page=2|"
+                            hx-trigger="intersect once" hx-swap="beforeend" hx-indicator=".htmx-indicator">
+                        </div>
+                    </div>
+                    <div class="indicator-container">
+                        <img class="htmx-indicator"
+                            th:src="@{https://raw.githubusercontent.com/SamHerbert/SVG-Loaders/master/svg-loaders/spinning-circles.svg}"
+                            alt="">
+                    </div>
                 </div>
             </div>
+        </div>
         </div>
     </main>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

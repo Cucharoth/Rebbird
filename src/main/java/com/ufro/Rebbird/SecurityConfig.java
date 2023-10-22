@@ -35,7 +35,8 @@ public class SecurityConfig {
                                     .requestMatchers("/", "/auth/**", "/index/**", "/register/**", "/new-user/**",
                                             "/login/**",
                                             "/post",
-                                            "/search/**")
+                                            "/search/**",
+                                            "/error")
                                     .permitAll();
                             // authRequest.requestMatchers("/index-login/**").hasRole("USER");
                             authRequest.anyRequest().authenticated(); // TODO: REMOVE THIS BEFORE RELEASE

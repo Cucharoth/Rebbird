@@ -2,6 +2,11 @@ a {
     text-decoration: none;
 }
 
+body {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
 .text-color-1 {
     color: #EBFFFA;
 }

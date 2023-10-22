@@ -2,8 +2,11 @@ package com.ufro.Rebbird.controller;
 
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +24,7 @@ import com.ufro.Rebbird.service.PostService;
 import com.ufro.Rebbird.service.UserPostReactionService;
 import com.ufro.Rebbird.service.UserService;
 
+import io.github.wimdeblauwe.htmx.spring.boot.mvc.HxRequest;
 import lombok.AllArgsConstructor;
 
 @Controller
@@ -47,16 +51,21 @@ public class IndexController {
      * 
      */
     @GetMapping(path = "/index")
-    public String index(@RequestParam(value = "id") int categoryId, Model model, Principal principal) {
+    public String index(
+            @RequestParam(value = "id") int categoryId,
+            Model model,
+            Principal principal) {
 
-        Iterable<Post> postsResult = postService.findAllByCategoryIdOrderByDateDesc(categoryId);
+        Iterable<Post> postsResult = postService.findAllByCategoryIdOrderByDateDesc(categoryId, 1);
         Category category = categoryService.findCategoryByid(categoryId);
-        // posts.iterator().next()
+        // postsResult.iterator().next().getTitle();
+
         if (category != null) {
             String categoryName = category.getName();
             model.addAttribute("isPostsEmpty", !postsResult.iterator().hasNext());
             model.addAttribute("categoryName", categoryName);
             model.addAttribute("postsEmptyCheck", postsResult);
+            model.addAttribute("page", 1);
 
             // checks if the user is logged in
             if (principal != null) {
@@ -73,8 +82,7 @@ public class IndexController {
             }
             return "index";
         } else {
-            // TODO: 404.
-            return "index";
+            return "error";
         }
     }
 
@@ -123,6 +131,7 @@ public class IndexController {
         if (postsResult != null) {
             model.addAttribute("categoryName", "Búsqueda");
             model.addAttribute("postsEmptyCheck", postsResult);
+            model.addAttribute("isSearch", true);
             if (principal != null) {
                 String userName = principal.getName();
                 User user = userService.findByUserName(userName);
@@ -136,8 +145,7 @@ public class IndexController {
             }
             return "index";
         } else {
-            // TODO: 404.
-            return "index";
+            return "error";
         }
     }
 
@@ -153,28 +161,69 @@ public class IndexController {
      * 
      */
     @PostMapping(path = "/reaction")
-    public String likePost(
+    public String reactions(
             @RequestParam("type") String reactionType,
             @RequestParam("post-id") Long postId,
             @RequestParam("category-id") int categoryId,
-            Principal principal) {
+            Principal principal,
+            Model model) {
         Post post = postService.findById(postId);
         if (post != null) {
+            System.out.println("we here -------- with type: " + reactionType);
             User user = userService.findByUserName(principal.getName());
-            manageReaction(reactionType, post, user);
-            return "redirect:/index?id=" + categoryId;
+            Post postUpdated = manageReaction(reactionType, post, user);
+
+            // creamos una lista de post para satisfacer la funcion.
+            List<Post> posts = new ArrayList<>();
+            posts.add(postUpdated);
+            model.addAttribute("posts", addUserReaction(user, posts));
+            System.out.println(addUserReaction(user, posts).get(0).toString());
+
+            return "fragments/post.html :: reaction";
         } else {
-            // TODO: 404.
-            return "redirect:/index?id=" + categoryId;
+            return "error";
         }
     }
 
     @GetMapping(path = "/")
     public String index() {
-        return "redirect:/index?id=1";
+        return "redirect:/index?id=1&page=1";
     }
 
-    private void manageReaction(String reactionType, Post post, User user) {
+    @HxRequest
+    @GetMapping(path = "/index/")
+    public String page(
+            @RequestParam(value = "id") int categoryId,
+            @RequestParam(value = "page") int page,
+            Model model,
+            Principal principal) {
+
+        Page<Post> postsResult = postService.findAllByCategoryIdOrderByDateDesc(categoryId, page);
+        if (postsResult != null) {
+            if (postsResult.get().count() == 0) {
+                return "fragments/post.html :: empty";
+            }
+            model.addAttribute("page", page + 1);
+            if (principal != null) {
+                String userName = principal.getName();
+                User user = userService.findByUserName(userName);
+                model.addAttribute("userLogin", true);
+                model.addAttribute("posts", addUserReaction(user, postsResult));
+            } else {
+                model.addAttribute("posts", addUserReaction(null, postsResult));
+            }
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return "fragments/post.html :: posts";
+        } else {
+            return "error";
+        }
+    }
+
+    private Post manageReaction(String reactionType, Post post, User user) {
         UserPostReaction userPostReaction = userPostReactionService.findByPostAndUser(post.getId(), user.getId());
         int reactionAmount = post.getReactionAmount();
 
@@ -220,6 +269,11 @@ public class IndexController {
             }
             postService.save(post);
         }
+        return post;
+    }
 
+    @GetMapping(path = "/error")
+    public String error() {
+        return "error";
     }
 }

@@ -298,7 +298,7 @@
     margin-bottom: 10px;
     overflow-y: scroll;
     scroll-behavior: smooth;
-    transition: max-height 0.3s;
+    transition: max-height 0.3s, height 0.3s;
 }
 
 .on-post-container-login::-webkit-scrollbar {
@@ -361,7 +361,6 @@
     margin-top: 10px;
     padding: 10px 10px;
     border-radius: 10px;
-    transition: all 1s;
 }
 
 .comentar-post-imput {

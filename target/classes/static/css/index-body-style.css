@@ -1,9 +1,27 @@
+:root {
+    --bg_color: #001E17;
+    --primary_color: #029270;
+    --secondary_color: #001F18;
+    --text_color: #EBFFFA;
+    --accent_color: #87FDE1;
+    --third_color: #083C30;
+    --alert_color: #D23C3C;
+}
+
+body,
+html {
+    padding: 0 !important;
+    margin: 0 !important;
+    height: 94.09%;
+    background-color: var(--bg_color);
+}
+
 .main {
     display: flex;
     flex-direction: row;
     padding-left: 30px;
     padding-right: 30px;
-    height: 914px;
+    height: 100%;
     overflow: hidden;
 }
 
@@ -92,6 +110,7 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+    max-height: 93%;
 }
 
 .post-container {
@@ -115,6 +134,8 @@
     padding-left: 15px;
     padding-right: 15px;
     min-height: 174px;
+    border-style: solid;
+    border-width: 1px;
 }
 
 .post-header {
@@ -334,12 +355,13 @@ body::-webkit-scrollbar-thumb {
 
 .content-header-create-post {
     display: flex;
-    height: 100px;
+    height: 65px;
     border-radius: 10px;
     align-items: center;
     padding-left: 10px;
     padding-right: 450px;
     margin-bottom: 5px;
+    min-height: 65px;
 }
 
 .create-post-container {
@@ -453,4 +475,15 @@ body::-webkit-scrollbar-thumb {
 .warning-color {
     color: #D23C3C;
     font-weight: bold;
+}
+
+.indicator-container {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.htmx-indicator {
+    width: 30px;
+    height: 30px;
 }

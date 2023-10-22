@@ -51,8 +51,7 @@ public class PostController {
             }
             return "on-post";
         } else {
-            // TODO: 404
-            return "on-post";
+            return "error";
         }
     }
 
@@ -79,11 +78,12 @@ public class PostController {
             Principal principal) {
         User user = userService.findByUserName(principal.getName());
         Post post = postService.findById(postId);
-        System.out.println("got it ------------ comentario: " + comment.getContent());
         if (post != null && user != null) {
             comment.setPost(post);
             comment.setAuthor(user);
             commentService.save(comment);
+        } else {
+            return "error";
         }
         return "redirect:/post?id=" + postId;
     }
