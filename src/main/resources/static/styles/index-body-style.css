@@ -297,6 +297,8 @@ body::-webkit-scrollbar-thumb {
 
 .create-post-btn {
     display: flex;
+    text-decoration: none;
+    color: #212529;
     align-items: center;
     border-radius: 20px !important;
     border: none;

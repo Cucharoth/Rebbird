@@ -1,24 +1,24 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
 
-.imagen-usuario{
+.imagen-usuario {
     object-fit: contain;
     height: 30px;
     width: 30px;
 }
 
-.main-div{
+.main-div {
     background-color: #083C30;
     border-radius: 20px;
 }
 
-.input-design{
+.input-design {
     border-radius: 20px;
     height: 40px;
     width: 600px;
     border-width: 0px;
 }
 
-.button-update{
+.button-update {
     border-radius: 50%;
     background-color: #029270;
     border-width: 1px;
@@ -27,55 +27,56 @@
     height: 45px;
 }
 
-.button-update:hover{
+.button-update:hover {
     background-color: #87FDE1 !important;
 }
 
-.image-update{
+.image-update {
     width: 20px;
     height: 30px;
 }
 
-.image-user{
+.image-user {
     width: 40px;
     height: 40px;
+    border-radius: 20px;
 }
 
-.text-post{
+.text-post {
     font-family: "Roboto Mono", monospace !important;
     color: #EBFFFA;
     font-size: larger;
 }
 
-.button-drop{
+.button-drop {
     background-color: #029270;
     border-radius: 20px;
     font-size: medium;
 }
 
-.dropdown-menu{
+.dropdown-menu {
     background-color: #029270 !important;
     border-radius: 20px;
     font-size: medium;
 }
 
-.dropdown-item{
+.dropdown-item {
     font-family: "Roboto Mono", monospace !important;
     color: #EBFFFA !important;
     font-size: medium;
 }
 
-.dropdown-item:hover{
+.dropdown-item:hover {
     background-color: #87FDE1 !important;
 }
 
-.button-realizar{
+.button-realizar {
     background-color: #029270;
     border-radius: 20px;
     font-size: medium;
 }
 
-.button-realizar:hover{
+.button-realizar:hover {
     background-color: #87FDE1 !important;
 }
 
@@ -83,10 +84,10 @@
     background-color: #029270 !important;
 }
 
-.tox .tox-tbtn:hover{
+.tox .tox-tbtn:hover {
     background-color: #87FDE1 !important;
 }
 
-textarea .contenido-post{
+textarea .contenido-post {
     font-family: "Roboto Mono", monospace !important;
 }

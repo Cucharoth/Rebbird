@@ -1,13 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de usuario | Historial</title>
-    <link rel="stylesheet" href="../styles/panel_usuario_style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../css/panel_usuario_style.css">
+    <link rel="stylesheet" href="/src/main/resources/static/styles/index-body-style.css">
+    <link rel="stylesheet" href="/src/main/resources/static/styles/index-header-style.css">
+    <link rel="stylesheet" href="/src/main/resources/static/styles/onPost-style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
 </head>
+
 <body>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <div class="container-fluid">
@@ -15,20 +23,45 @@
         </div>
     </nav>
 
+    <div class="modal fade" id="borrar-publicacion-modal" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header primary-bg">
+                    <h5 class="modal-title" id="borrarPublicacionModalLabel">Borrar publicación</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body third-bg">
+                    ¿Desea borrar esta publicación? <br>
+                    ¡Esta acción es permanente!
+                </div>
+                <div class="modal-footer third-bg">
+                    <button type="button" class="secondary-btn" data-dismiss="modal">Volver</button>
+                    <button type="button" class="primary-btn">Borrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="contenedor">
         <div class="container">
             <div class="row">
                 <div class="col-3">
-                    <img src="../img/iconos/profile_icon 1.png" alt="" class="mx-auto d-block">
+                    <img src="../img/user_img/1.png" alt="" class="mx-auto d-block main-profile-img">
                 </div>
                 <div class="col-9">
-                    <h1>My name</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus ducimus commodi, 
-                        incidunt culpa consequuntur obcaecati tempora quisquam amet cupiditate accusamus 
-                        maiores dolore impedit architecto accusantium dolores? Laboriosam aperiam et velit!</p>
+                    <h1>Cucharoth</h1>
+                    <p>Hello, I'm a creative individual with a passion for art and technology. I enjoy exploring the
+                        intersection of digital art and artificial intelligence, constantly pushing the boundaries of
+                        imagination and innovation. In my free time, I'm an avid hiker and nature enthusiast, finding
+                        inspiration for my work in the beauty of the great outdoors. I'm dedicated to learning and
+                        growing in all aspects of life and am always excited to take on new challenges and adventures.
+                    </p>
                 </div>
             </div>
-    
+
             <div class="row">
                 <div class="col-3">
                     <div class="menu-panel">
@@ -50,205 +83,237 @@
                 </div>
                 <div class="col-9">
                     <div class="publicacion">
-                       <div class="row">
+                        <div class="row">
                             <div class="col-10">
-                                <h5>Titulo publicación</h5>
+                                <h5>Chris Metzen is back?</h5>
                             </div>
                             <div class="col-2">
-                                <p>Deportes</p>
+                                <p>Videojuegos</p>
                             </div>
                             <div class="row">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem dolores veritatis veniam architecto
-                                    saepe similique nihil ab vero. Distinctio eum ea iure eligendi cupiditate quis nisi esse laboriosam 
-                                    quasi praesentium!</p>
+                                <p>The problem has been the main storyline has been borderline trash since BFA; not
+                                    worldbuilding. Worldbuilding has been fine but suffered because the storyline itself
+                                    isnt sound.</p>
                             </div>
                             <div class="row">
                                 <div class="col-9">
                                     <div class="d-inline-flex align-items-center">
-                                        <div class="p-2"><img src="../img/iconos/usuario_img.png" alt=""></div>
-                                        <div class="p-2"><h6>Usuario_ejemplo1</h6></div>
+                                        <div class="p-2"><img src="../img/user_img/1.png" alt=""
+                                                class="historial-user-img"></div>
+                                        <div class="p-2">
+                                            <h6>Cucharoth</h6>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-1">
                                     <div class="d-flex flex-row-reverse">
-                                        <div class="p-2"><h6>9</h6></div>
+                                        <div class="p-2">
+                                            <h6>9</h6>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-2">
                                     <div class="reaccion-btn">
                                         <button class="like_btn"><img src="../img/iconos/like.png" alt=""></button>
-                                        <button class="dislike_btn"><img src="../img/iconos/dislike.png" alt=""></button>
+                                        <button class="dislike_btn"><img src="../img/iconos/dislike.png"
+                                                alt=""></button>
                                     </div>
                                 </div>
                             </div>
 
-                       </div>
-                       <div class="row">
+                        </div>
+                        <div class="row">
                             <div class="col-9">
                                 <p>Comentarios: 32</p>
-                                </div>
+                            </div>
                             <div class="col-1">
-                                <img src="../img/iconos/block-icon 1.png" alt="">
-                                </div>
+                                <a type="button" data-toggle="modal" data-target="#borrar-publicacion-modal"
+                                    class="delete-post-btn">
+                                    <img src="../img/iconos/block-icon 1.png" alt="">
+                                </a>
+                            </div>
                             <div class="col-2">
                                 <p>11-09-23</p>
                             </div>
 
-                       </div>
+                        </div>
                     </div>
                     <div class="publicacion">
                         <div class="row">
-                             <div class="col-10">
-                                 <h5>Titulo publicación</h5>
-                             </div>
-                             <div class="col-2">
-                                 <p>Deportes</p>
-                             </div>
-                             <div class="row">
-                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem dolores veritatis veniam architecto
-                                     saepe similique nihil ab vero. Distinctio eum ea iure eligendi cupiditate quis nisi esse laboriosam 
-                                     quasi praesentium!</p>
-                             </div>
-                             <div class="row">
-                                 <div class="col-9">
-                                     <div class="d-inline-flex align-items-center">
-                                         <div class="p-2"><img src="../img/iconos/usuario_img.png" alt=""></div>
-                                         <div class="p-2"><h6>Usuario_ejemplo1</h6></div>
-                                     </div>
-                                 </div>
-                                 <div class="col-1">
-                                     <div class="d-flex flex-row-reverse">
-                                         <div class="p-2"><h6>9</h6></div>
-                                     </div>
-                                 </div>
-                                 <div class="col-2">
-                                     <div class="reaccion-btn">
-                                         <button class="like_btn"><img src="../img/iconos/like.png" alt=""></button>
-                                         <button class="dislike_btn"><img src="../img/iconos/dislike.png" alt=""></button>
-                                     </div>
-                                 </div>
-                             </div>
- 
+                            <div class="col-10">
+                                <h5>Zones and Climate</h5>
+                            </div>
+                            <div class="col-2">
+                                <p>Videojuegos</p>
+                            </div>
+                            <div class="row">
+                                <p>Right now zones on new continents tend to be different climates to give them their
+                                    own personality. But they feel to me like theyre starting to blur together across
+                                    the expansions.</p>
+                            </div>
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="d-inline-flex align-items-center">
+                                        <div class="p-2"><img src="../img/user_img/1.png" alt=""
+                                                class="historial-user-img"></div>
+                                        <div class="p-2">
+                                            <h6>Cucharoth</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-1">
+                                    <div class="d-flex flex-row-reverse">
+                                        <div class="p-2">
+                                            <h6>9</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="reaccion-btn">
+                                        <button class="like_btn"><img src="../img/iconos/like.png" alt=""></button>
+                                        <button class="dislike_btn"><img src="../img/iconos/dislike.png"
+                                                alt=""></button>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                         <div class="row">
-                             <div class="col-9">
-                                 <p>Comentarios: 32</p>
-                                 </div>
-                             <div class="col-1">
-                                 <img src="../img/iconos/block-icon 1.png" alt="">
-                                 </div>
-                             <div class="col-2">
-                                 <p>11-09-23</p>
-                             </div>
- 
+                            <div class="col-9">
+                                <p>Comentarios: 32</p>
+                            </div>
+                            <div class="col-1">
+                                <a type="button" data-toggle="modal" data-target="#borrar-publicacion-modal"
+                                    class="delete-post-btn">
+                                    <img src="../img/iconos/block-icon 1.png" alt="">
+                                </a>
+                            </div>
+                            <div class="col-2">
+                                <p>11-09-23</p>
+                            </div>
+
                         </div>
-                     </div>
-                     <div class="publicacion">
+                    </div>
+                    <div class="publicacion">
                         <div class="row">
-                             <div class="col-10">
-                                 <h5>Titulo publicación</h5>
-                             </div>
-                             <div class="col-2">
-                                 <p>Deportes</p>
-                             </div>
-                             <div class="row">
-                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem dolores veritatis veniam architecto
-                                     saepe similique nihil ab vero. Distinctio eum ea iure eligendi cupiditate quis nisi esse laboriosam 
-                                     quasi praesentium!</p>
-                             </div>
-                             <div class="row">
-                                 <div class="col-9">
-                                     <div class="d-inline-flex align-items-center">
-                                         <div class="p-2"><img src="../img/iconos/usuario_img.png" alt=""></div>
-                                         <div class="p-2"><h6>Usuario_ejemplo1</h6></div>
-                                     </div>
-                                 </div>
-                                 <div class="col-1">
-                                     <div class="d-flex flex-row-reverse">
-                                         <div class="p-2"><h6>9</h6></div>
-                                     </div>
-                                 </div>
-                                 <div class="col-2">
-                                     <div class="reaccion-btn">
-                                         <button class="like_btn"><img src="../img/iconos/like.png" alt=""></button>
-                                         <button class="dislike_btn"><img src="../img/iconos/dislike.png" alt=""></button>
-                                     </div>
-                                 </div>
-                             </div>
- 
-                        </div>
-                        <div class="row">
-                             <div class="col-9">
-                                 <p>Comentarios: 32</p>
-                                 </div>
-                             <div class="col-1">
-                                 <img src="../img/iconos/block-icon 1.png" alt="">
-                                 </div>
-                             <div class="col-2">
-                                 <p>11-09-23</p>
-                             </div>
- 
-                        </div>
-                     </div>
-                     <div class="publicacion">
-                        <div class="row">
-                             <div class="col-10">
-                                 <h5>Titulo publicación</h5>
-                             </div>
-                             <div class="col-2">
-                                 <p>Deportes</p>
-                             </div>
-                             <div class="row">
-                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem dolores veritatis veniam architecto
-                                     saepe similique nihil ab vero. Distinctio eum ea iure eligendi cupiditate quis nisi esse laboriosam 
-                                     quasi praesentium!</p>
-                             </div>
-                             <div class="row">
-                                 <div class="col-9">
-                                     <div class="d-inline-flex align-items-center">
-                                         <div class="p-2"><img src="../img/iconos/usuario_img.png" alt=""></div>
-                                         <div class="p-2"><h6>Usuario_ejemplo1</h6></div>
-                                     </div>
-                                 </div>
-                                 <div class="col-1">
-                                     <div class="d-flex flex-row-reverse">
-                                         <div class="p-2"><h6>9</h6></div>
-                                     </div>
-                                 </div>
-                                 <div class="col-2">
-                                     <div class="reaccion-btn">
-                                         <button class="like_btn"><img src="../img/iconos/like.png" alt=""></button>
-                                         <button class="dislike_btn"><img src="../img/iconos/dislike.png" alt=""></button>
-                                     </div>
-                                 </div>
-                             </div>
- 
+                            <div class="col-10">
+                                <h5>Talent trees, and why everything you ask for makes things worse</h5>
+                            </div>
+                            <div class="col-2">
+                                <p>Videojuegos</p>
+                            </div>
+                            <div class="row">
+                                <p>Thousands of words have already been written on this forum about this expansion’s
+                                    failings, the biggest words being the storming of feet out of the door. So this is
+                                    not about that, while dragonflight brought some innovation </p>
+                            </div>
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="d-inline-flex align-items-center">
+                                        <div class="p-2"><img src="../img/user_img/1.png" alt=""
+                                                class="historial-user-img"></div>
+                                        <div class="p-2">
+                                            <h6>Cucharoth</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-1">
+                                    <div class="d-flex flex-row-reverse">
+                                        <div class="p-2">
+                                            <h6>9</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="reaccion-btn">
+                                        <button class="like_btn"><img src="../img/iconos/like.png" alt=""></button>
+                                        <button class="dislike_btn"><img src="../img/iconos/dislike.png"
+                                                alt=""></button>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                         <div class="row">
-                             <div class="col-9">
-                                 <p>Comentarios: 32</p>
-                                 </div>
-                             <div class="col-1">
-                                 <img src="../img/iconos/block-icon 1.png" alt="">
-                                 </div>
-                             <div class="col-2">
-                                 <p>11-09-23</p>
-                             </div>
- 
+                            <div class="col-9">
+                                <p>Comentarios: 32</p>
+                            </div>
+                            <div class="col-1">
+                                <img src="../img/iconos/block-icon 1.png" alt="">
+                            </div>
+                            <div class="col-2">
+                                <p>11-09-23</p>
+                            </div>
+
                         </div>
-                     </div>
-                    
-                   
-                        
-                     
- 
-     
-                     </div>
+                    </div>
+                    <div class="publicacion">
+                        <div class="row">
+                            <div class="col-10">
+                                <h5>Theory: blizzard will announce WoW on game pass at Blizzcon</h5>
+                            </div>
+                            <div class="col-2">
+                                <p>Videojuegos</p>
+                            </div>
+                            <div class="row">
+                                <p>It’s been heavily suggested that most legacy Activision | Blizzard video game titles
+                                    WILL be coming to Xbox in 2023.</p>
+                            </div>
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="d-inline-flex align-items-center">
+                                        <div class="p-2"><img src="../img/user_img/1.png" alt=""
+                                                class="historial-user-img"></div>
+                                        <div class="p-2">
+                                            <h6>Cucharoth</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-1">
+                                    <div class="d-flex flex-row-reverse">
+                                        <div class="p-2">
+                                            <h6>9</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="reaccion-btn">
+                                        <button class="like_btn"><img src="../img/iconos/like.png" alt=""></button>
+                                        <button class="dislike_btn"><img src="../img/iconos/dislike.png"
+                                                alt=""></button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-9">
+                                <p>Comentarios: 32</p>
+                            </div>
+                            <div class="col-1">
+                                <img src="../img/iconos/block-icon 1.png" alt="">
+                            </div>
+                            <div class="col-2">
+                                <p>11-09-23</p>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    
-   
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
 </body>
+
 </html>
