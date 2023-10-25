@@ -3,7 +3,15 @@ package com.ufro.Rebbird.model;
 import java.sql.Timestamp;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "comentario")
 public class Comment {
@@ -16,7 +24,7 @@ public class Comment {
     @Column(name = "content_comentario", nullable = false, columnDefinition = "TEXT")
     private String content;
 
-    @Column(name = "fecha_comentario", nullable = false, columnDefinition = "TIMESTAMP")
+    @Column(name = "fecha_comentario", columnDefinition = "Timestamp default CURRENT_TIMESTAMP")
     private Timestamp date;
 
     @ManyToOne

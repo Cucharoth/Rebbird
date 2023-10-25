@@ -1,9 +1,28 @@
+:root {
+    --bg_color: #001E17;
+    --primary_color: #029270;
+    --secondary_color: #001F18;
+    --text_color: #EBFFFA;
+    --accent_color: #87FDE1;
+    --third_color: #083C30;
+    --alert_color: #D23C3C;
+}
+
+body,
+html {
+    padding: 0 !important;
+    margin: 0 !important;
+    height: 94.09%;
+    background-color: var(--bg_color);
+}
+
 .main {
     display: flex;
     flex-direction: row;
     padding-left: 30px;
     padding-right: 30px;
-    height: 914px;
+    height: 100%;
+    overflow: hidden;
 }
 
 .category-container {
@@ -33,6 +52,7 @@
 }
 
 .category-btn {
+    text-decoration: none;
     background-color: #02927000;
     color: #EBFFFA;
     font-family: Roboto;
@@ -50,21 +70,25 @@
 
 .content-container {
     flex: 1;
+    display: flex;
+    flex-direction: column;
     padding: 20px;
 }
 
 .content-header {
-    flex: 1;
     display: flex;
-    height: 5%;
+    height: 44px;
+    margin: 8px 0px;
 }
 
 .crear-publicacion-container {
+    flex: 1;
     display: flex;
     align-items: center;
 }
 
 .crear-publicacion-btn {
+    text-decoration: none;
     background-color: #029270;
     color: #212529;
     font-family: Roboto;
@@ -86,6 +110,7 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+    max-height: 93%;
 }
 
 .post-container {
@@ -109,6 +134,8 @@
     padding-left: 15px;
     padding-right: 15px;
     min-height: 174px;
+    border-style: solid;
+    border-width: 1px;
 }
 
 .post-header {
@@ -200,22 +227,72 @@
 }
 
 .like-btn {
+    display: flex;
     background-color: #02927000;
+    justify-content: center;
+    align-items: center;
     border: none;
 }
 
-.like-btn-img {}
+.like-btn-icon {
+    display: flex;
+    font-size: 35px !important;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+}
 
-.like-btn-img:hover {
+.like-btn-icon-active {
+    display: flex;
+    color: #D23C3C;
+    font-size: 35px !important;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+}
+
+.like-btn-icon:hover {
+    opacity: 0.5;
+}
+
+.like-btn-icon-active:hover {
     opacity: 0.7;
 }
 
+.reaction-form {
+    display: flex;
+}
+
 .dislike-btn {
+    display: flex;
     background-color: #02927000;
+    justify-content: center;
+    align-items: center;
     border: none;
 }
 
-.dislike-btn-img:hover {
+.dislike-btn-icon {
+    display: flex;
+    font-size: 35px !important;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+}
+
+.dislike-btn-icon-active {
+    display: flex;
+    color: #D23C3C;
+    font-size: 35px !important;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+}
+
+.dislike-btn-icon:hover {
+    opacity: 0.5;
+}
+
+.dislike-btn-icon-active:hover {
     opacity: 0.7;
 }
 
@@ -278,12 +355,13 @@ body::-webkit-scrollbar-thumb {
 
 .content-header-create-post {
     display: flex;
-    height: 100px;
+    height: 65px;
     border-radius: 10px;
     align-items: center;
     padding-left: 10px;
     padding-right: 450px;
     margin-bottom: 5px;
+    min-height: 65px;
 }
 
 .create-post-container {
@@ -340,6 +418,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .delete-post-btn {
+    text-decoration: none;
     background-color: #21252900;
     display: flex;
     border: none;
@@ -349,4 +428,62 @@ body::-webkit-scrollbar-thumb {
 .block-icon {
     color: #D23C3C;
     font-size: 30px !important;
+}
+
+.close {
+    border-style: none;
+    border-radius: 50%;
+    font-size: 15px;
+}
+
+#borrar-publicacion-modal {
+    color: #EBFFFA;
+    border-color: #212529 !important;
+}
+
+.modal-footer {
+    background-color: #083C30 !important;
+    border-color: #212529 !important;
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    color: #EBFFFA;
+    justify-content: center;
+}
+
+.modal-post-title {
+    display: flex;
+    font-style: italic;
+    margin: 0 10px;
+    height: 40px;
+    align-items: center;
+}
+
+.content-message-container {
+    padding: 10px 10px;
+    border-radius: 10px;
+}
+
+.content-message {
+    display: flex;
+    font-size: 20px;
+    color: #EBFFFA;
+}
+
+.warning-color {
+    color: #D23C3C;
+    font-weight: bold;
+}
+
+.indicator-container {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.htmx-indicator {
+    width: 30px;
+    height: 30px;
 }

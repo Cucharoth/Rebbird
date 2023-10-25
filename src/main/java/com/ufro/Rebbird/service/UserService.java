@@ -21,6 +21,10 @@ public class UserService extends GenericService<User, Integer> {
         super(repository);
     }
 
+    public User findByUserName(String name) {
+        return ((UserRepository) repository).findByUsername(name);
+    }
+
     public List<User> getUsers() {
         return (List<User>) userRepository.findAll();
     }

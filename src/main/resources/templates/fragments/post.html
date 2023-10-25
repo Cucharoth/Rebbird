@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/css/index-header-style.css}">
+    <link rel="stylesheet" th:href="@{/css/index-body-style.css}">
+    <link rel="stylesheet" th:href="@{/css/onPost-style.css}">
+</head>
+
+<body>
+    <div th:fragment="posts">
+        <!-- htmx get call para insertar post recursivamente -->
+        <div hx:get="|/index/?id=${posts.iterator().next()[0].category.id}&page=${page}|" hx-trigger="revealed"
+            hx-swap="afterend">
+
+            <!-- Post iteration -->
+            <div class="post third-bg" th:each="postInfo : ${posts}">
+
+                <!-- header -->
+                <div class="post-header">
+                    <div class="post-title-div">
+                        <a th:text="${postInfo[0].getTitle()}" th:href="@{/post(id=${postInfo[0].getId()}) }"
+                            class="post-title">
+                            In-game ignore…let’s make it better!</a>
+                    </div>
+                    <div th:text="${postInfo[0].category.name}" class="post-category">Videojuegos</div>
+                </div>
+
+                <!-- content -->
+                <div class="post-content">
+                    <div class="post-user-div">
+                        <div class="post-user-img">
+                            <img th:src="@{${postInfo[0].author.profileImg.link}}" alt="post-user-img"
+                                class="user-pfl-img">
+                        </div>
+                        <div class="post-user-name" th:text="${postInfo[0].getAuthor().getName()}">
+                            Perl
+                        </div>
+                    </div>
+
+                    <!-- reaction -->
+                    <div class="post-reaction-div">
+                        <div th:text="${postInfo[0].getReactionAmount()}" class="reaction-value">10</div>
+
+                        <!-- With user logged in -->
+                        <div th:if="${userLogin}" class="reactions">
+                            <form
+                                hx:post="|/reaction?type=like&post-id=${postInfo[0].id}&category-id=${postInfo[0].category.id}|"
+                                hx-target="closest .post-reaction-div" hx-swap="outerHTML"
+                                hx-select="#post-reaction-div" method="post" class="reaction-form">
+                                <button type="submit" class="like-btn">
+                                    <span th:if="${postInfo[2]}" alt="dislike-img"
+                                        class="material-symbols-outlined like-btn-icon-active">thumb_up</span>
+                                    <span th:unless="${postInfo[2]}" alt="dislike-img"
+                                        class="material-symbols-outlined like-btn-icon">thumb_up</span>
+                                </button>
+                            </form>
+                            <form
+                                hx:post="|/reaction?type=dislike&post-id=${postInfo[0].id}&category-id=${postInfo[0].category.id}|"
+                                hx-target="closest .post-reaction-div" hx-swap="outerHTML"
+                                hx-select="#post-reaction-div" method="post" class="reaction-form">
+                                <button type="submit" class="dislike-btn">
+                                    <span th:if="!${postInfo[2]} AND ${postInfo[1]}" alt="dislike-img"
+                                        class="material-symbols-outlined dislike-btn-icon-active">thumb_down</span>
+                                    <span th:if="${postInfo[2]} OR !${postInfo[1]}" alt=" dislike-img"
+                                        class="material-symbols-outlined dislike-btn-icon">thumb_down</span>
+
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- With Visitor -->
+                        <div th:unless="${userLogin}" class="reactions">
+                            <form
+                                th:action="@{/reaction(type='like', post-id=${postInfo[0].id}, category-id=${postInfo[0].category.id})}"
+                                method="post" class="reaction-form">
+                                <button type="submit" class="like-btn">
+                                    <span alt="dislike-img"
+                                        class="material-symbols-outlined like-btn-icon">thumb_up</span>
+                                </button>
+                            </form>
+                            <form
+                                th:action="@{/reaction(type='dislike', post-id=${postInfo[0].id}, category-id=${postInfo[0].category.id})}"
+                                method="post" class="reaction-form">
+                                <button type="submit" class="dislike-btn">
+                                    <span alt="dislike-img"
+                                        class="material-symbols-outlined dislike-btn-icon">thumb_down</span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- footer -->
+                <div class="post-footer">
+                    <div class="post-comments-div">
+                        <div class="post-comments">Comments:</div>
+                        <div th:text="${postInfo[0].getCommentsAmount()}" class="post-comments-value">6</div>
+                    </div>
+                    <div th:if="${postInfo[0].author.id} == ${userId}" class="delete-post-container">
+                        <a type="button" data-toggle="modal" data-target="#borrar-publicacion-modal"
+                            class="delete-post-btn" th:attr="data-target='#borrar-publicacion-modal'+${postInfo[0].id}">
+                            <span class="material-icons block-icon">block</span>
+                        </a>
+                    </div>
+                    <div class="post-date" th:text="${postInfo[0].getDate()}">23-03-22</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div th:fragment="reaction" th:each="postInfo : ${posts}" class="post-reaction-div" id="post-reaction-div">
+        <div th:text="${postInfo[0].getReactionAmount()}" class="reaction-value">10</div>
+        <div id="reactions-login" class="reactions">
+            <form hx:post="|/reaction?type=like&post-id=${postInfo[0].id}&category-id=${postInfo[0].category.id}|"
+                hx-target="closest .post-reaction-div" hx-swap="outerHTML" hx-select="#post-reaction-div" method="post"
+                class="reaction-form">
+                <button type="submit" class="like-btn">
+                    <span th:if="${postInfo[2]}" alt="dislike-img"
+                        class="material-symbols-outlined like-btn-icon-active">thumb_up</span>
+                    <span th:unless="${postInfo[2]}" alt="dislike-img"
+                        class="material-symbols-outlined like-btn-icon">thumb_up</span>
+                </button>
+            </form>
+            <form hx:post="|/reaction?type=dislike&post-id=${postInfo[0].id}&category-id=${postInfo[0].category.id}|"
+                hx-target="closest .post-reaction-div" hx-swap="outerHTML" hx-select="#post-reaction-div" method="post"
+                class="reaction-form">
+                <button type="submit" class="dislike-btn">
+                    <span th:if="!${postInfo[2]} AND ${postInfo[1]}" alt="dislike-img"
+                        class="material-symbols-outlined dislike-btn-icon-active">thumb_down</span>
+                    <span th:if="${postInfo[2]} OR !${postInfo[1]}" alt=" dislike-img"
+                        class="material-symbols-outlined dislike-btn-icon">thumb_down</span>
+
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div th:fragment="empty"></div>
+</body>
+
+</html>

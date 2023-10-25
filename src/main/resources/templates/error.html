@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rebbird 404</title>
+    <link rel="stylesheet" th:href="@{/css/index-header-style.css}">
+    <link rel="stylesheet" th:href="@{/css/error.css}">
+    <link rel="stylesheet" href="/src/main/resources/static/css/index-header-style.css">
+    <link rel="stylesheet" href="/src/main/resources/static/css/error.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <nav class="header-nav main-bg">
+            <div class="header-logo-container main-bg">
+                <div class="header-logo">
+                    <a th:href="@{/index?id=1}" class="rebbird-logo">Rebbird</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="main third-bg">
+        <div class="main-content">
+            <div class="content-container main-bg">
+                <div class="content main-bg">
+                    <div class="content-header">404</div>
+                    <div class="content-body">Algo ha salido mal..</div>
+                    <div class="content-footer">
+                        <a th:href="@{/index?id=1}" class="primary-btn">Volver</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
