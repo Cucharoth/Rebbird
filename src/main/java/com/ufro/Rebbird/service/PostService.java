@@ -6,6 +6,9 @@ import com.ufro.Rebbird.repository.PostRepository;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.ufro.Rebbird.commons.GenericService;
@@ -32,11 +35,20 @@ public class PostService extends GenericService<Post, Long> {
         return postRepository.findAllByOrderByDateDesc();
     }
 
-    public Iterable<Post> findAllByCategoryIdOrderByDateDesc(int categoryId) {
-        return postRepository.findAllByCategoryIdOrderByDateDesc(categoryId);
+    // public Iterable<Post> findAllByCategoryIdOrderByDateDesc(int categoryId) {
+    // return postRepository.findAllByCategoryIdOrderByDateDesc(categoryId);
+    // }
+
+    public Page<Post> findAllByCategoryIdOrderByDateDesc(int category, int page) {
+        Pageable paging = PageRequest.of(page - 1, 5);
+        return postRepository.findAllByCategoryIdOrderByDateDesc(category, paging);
     }
 
-    public int countAllByPostId(Long postId){
+    public int countAllByPostId(Long postId) {
         return commentRepository.countAllByPostId(postId);
+    }
+
+    public Iterable<Post> findAllByTitleContainingIgnoreCaseOrderByDateDesc(String keyword) {
+        return postRepository.findAllByTitleContainingIgnoreCaseOrderByDateDesc(keyword);
     }
 }

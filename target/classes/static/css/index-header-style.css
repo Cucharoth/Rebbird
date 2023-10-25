@@ -1,5 +1,10 @@
 a {
-    text-decoration: none;
+    text-decoration: none !important;
+}
+
+body {
+    padding: 0 !important;
+    margin: 0 !important;
 }
 
 .text-color-1 {
@@ -156,18 +161,27 @@ li a {
 }
 
 .user-nolog-login {
+    display: flex;
+    text-decoration: none;
+    justify-content: center;
     font-family: Roboto;
     font-size: 24px;
     font-weight: bold;
 }
 
-.user-nolog-signin {
+.user-nolog-register {
+    display: flex;
+    text-decoration: none;
+    justify-content: center;
     font-family: Roboto;
     font-size: 24px;
 }
 
 .user-button-login {
+    display: flex;
     font-weight: bold;
+    text-decoration: none;
+    justify-content: center;
     margin-left: 10px;
     border-radius: 10px;
     background-color: #029270;
@@ -177,8 +191,11 @@ li a {
     border: none;
 }
 
-.user-button-signin {
+.user-button-register {
+    display: flex;
     font-weight: bold;
+    text-decoration: none;
+    justify-content: center;
     margin-left: 10px;
     border-radius: 10px;
     background-color: #083C30;
@@ -193,7 +210,7 @@ li a {
     color: #212529;
 }
 
-.user-button-signin:hover {
+.user-button-register:hover {
     background-color: #87FDE1;
     color: #212529;
 }
@@ -274,4 +291,31 @@ li a {
 .primary-btn:hover {
     background-color: #87FDE1;
     color: #212529;
+}
+
+.secondary-btn {
+    display: flex;
+    background-color: #333;
+    color: #EBFFFA;
+    font-family: Roboto;
+    font-size: 18px;
+    font-weight: bold;
+    align-items: center;
+    border-radius: 15px !important;
+    border: none;
+    padding: 5px 10px;
+    margin: 0;
+    transition: color 0.25s, background-color 0.35s;
+}
+
+.secondary-btn:hover {
+    background-color: #87FDE1;
+    color: #212529;
+}
+
+.sign-out-btn {
+    display: flex;
+    color: #212529;
+    border-radius: 10px !important;
+    margin-left: 10px;
 }

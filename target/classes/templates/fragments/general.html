@@ -17,36 +17,65 @@
     <!-- Header -->
     <header th:fragment="header">
         <nav class="header-nav main-bg">
+            <!-- logo -->
             <div class="header-logo-container main-bg">
                 <div class="header-logo">
-                    <a href="" class="rebbird-logo">Rebbird</a>
+                    <a th:href="@{/index?id=1}" class="rebbird-logo">Rebbird</a>
                 </div>
             </div>
+
+            <!-- category -->
             <div class="header-category-container">
-                <div class="header-category third-bg">~/Videojuegos</div>
+                <div th:if="${categoryName} != null" th:text="'~/' + ${categoryName}" class="header-category third-bg">
+                    ~/Videojuegos</div>
             </div>
+
+            <!-- search bar -->
             <div class="search-container">
                 <div class="header-search-bar">
-                    <form class="input-group">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Buscar en Rebbird"
-                            aria-label="Search">
+                    <form th:action="@{/search}" class="input-group" method="get">
+                        <input class="form-control mr-sm-2" type="search" size="30" name="keyword"
+                            placeholder="Buscar en Rebbird" aria-label="Search" required>
                         <button class="search-button primary-bg" type="submit">
                             <img th:src="@{/img/Magnifying Glass.png}" alt="search-icon" class="search-icon">
                         </button>
                     </form>
                 </div>
             </div>
-            <div class="header-user-log">
+
+            <!-- User Login -->
+            <div th:if="${userLogin}" class="header-user-log">
                 <div class="user-profile">
-                    <button class="user-profile-btn">
+                    <a th:href="@{/profile(id=${userId})}" class="user-profile-btn">
                         <div class="user-profile-img-div">
-                            <img src="/src/main/resources/static/assests/Cover/1.png" alt="user-profile-img"
-                                class="user-profile-img">
+                            <img th:src="@{${userProfileImg}}" alt="user-profile-img" class="user-profile-img">
                         </div>
-                        <div class="user-profile-name" th:text=${user}>
+                        <div class="user-profile-name" th:text=${userName}>
                             Cucharoth
                         </div>
-                    </button>
+                    </a>
+                    <form th:action="@{/logout}" method="post" class="sign-out-btn">
+                        <button type="submit" value="Sign Out" class="sign-out-btn primary-btn">
+                            <span class="material-symbols-outlined">
+                                logout
+                            </span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+
+            <!-- User noLog -->
+            <div th:unless="${userLogin}" class="header-user-nolog">
+                <div class="user-nolog-login">
+                    <a th:href="@{/login}" class="user-button-login">
+                        Login
+                    </a>
+                </div>
+                <div class="user-nolog-register">
+                    <a th:href="@{/register}" class="user-button-register">
+                        Register
+                    </a>
                 </div>
             </div>
         </nav>
@@ -58,12 +87,15 @@
             <div class="category-title">TEMAS</div>
         </div>
         <div class="button-container main-bg">
-            <button class="category-btn">~/Videojuegos</button>
-            <button class="category-btn">~/Deportes</button>
-            <button class="category-btn">~/Arte</button>
-            <button class="category-btn">~/Música</button>
-            <button class="category-btn">~/Programación</button>
-            <button class="category-btn">~/Noticias</button>
+            <a th:href="@{/index?id=1}" class="category-btn">~/Videojuegos</a>
+            <a th:href="@{/index?id=2}" class="category-btn">~/Series</a>
+            <a th:href="@{/index?id=3}" class="category-btn">~/Películas</a>
+            <a th:href="@{/index?id=4}" class="category-btn">~/Música</a>
+            <a th:href="@{/index?id=5}" class="category-btn">~/Ciencia</a>
+            <a th:href="@{/index?id=6}" class="category-btn">~/Deportes</a>
+            <a th:href="@{/index?id=7}" class="category-btn">~/Mundo</a>
+            <a th:href="@{/index?id=8}" class="category-btn">~/Política</a>
+            <a th:href="@{/index?id=9}" class="category-btn">~/Programación</a>
         </div>
     </div>
 
