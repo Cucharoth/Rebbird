@@ -15,6 +15,34 @@
             <!-- Post iteration -->
             <div class="post third-bg" th:each="postInfo : ${posts}">
 
+                <!-- Delete post modal -->
+                <div th:id="borrar-publicacion-modal+${postInfo[0].id}" class="modal fade" id="borrar-publicacion-modal" tabindex="-1"
+                    role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header primary-bg">
+                                <h5 class="modal-title" id="borrarPublicacionModalLabel">Borrar publicación</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body third-bg">
+                                <span>¿Desea borrar esta publicación?</span>
+                                <span th:text="${postInfo[0].title}" class="modal-post-title"></span>
+                                <span class="warning-color">¡Esta acción es permanente!</span>
+                            </div>
+                            <div class="modal-footer third-bg">
+                                <button type="button" class="secondary-btn" data-dismiss="modal">Volver</button>
+                                <form th:action="@{/post/delete(postId=${postInfo[0].id}, categoryId=${postInfo[0].category.id})}"
+                                    th:method="post">
+                                    <button type="submit" class="primary-btn">Borrar</button>
+                                </form>
+                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- header -->
                 <div class="post-header">
                     <div class="post-title-div">
@@ -48,9 +76,9 @@
                                 hx-target="closest .post-reaction-div" hx-swap="outerHTML"
                                 hx-select="#post-reaction-div" method="post" class="reaction-form">
                                 <button type="submit" class="like-btn">
-                                    <span th:if="${postInfo[2]}" alt="dislike-img"
+                                    <span th:if="${postInfo[3]}" alt="dislike-img"
                                         class="material-symbols-outlined like-btn-icon-active">thumb_up</span>
-                                    <span th:unless="${postInfo[2]}" alt="dislike-img"
+                                    <span th:unless="${postInfo[3]}" alt="dislike-img"
                                         class="material-symbols-outlined like-btn-icon">thumb_up</span>
                                 </button>
                             </form>
@@ -59,9 +87,9 @@
                                 hx-target="closest .post-reaction-div" hx-swap="outerHTML"
                                 hx-select="#post-reaction-div" method="post" class="reaction-form">
                                 <button type="submit" class="dislike-btn">
-                                    <span th:if="!${postInfo[2]} AND ${postInfo[1]}" alt="dislike-img"
+                                    <span th:if="!${postInfo[3]} AND ${postInfo[2]}" alt="dislike-img"
                                         class="material-symbols-outlined dislike-btn-icon-active">thumb_down</span>
-                                    <span th:if="${postInfo[2]} OR !${postInfo[1]}" alt=" dislike-img"
+                                    <span th:if="${postInfo[3]} OR !${postInfo[2]}" alt=" dislike-img"
                                         class="material-symbols-outlined dislike-btn-icon">thumb_down</span>
 
                                 </button>
@@ -94,7 +122,7 @@
                 <div class="post-footer">
                     <div class="post-comments-div">
                         <div class="post-comments">Comments:</div>
-                        <div th:text="${postInfo[0].getCommentsAmount()}" class="post-comments-value">6</div>
+                        <div th:text="${postInfo[1]}" class="post-comments-value">6</div>
                     </div>
                     <div th:if="${postInfo[0].author.id} == ${userId} OR ${isAdmin}" class="delete-post-container">
                         <a type="button" data-toggle="modal" data-target="#borrar-publicacion-modal"
@@ -117,9 +145,9 @@
                 hx-target="closest .post-reaction-div" hx-swap="outerHTML" hx-select="#post-reaction-div" method="post"
                 class="reaction-form">
                 <button type="submit" class="like-btn">
-                    <span th:if="${postInfo[2]}" alt="dislike-img"
+                    <span th:if="${postInfo[3]}" alt="dislike-img"
                         class="material-symbols-outlined like-btn-icon-active">thumb_up</span>
-                    <span th:unless="${postInfo[2]}" alt="dislike-img"
+                    <span th:unless="${postInfo[3]}" alt="dislike-img"
                         class="material-symbols-outlined like-btn-icon">thumb_up</span>
                 </button>
             </form>
@@ -127,9 +155,9 @@
                 hx-target="closest .post-reaction-div" hx-swap="outerHTML" hx-select="#post-reaction-div" method="post"
                 class="reaction-form">
                 <button type="submit" class="dislike-btn">
-                    <span th:if="!${postInfo[2]} AND ${postInfo[1]}" alt="dislike-img"
+                    <span th:if="!${postInfo[3]} AND ${postInfo[2]}" alt="dislike-img"
                         class="material-symbols-outlined dislike-btn-icon-active">thumb_down</span>
-                    <span th:if="${postInfo[2]} OR !${postInfo[1]}" alt=" dislike-img"
+                    <span th:if="${postInfo[3]} OR !${postInfo[2]}" alt=" dislike-img"
                         class="material-symbols-outlined dislike-btn-icon">thumb_down</span>
 
                 </button>

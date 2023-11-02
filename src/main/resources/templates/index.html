@@ -131,9 +131,9 @@
                                         hx-target="closest .post-reaction-div" hx-swap="outerHTML"
                                         hx-select="#post-reaction-div" method="post" class="reaction-form">
                                         <button type="submit" class="like-btn">
-                                            <span th:if="${postInfo[2]}" alt="like-img"
+                                            <span th:if="${postInfo[3]}" alt="like-img"
                                                 class="material-symbols-outlined like-btn-icon-active">thumb_up</span>
-                                            <span th:unless="${postInfo[2]}" alt="like-img"
+                                            <span th:unless="${postInfo[3]}" alt="like-img"
                                                 class="material-symbols-outlined like-btn-icon">thumb_up</span>
                                         </button>
                                     </form>
@@ -142,9 +142,9 @@
                                         hx-target="closest .post-reaction-div" hx-swap="outerHTML"
                                         hx-select="#post-reaction-div" method="post" class="reaction-form" id="here">
                                         <button type="submit" class="dislike-btn">
-                                            <span th:if="!${postInfo[2]} AND ${postInfo[1]}" alt="dislike-img"
+                                            <span th:if="!${postInfo[3]} AND ${postInfo[2]}" alt="dislike-img"
                                                 class="material-symbols-outlined dislike-btn-icon-active">thumb_down</span>
-                                            <span th:if="${postInfo[2]} OR !${postInfo[1]}" alt=" dislike-img"
+                                            <span th:if="${postInfo[3]} OR !${postInfo[2]}" alt=" dislike-img"
                                                 class="material-symbols-outlined dislike-btn-icon">thumb_down</span>
 
                                         </button>
@@ -176,8 +176,8 @@
                         <!-- footer -->
                         <div class="post-footer">
                             <div class="post-comments-div">
-                                <div class="post-comments">Comments:</div>
-                                <div th:text="${postInfo[0].getCommentsAmount()}" class="post-comments-value">6</div>
+                                <div class="post-comments">Comentarios:</div>
+                                <div th:text="${postInfo[1]}" class="post-comments-value">6</div>
                             </div>
                             <div th:if="${postInfo[0].author.id} == ${userId} OR ${isAdmin}" class="delete-post-container">
                                 <a type="button" data-toggle="modal" data-target="#borrar-publicacion-modal"
@@ -216,6 +216,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
+    <script type="text/javascript" th:src="@{js/invalidMsg.js}"></script>
 </body>
 
 </html>

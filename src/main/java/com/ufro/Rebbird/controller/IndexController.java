@@ -19,6 +19,7 @@ import com.ufro.Rebbird.model.UserPostReaction;
 import com.ufro.Rebbird.model.utils.ReactionType;
 import com.ufro.Rebbird.model.utils.Role;
 import com.ufro.Rebbird.service.CategoryService;
+import com.ufro.Rebbird.service.CommentService;
 import com.ufro.Rebbird.service.PostService;
 import com.ufro.Rebbird.service.UserPostReactionService;
 import com.ufro.Rebbird.service.UserService;
@@ -35,6 +36,7 @@ public class IndexController {
     private final UserService userService;
     private final CategoryService categoryService;
     private final UserPostReactionService userPostReactionService;
+    private final CommentService commentService;
 
     /**
      * Maneja pagina principal, muestra posts según categorías dando acceso al
@@ -75,10 +77,10 @@ public class IndexController {
                 model.addAttribute("userProfileImg", user.getProfileImg().getLink());
                 model.addAttribute("userLogin", true);
                 model.addAttribute("isAdmin", user.getRole() == Role.ADMIN);
-                model.addAttribute("posts", addUserReaction(user, postsResult));
+                model.addAttribute("posts", giveFormatPost(user, postsResult));
             } else {
                 model.addAttribute("userLogin", false);
-                model.addAttribute("posts", addUserReaction(null, postsResult));
+                model.addAttribute("posts", giveFormatPost(null, postsResult));
             }
             return "index";
         } else {
@@ -86,7 +88,16 @@ public class IndexController {
         }
     }
 
-    private List<List<Object>> addUserReaction(User user, Iterable<Post> currentPosts) {
+    /**
+     * Da a <i>Post</i> el formato necesario para ser mostrado en <i>Index</i>
+     * 
+     * @param user         usario autentificado
+     * @param currentPosts resultado del query de <i>Posts</i> realizado
+     * @return <i>List</i> que posee cada uno de los elementos necesarios para ser
+     *         mostrados en <i>Index</i>
+     * 
+     */
+    private List<List<Object>> giveFormatPost(User user, Iterable<Post> currentPosts) {
         List<List<Object>> posts = new ArrayList<List<Object>>();
         if (user != null) {
             for (Post post : currentPosts) {
@@ -98,7 +109,12 @@ public class IndexController {
                     hasReacted = true;
                     isLike = userPostReaction.getReactionType().equals(ReactionType.LIKE);
                 }
+
+                // no necesita null handling, JDBC retorna 0 para int vacios.
+                int commentAmount = commentService.countAllByPostId(post.getId());
+
                 postInfo.add(post);
+                postInfo.add(commentAmount);
                 postInfo.add(hasReacted);
                 postInfo.add(isLike);
                 posts.add(postInfo);
@@ -107,7 +123,12 @@ public class IndexController {
             // se hace de esta forma para mantener formato en vista 'index'.
             for (Post post : currentPosts) {
                 List<Object> postInfo = new ArrayList<Object>();
+
+                // no necesita null handling, JDBC retorna 0 para int vacios.
+                int commentAmount = commentService.countAllByPostId(post.getId());
+
                 postInfo.add(post);
+                postInfo.add(commentAmount);
                 posts.add(postInfo);
             }
         }
@@ -139,9 +160,9 @@ public class IndexController {
                 model.addAttribute("userName", user.getName());
                 model.addAttribute("userProfileImg", user.getProfileImg().getLink());
                 model.addAttribute("userLogin", true);
-                model.addAttribute("posts", addUserReaction(user, postsResult));
+                model.addAttribute("posts", giveFormatPost(user, postsResult));
             } else {
-                model.addAttribute("posts", addUserReaction(null, postsResult));
+                model.addAttribute("posts", giveFormatPost(null, postsResult));
             }
             return "index";
         } else {
@@ -176,7 +197,7 @@ public class IndexController {
             // creamos una lista de post para satisfacer la funcion.
             List<Post> posts = new ArrayList<>();
             posts.add(postUpdated);
-            model.addAttribute("posts", addUserReaction(user, posts));
+            model.addAttribute("posts", giveFormatPost(user, posts));
 
             return "fragments/post.html :: reaction";
         } else {
@@ -219,10 +240,10 @@ public class IndexController {
                 User user = userService.findByUserName(userName);
                 model.addAttribute("userLogin", true);
                 model.addAttribute("userId", user.getId());
-                model.addAttribute("posts", addUserReaction(user, postsResult));
+                model.addAttribute("posts", giveFormatPost(user, postsResult));
                 model.addAttribute("isAdmin", user.getRole() == Role.ADMIN);
             } else {
-                model.addAttribute("posts", addUserReaction(null, postsResult));
+                model.addAttribute("posts", giveFormatPost(null, postsResult));
             }
             try {
                 Thread.sleep(500);

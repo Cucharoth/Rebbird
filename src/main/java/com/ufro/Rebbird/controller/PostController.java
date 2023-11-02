@@ -78,6 +78,7 @@ public class PostController {
         User user = userService.findByUserName(principal.getName());
         Post post = postService.findById(postId);
         if (post != null && user != null) {
+            post.setCommentsAmount(post.getCommentsAmount() + 1);
             comment.setPost(post);
             comment.setAuthor(user);
             commentService.save(comment);
@@ -86,7 +87,4 @@ public class PostController {
         }
         return "redirect:/post?id=" + postId;
     }
-
-    // TODO: UPDATE CANTIDAD COMENTARIOS, CREAR QUERY PARA TENER VALOR EXACTO,
-    // REFACTOR POST Y ELIMINAR 'CANT COMENTARIOS'
 }
