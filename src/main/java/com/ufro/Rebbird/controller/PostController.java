@@ -4,7 +4,6 @@ import java.security.Principal;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -87,4 +86,7 @@ public class PostController {
         }
         return "redirect:/post?id=" + postId;
     }
+
+    // TODO: UPDATE CANTIDAD COMENTARIOS, CREAR QUERY PARA TENER VALOR EXACTO,
+    // REFACTOR POST Y ELIMINAR 'CANT COMENTARIOS'
 }

@@ -179,7 +179,7 @@
                                 <div class="post-comments">Comments:</div>
                                 <div th:text="${postInfo[0].getCommentsAmount()}" class="post-comments-value">6</div>
                             </div>
-                            <div th:if="${postInfo[0].author.id} == ${userId}" class="delete-post-container">
+                            <div th:if="${postInfo[0].author.id} == ${userId} OR ${isAdmin}" class="delete-post-container">
                                 <a type="button" data-toggle="modal" data-target="#borrar-publicacion-modal"
                                     class="delete-post-btn"
                                     th:attr="data-target='#borrar-publicacion-modal'+${postInfo[0].id}">
@@ -191,9 +191,10 @@
                     </div>
 
                     <!-- Infinite scrolling-->
-                    <div th:remove="!${postsEmptyCheck.iterator().hasNext()} OR ${isSearch} ? all">
+                    <div th:remove="!${postsEmptyCheck.iterator().hasNext()} OR ${isSearch} ? all" id="infinite-div">
                         <div hx:get="|/index/?id=${posts.iterator().next()[0].category.id}&page=2|"
-                            hx-trigger="intersect once" hx-swap="beforeend" hx-indicator=".htmx-indicator">
+                            hx-trigger="intersect once" hx-swap="outerHTML" hx-indicator=".htmx-indicator"
+                            hx-target="closest #infinite-div" hx-select=".post-div">
                         </div>
                     </div>
                     <div class="indicator-container">

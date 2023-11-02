@@ -40,7 +40,7 @@ public class SecurityConfig {
                                     "/profile/**")
                                     .permitAll();
                             // authRequest.requestMatchers("/index-login/**").hasRole("USER");
-                            authRequest.anyRequest().authenticated(); // TODO: REMOVE THIS BEFORE RELEASE
+                            authRequest.anyRequest().authenticated();
                         })
                 .formLogin((form) -> form
                         .loginPage("/login")

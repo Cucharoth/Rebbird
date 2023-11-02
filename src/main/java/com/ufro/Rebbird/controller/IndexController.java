@@ -2,8 +2,6 @@ package com.ufro.Rebbird.controller;
 
 import java.security.Principal;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -19,6 +17,7 @@ import com.ufro.Rebbird.model.Post;
 import com.ufro.Rebbird.model.User;
 import com.ufro.Rebbird.model.UserPostReaction;
 import com.ufro.Rebbird.model.utils.ReactionType;
+import com.ufro.Rebbird.model.utils.Role;
 import com.ufro.Rebbird.service.CategoryService;
 import com.ufro.Rebbird.service.PostService;
 import com.ufro.Rebbird.service.UserPostReactionService;
@@ -75,6 +74,7 @@ public class IndexController {
                 model.addAttribute("userName", user.getName());
                 model.addAttribute("userProfileImg", user.getProfileImg().getLink());
                 model.addAttribute("userLogin", true);
+                model.addAttribute("isAdmin", user.getRole() == Role.ADMIN);
                 model.addAttribute("posts", addUserReaction(user, postsResult));
             } else {
                 model.addAttribute("userLogin", false);
@@ -218,7 +218,9 @@ public class IndexController {
                 String userName = principal.getName();
                 User user = userService.findByUserName(userName);
                 model.addAttribute("userLogin", true);
+                model.addAttribute("userId", user.getId());
                 model.addAttribute("posts", addUserReaction(user, postsResult));
+                model.addAttribute("isAdmin", user.getRole() == Role.ADMIN);
             } else {
                 model.addAttribute("posts", addUserReaction(null, postsResult));
             }

@@ -11,11 +11,7 @@
 </head>
 
 <body>
-    <div th:fragment="posts">
-        <!-- htmx get call para insertar post recursivamente -->
-        <div hx:get="|/index/?id=${posts.iterator().next()[0].category.id}&page=${page}|" hx-trigger="revealed"
-            hx-swap="afterend">
-
+    <div th:fragment="posts" class="post-div">
             <!-- Post iteration -->
             <div class="post third-bg" th:each="postInfo : ${posts}">
 
@@ -100,7 +96,7 @@
                         <div class="post-comments">Comments:</div>
                         <div th:text="${postInfo[0].getCommentsAmount()}" class="post-comments-value">6</div>
                     </div>
-                    <div th:if="${postInfo[0].author.id} == ${userId}" class="delete-post-container">
+                    <div th:if="${postInfo[0].author.id} == ${userId} OR ${isAdmin}" class="delete-post-container">
                         <a type="button" data-toggle="modal" data-target="#borrar-publicacion-modal"
                             class="delete-post-btn" th:attr="data-target='#borrar-publicacion-modal'+${postInfo[0].id}">
                             <span class="material-icons block-icon">block</span>
@@ -109,7 +105,9 @@
                     <div class="post-date" th:text="${postInfo[0].getDate()}">23-03-22</div>
                 </div>
             </div>
-        </div>
+<!-- htmx get call para insertar post recursivamente -->
+<div hx:get="|/index/?id=${posts.iterator().next()[0].category.id}&page=${page}|" hx-trigger="intersect once"
+    hx-swap="outerHTML" hx-indicator=".htmx-indicator" class="inf-scrolling"></div>
     </div>
 
     <div th:fragment="reaction" th:each="postInfo : ${posts}" class="post-reaction-div" id="post-reaction-div">
