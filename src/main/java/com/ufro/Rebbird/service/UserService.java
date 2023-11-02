@@ -1,5 +1,6 @@
 package com.ufro.Rebbird.service;
 
+import com.ufro.Rebbird.model.ProfileImg;
 import com.ufro.Rebbird.repository.UserRepository;
 
 import java.util.List;
@@ -39,5 +40,26 @@ public class UserService extends GenericService<User, Integer> {
 
     public void delete(int id) {
         userRepository.deleteById(id);
+    }
+
+    public void changeDescripcion(int id, String descripcion) {
+        userRepository.findById(id).map(x -> {
+            x.setDescripcion(descripcion);
+            return userRepository.save(x);
+        });
+    }
+
+    public void changeImgPerfil(int id, ProfileImg img) {
+        userRepository.findById(id).map(x -> {
+            x.setProfileImg(img);
+            return userRepository.save(x);
+        });
+    }
+
+    public void changeUsername(int id, String username) {
+        userRepository.findById(id).map(x -> {
+            x.setUsername(username);
+            return userRepository.save(x);
+        });
     }
 }

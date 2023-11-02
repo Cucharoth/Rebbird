@@ -31,4 +31,32 @@ public class ProfileController {
         return "panel-usuario-historial";
     }
 
+    @GetMapping(path = "/conf")
+    public String configuracion(@RequestParam(value = "id") int userId, Model model, Principal principal) {
+        if (principal != null) {
+            String userName = principal.getName();
+            User user = userService.findByUserName(userName);
+            model.addAttribute("user", user);
+        }
+        return "panel-usuario-conf";
+    }
+    @GetMapping(path = "/edit-perfil")
+    public String editPerfil(@RequestParam(value = "id") int userId, Model model, Principal principal) {
+        if (principal != null) {
+            String userName = principal.getName();
+            User user = userService.findByUserName(userName);
+            model.addAttribute("user", user);
+        }
+        return "panel-usuario-edit-perfil";
+    }
+    @GetMapping(path = "/edit-avatar")
+    public String editAvatar(@RequestParam(value = "id") int userId, Model model, Principal principal) {
+        if (principal != null) {
+            String userName = principal.getName();
+            User user = userService.findByUserName(userName);
+            model.addAttribute("user", user);
+        }
+        return "panel-usuario-edit-avatar";
+    }
+
 }
