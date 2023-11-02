@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuración | editar perfil</title>
+    <link rel="stylesheet" href="../css/panel_usuario_style.css">
+    <link rel="stylesheet" href="/src/main/resources/static/styles/index-body-style.css">
+    <link rel="stylesheet" href="/src/main/resources/static/styles/index-header-style.css">
+    <link rel="stylesheet" href="/src/main/resources/static/styles/onPost-style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
+</head>
+
+<body>
+<!-- header -->
+<header th:insert="~{fragments/profile.html :: header}"></header>
+
+<div class="contenedor">
+    <div class="container">
+        <!-- content header -->
+        <div th:replace="~{fragments/profile.html :: content-header}"></div>
+        <div class="row">
+            <!-- sidebar -->
+            <aside th:replace="~{fragments/profile.html :: sidebar}"></aside>
+
+            <div class="col-9">
+                <div class="editar_form">
+                    <h6>Cambiar nombre</h6>
+                    <div class="nombre_form">
+                        <input type="text" class="form-control" th:placeholder="${user.name}">
+                    </div>
+                    <div class="categorias_form">
+                        <p>Categorías preferidas</p>
+                        <div class="dropdown">
+                            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+                                Categorias
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><input class="form-check-input" type="checkbox" checked>
+                                    <label class="form-check-label">Videojuegos</label>
+                                </li>
+                                <li><input class="form-check-input" type="checkbox" checked>
+                                    <label class="form-check-label">Deportes</label>
+                                </li>
+                                <li><input class="form-check-input" type="checkbox" checked>
+                                    <label class="form-check-label">Arte</label>
+                                </li>
+                                <li><input class="form-check-input" type="checkbox" checked>
+                                    <label class="form-check-label">Música</label>
+                                </li>
+                                <li><input class="form-check-input" type="checkbox" checked>
+                                    <label class="form-check-label">Programación</label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="descripcion_form">
+                        <p>Editar descripción</p>
+                        <textarea class="form-control" rows="5" id="descripcion" name="text" th:placeholder="${user.descripcion}"></textarea>
+                    </div>
+                    <div class="editar_btn">
+                        <button class="guardar_btn">Guardar</button>
+                        <button class="regresar_btn"><a th:href="@{/profile/conf(id=${userId})}"
+                                                        class="nav-link text-white">Regresar</a></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+
+</html>
