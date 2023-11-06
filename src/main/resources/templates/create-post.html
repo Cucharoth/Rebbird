@@ -53,14 +53,15 @@
                     <div class="title-div pt-5">
                         <label class="text-post mx-5" for="input-up">Título publicación:<span
                                 style="color: red;">*</span></label>
-                        <input th:value="${title}" name="title" id="input-up" type="text" class="input-design ms-5">
+                        <input th:value="${title}" name="title" id="input-up" type="text" class="input-design ms-5"
+                            oninvalid="invalidMsg(this);" oninput="invalidMsg(this);" required>
                     </div>
                     <div class="pt-5">
                         <label class="text-post mx-5" for="input-post">Contenido:<span
                                 style="color: red;">*</span></label>
                         <div class="ms-5">
                             <textarea th:field="*{content}" id="contenido-post"
-                                placeholder="Ingresar aquí el contenido de tu publicación."></textarea>
+                                placeholder="Ingresar aquí el contenido de tu publicación." oninvalid="invalidMsg(this);" oninput="invalidMsg(this);" required></textarea>
                         </div>
                     </div>
                     <div class="pt-5 styled-select">
@@ -88,6 +89,7 @@
             </div>
         </div>
     </main>
+    <script type="text/javascript" th:src="@{~/js/invalidMsg.js}"></script>
 </body>
 
 </html>

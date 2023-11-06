@@ -95,6 +95,7 @@ public class PostController {
         if (principal != null) {
             String userName = principal.getName();
             User user = userService.findByUserName(userName);
+            model.addAttribute("userId", user.getId());
             model.addAttribute("userName", user.getName());
             model.addAttribute("userProfileImg", user.getProfileImg().getLink());
             model.addAttribute("userLogin", true);
