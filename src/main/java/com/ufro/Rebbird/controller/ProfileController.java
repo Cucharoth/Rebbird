@@ -59,4 +59,14 @@ public class ProfileController {
         return "panel-usuario-edit-avatar";
     }
 
+    @GetMapping(path = "/eliminar-cuenta")
+    public String eliminarCuenta(@RequestParam(value = "id") int userId, Model model, Principal principal) {
+        if (principal != null) {
+            String userName = principal.getName();
+            User user = userService.findByUserName(userName);
+            model.addAttribute("user", user);
+        }
+        return "panel-usuario-eliminar-cuenta";
+    }
+
 }

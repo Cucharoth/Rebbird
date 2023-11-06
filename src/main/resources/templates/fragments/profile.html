@@ -38,10 +38,10 @@
                     <a class="nav-link text-white" th:href="@{/index?id=1}">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" th:href="@{/profile(id=${userId})}">Historial</a>
+                    <a class="nav-link text-white" th:href="@{/profile(id=${user.id})}">Historial</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" th:href="@{/profile/conf(id=${userId})}">Configuración</a>
+                    <a class="nav-link text-white" th:href="@{/profile/conf(id=${user.id})}">Configuración</a>
                 </li>
                 <li class="nav-item">
                     <form th:action="@{/logout}" method="post" class="logout-div">

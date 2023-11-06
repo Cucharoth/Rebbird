@@ -26,11 +26,11 @@
                 <aside th:replace="~{fragments/profile.html :: sidebar}"></aside>
                 <div class="col-9">
                     <div class="configuracion">
-                        <button class="btn btn-primary btn-lg"><a th:href="@{/profile/edit-avatar(id=${userId})}"
+                        <button class="btn btn-primary btn-lg"><a th:href="@{/profile/edit-avatar(id=${user.id})}"
                                                                   class="nav-link text-white">Editar avatar</a></button>
-                        <button class="btn btn-primary btn-lg"><a th:href="@{/profile/edit-perfil(id=${userId})}"
+                        <button class="btn btn-primary btn-lg"><a th:href="@{/profile/edit-perfil(id=${user.id})}"
                                                                   class="nav-link text-white">Editar perfil</a></button>
-                        <button class="btn btn-primary btn-lg bg-danger"><a href="eliminar_cuenta.html"
+                        <button class="btn btn-primary btn-lg bg-danger"><a th:href="@{/profile/eliminar-cuenta(id=${user.id})}"
                                                                             class="nav-link text-white">Eliminar cuenta</a></button>
                     </div>
                 </div>
