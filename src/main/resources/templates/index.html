@@ -7,9 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rebbird</title>
-    <link rel="stylesheet" href="/src/main/resources/static/styles/index-body-style.css">
-    <link rel="stylesheet" href="/src/main/resources/static/styles/index-header-style.css">
-    <link rel="stylesheet" href="/src/main/resources/static/styles/onPost-style.css">
+    <link rel="shortcut icon" type="image/png" th:href="@{/favicon.ico}">
     <link rel="stylesheet" th:href="@{/css/index-header-style.css}">
     <link rel="stylesheet" th:href="@{/css/index-body-style.css}">
     <link rel="stylesheet" th:href="@{/css/onPost-style.css}">
@@ -39,12 +37,12 @@
         <div class="content-container main-bg">
             <div th:if="${userLogin}" class="content-header-create-post third-bg">
                 <div class="create-post-container third-bg">
-                    <form class="input-group">
+                    <form th:action="@{/post/create-post}" method="get" class="input-group">
                         <div class="user-profile-img-div">
                             <img th:src="@{${userProfileImg}}" alt="user-profile-img" class="user-profile-img">
                         </div>
-                        <input class="form-control mr-sm-2" type="search" placeholder="Nueva publicación"
-                            aria-label="Search">
+                        <input class="form-control mr-sm-2" type="search" name="title" size="70" placeholder="Nueva publicación"
+                            aria-label="Search" oninvalid="invalidMsg(this);" oninput="invalidMsg(this);" required>
                         <button class="create-post-btn primary-bg" type="submit">
                             <span class="material-icons arrow-up-icn">arrow_circle_up</span>
                         </button>

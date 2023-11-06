@@ -1,0 +1,140 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
+
+:root {
+    --bg_color: #001E17;
+    --primary_color: #029270;
+    --secondary_color: #001F18;
+    --text_color: #EBFFFA;
+    --accent_color: #87FDE1;
+    --third_color: #083C30;
+    --alert_color: #D23C3C;
+}
+
+.imagen-usuario {
+    object-fit: contain;
+    height: 30px;
+    width: 30px;
+}
+
+.main-div {
+    background-color: #083C30;
+    border-radius: 20px;
+}
+
+.input-design {
+    border-radius: 20px;
+    height: 40px;
+    width: 600px;
+    border-width: 0px;
+    padding: 0 15px;
+}
+
+.button-update {
+    border-radius: 50%;
+    background-color: #029270;
+    border-width: 1px;
+    border-color: black;
+    width: 45px;
+    height: 45px;
+}
+
+.button-update:hover {
+    background-color: #87FDE1 !important;
+}
+
+.image-update {
+    width: 20px;
+    height: 30px;
+}
+
+.image-user {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+}
+
+.text-post {
+    font-family: "Roboto Mono", monospace !important;
+    color: #EBFFFA;
+    font-size: larger;
+}
+
+.button-drop {
+    background-color: #029270;
+    border-radius: 10px;
+    font-size: medium;
+    padding: 5px 15px !important;
+}
+
+.styled-select select {
+    background-color: #029270 !important;
+    background: url("data:image/svg+xml,<svg height='10px' width='10px' viewBox='0 0 16 16' fill='%23000000' xmlns='http://www.w3.org/2000/svg'><path d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/></svg>") no-repeat;
+    background-position: calc(100% - 0.75rem) center !important;
+    padding-right: 2rem !important;
+    /* Firefox */
+    -moz-appearance: none;
+    /* Safari and Chrome */
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.dropdown-menu {
+    background-color: #029270 !important;
+    border-radius: 20px;
+    font-size: medium;
+}
+
+.dropdown-item {
+    font-family: "Roboto Mono", monospace !important;
+    color: #EBFFFA !important;
+    font-size: medium;
+}
+
+.dropdown-item:hover {
+    background-color: #87FDE1 !important;
+}
+
+.button-realizar {
+    background-color: #029270;
+    border-radius: 10px;
+    border-width: 0;
+    font-size: medium;
+    transition: color 0.30s, background-color 0.30s, font-weight 0.30s;
+}
+
+.button-realizar:hover {
+    background-color: #87FDE1 !important;
+    color: #212529;
+    font-weight: bold;
+}
+
+.tox .tox-toolbar__group {
+    background-color: #029270 !important;
+}
+
+.tox .tox-tbtn:hover {
+    background-color: #87FDE1 !important;
+}
+
+textarea .contenido-post {
+    font-family: "Roboto Mono", monospace !important;
+}
+
+textarea::placeholder {
+    color: var(--text_color) !important;
+    opacity: 1 !important;
+}
+
+::-ms-input-placeholder {
+    /* Edge 12 -18 */
+    color: red;
+}
+
+.mce-content-body[data-mce-placeholder]:not(.mce-visualblocks)::before {
+    color: var(--text_color) !important;
+    background-color: #EBFFFA;
+}
+
+.mce-content-body::placeholder {
+    color: var(--text_color) !important;
+}
