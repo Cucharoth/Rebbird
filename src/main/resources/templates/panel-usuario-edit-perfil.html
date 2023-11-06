@@ -30,44 +30,48 @@
 
             <div class="col-9">
                 <div class="editar_form">
-                    <h6>Cambiar nombre</h6>
-                    <div class="nombre_form">
-                        <input type="text" class="form-control" th:placeholder="${user.name}">
-                    </div>
-                    <div class="categorias_form">
-                        <p>Categorías preferidas</p>
-                        <div class="dropdown">
-                            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
-                                Categorias
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><input class="form-check-input" type="checkbox" checked>
-                                    <label class="form-check-label">Videojuegos</label>
-                                </li>
-                                <li><input class="form-check-input" type="checkbox" checked>
-                                    <label class="form-check-label">Deportes</label>
-                                </li>
-                                <li><input class="form-check-input" type="checkbox" checked>
-                                    <label class="form-check-label">Arte</label>
-                                </li>
-                                <li><input class="form-check-input" type="checkbox" checked>
-                                    <label class="form-check-label">Música</label>
-                                </li>
-                                <li><input class="form-check-input" type="checkbox" checked>
-                                    <label class="form-check-label">Programación</label>
-                                </li>
-                            </ul>
+                    <form th:action="@{/profile/updateProfile(id=${user.id})}" method="post">
+                        <h6>Cambiar nombre</h6>
+                        <div class="nombre_form">
+                            <label for="username"></label>
+                            <input type="text" id="username" name="username" class="form-control" th:placeholder="${user.name}">
                         </div>
-                    </div>
-                    <div class="descripcion_form">
-                        <p>Editar descripción</p>
-                        <textarea class="form-control" rows="5" id="descripcion" name="text" th:placeholder="${user.descripcion}"></textarea>
-                    </div>
-                    <div class="editar_btn">
-                        <button class="guardar_btn">Guardar</button>
-                        <button class="regresar_btn"><a th:href="@{/profile/conf(id=${user.id})}"
-                                                        class="nav-link text-white">Regresar</a></button>
-                    </div>
+                        <div class="categorias_form">
+                            <p>Categorías preferidas</p>
+                            <div class="dropdown">
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+                                    Categorias
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><input class="form-check-input" type="checkbox" checked>
+                                        <label class="form-check-label">Videojuegos</label>
+                                    </li>
+                                    <li><input class="form-check-input" type="checkbox" checked>
+                                        <label class="form-check-label">Deportes</label>
+                                    </li>
+                                    <li><input class="form-check-input" type="checkbox" checked>
+                                        <label class="form-check-label">Arte</label>
+                                    </li>
+                                    <li><input class="form-check-input" type="checkbox" checked>
+                                        <label class="form-check-label">Música</label>
+                                    </li>
+                                    <li><input class="form-check-input" type="checkbox" checked>
+                                        <label class="form-check-label">Programación</label>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="descripcion_form">
+                            <p>Editar descripción</p>
+                            <label for="descripcion"></label>
+                            <textarea id="descripcion" name="descripcion" rows="5" class="form-control" th:placeholder="${user.descripcion}"></textarea>
+                        </div>
+                        <div class="editar_btn">
+                            <button class="guardar_btn" type="submit">Guardar</button>
+                            <button class="regresar_btn"><a th:href="@{/profile/conf(id=${user.id})}"
+                                                            class="nav-link text-white">Regresar</a></button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
