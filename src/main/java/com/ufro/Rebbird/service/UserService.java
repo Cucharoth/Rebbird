@@ -17,6 +17,8 @@ public class UserService extends GenericService<User, Integer> {
 
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    ProfileImgService profileImgService;
 
     public UserService(UserRepository repository) {
         super(repository);
@@ -49,11 +51,14 @@ public class UserService extends GenericService<User, Integer> {
         });
     }
 
-    public void changeImgPerfil(int id, ProfileImg img) {
-        userRepository.findById(id).map(x -> {
-            x.setProfileImg(img);
-            return userRepository.save(x);
-        });
+    public void changeImgPerfil(int id, int img) {
+        ProfileImg profileImg = profileImgService.findById(img);
+        if (profileImg != null) {
+            userRepository.findById(id).map(x -> {
+                x.setProfileImg(profileImg);
+                return userRepository.save(x);
+            });
+        }
     }
 
     public void changeUsername(int id, String username) {

@@ -2,6 +2,7 @@ package com.ufro.Rebbird.controller;
 
 import java.security.Principal;
 
+import com.ufro.Rebbird.model.ProfileImg;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -53,6 +54,7 @@ public class ProfileController {
             String userName = principal.getName();
             User user = userService.findByUserName(userName);
             model.addAttribute("user", user);
+
         }
         return "panel-usuario-edit-avatar";
     }
@@ -82,6 +84,20 @@ public class ProfileController {
             if (username != "") {
                 userService.changeUsername(userId, username);
             }
+        }
+        return "redirect:/profile?id=" + userId;
+    }
+    @PostMapping(path = "/updateAvatar")
+    public String updateAvatar(@RequestParam(value = "id") int userId, Model model, Principal principal,
+                               @RequestParam(value = "profileImg") int profileImg) {
+        if (principal != null) {
+            String userName = principal.getName();
+            User user = userService.findByUserName(userName);
+            model.addAttribute("user", user);
+
+            userService.changeImgPerfil(userId, profileImg);
+
+
         }
         return "redirect:/profile?id=" + userId;
     }
