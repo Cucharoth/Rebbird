@@ -31,18 +31,19 @@
                                 <p>Cambiar avatar</p>
                                 <div class="dropdown">
                                     <input type="hidden" name="id" th:value="${user.id}" />
-                                    <select name="profileImg">
-                                        <option th:value="1" ><img src="../img/profile-img/1.png" alt="" height="80px" width="80px">
+                                    <select name="profileImg" class="form-select">
+                                        <option selected>Avatar</option>
+                                        <option th:value="1"> Opción 1
                                         </option>
-                                        <option th:value="2" ><img src="../img/profile-img/2.png" alt="" height="80px" width="80px">
+                                        <option th:value="2"> Opción 2
                                         </option>
-                                        <option th:value="3" ><img src="../img/profile-img/3.png" alt="" height="80px" width="80px">
+                                        <option th:value="3"> Opción 3
                                         </option>
-                                        <option th:value="4" ><img src="../img/profile-img/4.png" alt="" height="80px" width="80px">
+                                        <option th:value="4"> Opción 4
                                         </option>
-                                        <option th:value="5" ><img src="../img/profile-img/5.png" alt="" height="80px" width="80px">
+                                        <option th:value="5"> Opción 5
                                         </option>
-                                        <option th:value="6" ><img src="../img/profile-img/6.png" alt="" height="80px" width="80px">
+                                        <option th:value="6"> Opción 6
                                         </option>
                                     </select>
                                 </div>
