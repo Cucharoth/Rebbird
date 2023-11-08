@@ -31,6 +31,8 @@
                                 <p>Cambiar avatar</p>
                                 <div class="dropdown">
                                     <input type="hidden" name="id" th:value="${user.id}" />
+
+                                    <!-- TODO: cucha: hay que validar o borrar la opcion 'avatar', si se envía se cae-->
                                     <select name="profileImg" class="form-select">
                                         <option selected>Avatar</option>
                                         <option th:value="1"> Opción 1

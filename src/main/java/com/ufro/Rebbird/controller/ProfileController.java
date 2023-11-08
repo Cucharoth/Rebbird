@@ -19,6 +19,7 @@ public class ProfileController {
 
     private final UserService userService;
 
+    // todo: cucha: wtf porque pedi id, nisiquiera lo uso, reevaluar uso de id
     @GetMapping
     public String historial(@RequestParam(value = "id") int userId, Model model, Principal principal) {
         if (principal != null) {
@@ -48,6 +49,8 @@ public class ProfileController {
         }
         return "panel-usuario-edit-perfil";
     }
+
+    // todo: cucha: esto no se esta usando, verdad?
     @GetMapping(path = "/edit-avatar")
     public String editAvatar(@RequestParam(value = "id") int userId, Model model, Principal principal) {
         if (principal != null) {
@@ -100,6 +103,8 @@ public class ProfileController {
         }
         return "redirect:/profile?id=" + userId;
     }
+
+    // todo: cucha: el id del usuario no se esta usando 
     @PostMapping(path = "/updateAvatar")
     public String updateAvatar(@RequestParam(value = "id") int userId, Model model, Principal principal,
                                @RequestParam(value = "profileImg") int profileImg) {
