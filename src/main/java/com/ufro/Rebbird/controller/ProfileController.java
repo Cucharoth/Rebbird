@@ -69,6 +69,18 @@ public class ProfileController {
         return "panel-usuario-eliminar-cuenta";
     }
 
+    @PostMapping(path = "/deleteAccount")
+    public String deleteAccount(@RequestParam(value = "id") int userId, Model model, Principal principal) {
+        if (principal != null) {
+            String userName = principal.getName();
+            User user = userService.findByUserName(userName);
+            model.addAttribute("user", user);
+
+            userService.delete(userId);
+        }
+        return "redirect:/logout";
+    }
+
     @PostMapping("/updateProfile")
     public String updateProfile(@RequestParam(value = "id") int userId, Model model, Principal principal,
                                 @RequestParam(value = "descripcion") String descripcion,
@@ -83,6 +95,7 @@ public class ProfileController {
             }
             if (username != "") {
                 userService.changeUsername(userId, username);
+                return "redirect:/logout";
             }
         }
         return "redirect:/profile?id=" + userId;
@@ -95,12 +108,11 @@ public class ProfileController {
             User user = userService.findByUserName(userName);
             model.addAttribute("user", user);
 
-            userService.changeImgPerfil(userId, profileImg);
-
-
+            if(profileImg > 0) {
+                userService.changeImgPerfil(userId, profileImg);
+            }
         }
         return "redirect:/profile?id=" + userId;
     }
-
 
 }

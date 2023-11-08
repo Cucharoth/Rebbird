@@ -27,37 +27,32 @@
                 <div class="col-9">
                     <div class="editar_form">
                         <div class="editar_avatar">
-                            <p>Cambiar avatar</p>
-                            <div class="dropdown">
-                                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
-                                    Avatar
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">
-                                        <img src="../img/profile-img/1.png" alt="" height="80px" width="80px">
-                                    </a>
-                                    <a class="dropdown-item" href="#">
-                                        <img src="../img/profile-img/2.png" alt="" height="80px" width="80px">
-                                    </a>
-                                    <a class="dropdown-item" href="#">
-                                        <img src="../img/profile-img/3.png" alt="" height="80px" width="80px">
-                                    </a>
-                                    <a class="dropdown-item" href="#">
-                                        <img src="../img/profile-img/4.png" alt="" height="80px" width="80px">
-                                    </a>
-                                    <a class="dropdown-item" href="#">
-                                        <img src="../img/profile-img/5.png" alt="" height="80px" width="80px">
-                                    </a>
-                                    <a class="dropdown-item" href="#">
-                                        <img src="../img/profile-img/6.png" alt="" height="80px" width="80px">
-                                    </a>
+                            <form th:action="@{/profile/updateAvatar(id=${user.id})}" method="post">
+                                <p>Cambiar avatar</p>
+                                <div class="dropdown">
+                                    <input type="hidden" name="id" th:value="${user.id}" />
+                                    <select name="profileImg">
+                                        <option th:value="1" ><img src="../img/profile-img/1.png" alt="" height="80px" width="80px">
+                                        </option>
+                                        <option th:value="2" ><img src="../img/profile-img/2.png" alt="" height="80px" width="80px">
+                                        </option>
+                                        <option th:value="3" ><img src="../img/profile-img/3.png" alt="" height="80px" width="80px">
+                                        </option>
+                                        <option th:value="4" ><img src="../img/profile-img/4.png" alt="" height="80px" width="80px">
+                                        </option>
+                                        <option th:value="5" ><img src="../img/profile-img/5.png" alt="" height="80px" width="80px">
+                                        </option>
+                                        <option th:value="6" ><img src="../img/profile-img/6.png" alt="" height="80px" width="80px">
+                                        </option>
+                                    </select>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="editar_btn">
-                            <button class="guardar_btn">Guardar </button>
-                            <button class="regresar_btn"><a th:href="@{/profile/conf(id=${user.id})}"
-                                                            class="nav-link text-white">Regresar</a></button>
+
+                                <div class="editar_btn">
+                                    <button class="guardar_btn" type="submit">Guardar </button>
+                                    <button class="regresar_btn"><a th:href="@{/profile/conf(id=${user.id})}"
+                                                                    class="nav-link text-white">Regresar</a></button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>

@@ -20,7 +20,7 @@
         <h6>¿Desea eliminar su cuenta de usuario?</h6>
         <p class="advertencia">¡Esta acción es irreversible!</p>
         <div class="eliminar_botones">
-            <button class="eliminar_btn"><a href="index-noLogin.html" class="eliminar-cuenta-btn">Eliminar
+            <button class="eliminar_btn"><a th:href="@{/profile/deleteAccount(id=${user.id})}" class="eliminar-cuenta-btn">Eliminar
                 cuenta</a></button>
             <button class="regresar_btn"><a th:href="@{/profile/conf(id=${user.id})}"
                                             class="nav-link text-white">Regresar</a></button>

@@ -67,4 +67,5 @@ public class UserService extends GenericService<User, Integer> {
             return userRepository.save(x);
         });
     }
+
 }
