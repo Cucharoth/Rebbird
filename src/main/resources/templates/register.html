@@ -3,7 +3,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <link rel="stylesheet" href="../styles/style-log-sign-pass.css">
+    <link rel="stylesheet" href="../static/styles/style-log-sign-pass.css">
     <link rel="stylesheet" th:href="@{/css/style-log-sign-pass.css}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,7 +22,12 @@
         </div>
     </nav>
     <div class="d-flex flex-column justify-content-center align-items-center container-fluid h-100 pt-5 mt-5">
-        <form method="post" th:action="@{/new-user}" th:object="${user}">
+        <!--
+            <div th:if="${error}" class="alert alert-danger" role="alert">
+                <p th:text="${error}"></p>
+            </div>
+        -->
+        <form id="myForm" method="post" th:action="@{/new-user}" th:object="${user}">
             <div class="form-card px-5 pt-3 col-lg">
                 <div class="input_usuario">
                     <div>
@@ -41,11 +46,21 @@
                     </div>
                     <div>
                         <input th:field="*{password}" type="password" class="form-control" name="password" id="password"
-                            aria-describedby="passwordHelp" placeholder="contraseña" />
+                            aria-describedby="passwordHelp" placeholder="contraseña" required />
+                    </div>
+                </div>
+                <div class="input_contraseña">
+                    <div>
+                        <label class="text-input texto-fuente pt-5 pb-3" for="floaing-password-confirm">Repita su
+                            contraseña</label>
+                    </div>
+                    <div>
+                        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
+                            aria-describedby="passwordConfirmHelp" placeholder="confirme contraseña" required />
                     </div>
                 </div>
                 <div class="container-fluid py-5 px-0">
-                    <a href="log-in.html">
+                    <a>
                         <button class="btn btn-outline-success boton texto-fuente" type="submit">Registrar</button>
                     </a>
                 </div>
@@ -55,3 +70,15 @@
 </body>
 
 </html>
+
+<script>
+    document.getElementById('myForm').addEventListener('submit', function (event) {
+        var password = document.getElementById('password').value;
+        var confirmPassword = document.getElementById('confirmPassword').value;
+
+        if (password !== confirmPassword) {
+            alert('Las contraseñas no coinciden, por favor ingreselas correctamente para confirmar');
+            event.preventDefault();
+        }
+    });
+</script>

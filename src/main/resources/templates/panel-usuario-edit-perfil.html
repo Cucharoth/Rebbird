@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -10,29 +10,31 @@
     <link rel="stylesheet" href="/src/main/resources/static/styles/index-header-style.css">
     <link rel="stylesheet" href="/src/main/resources/static/styles/onPost-style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+          integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <!-- header -->
-    <header th:insert="~{fragments/profile.html :: header}"></header>
+<!-- header -->
+<header th:insert="~{fragments/profile.html :: header}"></header>
 
-    <div class="contenedor">
-        <div class="container">
-            <!-- content header -->
-            <div th:replace="~{fragments/profile.html :: content-header}"></div>
-            <div class="row">
-                <!-- sidebar -->
-                <aside th:replace="~{fragments/profile.html :: sidebar}"></aside>
+<div class="contenedor">
+    <div class="container">
+        <!-- content header -->
+        <div th:replace="~{fragments/profile.html :: content-header}"></div>
+        <div class="row">
+            <!-- sidebar -->
+            <aside th:replace="~{fragments/profile.html :: sidebar}"></aside>
 
-                <div class="col-9">
-                    <div class="editar_form">
+            <div class="col-9">
+                <div class="editar_form">
+                    <form th:action="@{/profile/updateProfile(id=${user.id})}" method="post">
                         <h6>Cambiar nombre</h6>
                         <div class="nombre_form">
-                            <input type="text" class="form-control" placeholder="Nombre de usuario">
+                            <label for="username"></label>
+                            <input type="text" id="username" name="username" class="form-control" th:placeholder="${user.name}">
                         </div>
                         <div class="categorias_form">
                             <p>Categorías preferidas</p>
@@ -61,19 +63,21 @@
                         </div>
                         <div class="descripcion_form">
                             <p>Editar descripción</p>
-                            <textarea class="form-control" rows="5" id="descripcion" name="text"></textarea>
+                            <label for="descripcion"></label>
+                            <textarea id="descripcion" name="descripcion" rows="5" class="form-control" th:placeholder="${user.descripcion}"></textarea>
                         </div>
                         <div class="editar_btn">
-                            <button class="guardar_btn">Guardar</button>
-                            <button class="regresar_btn"><a href="panel_usuario_conf.html"
-                                    class="nav-link text-white">Regresar</a></button>
+                            <button class="guardar_btn" type="submit">Guardar</button>
+                            <button class="regresar_btn"><a th:href="@{/profile/conf(id=${user.id})}"
+                                                            class="nav-link text-white">Regresar</a></button>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
-
         </div>
+
     </div>
+</div>
 
 </body>
 

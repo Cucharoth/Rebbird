@@ -330,8 +330,26 @@
     flex: 1;
     display: flex;
     justify-content: left;
+    border-radius: 10px;
     align-items: center;
+    overflow-x: scroll;
     transition: transform 1s;
+}
+
+.comentar-post::-webkit-scrollbar {
+    width: 0.1em;
+}
+
+.comentar-post::-webkit-scrollbar-track {
+    box-shadow: none;
+}
+
+.comentar-post::-webkit-scrollbar-thumb {
+    background-color: #029270;
+    outline: none;
+    border-radius: 10px;
+    margin-left: 10px;
+    padding-left: 10px;
 }
 
 .comentar-post-btn {

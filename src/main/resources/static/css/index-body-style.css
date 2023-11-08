@@ -30,15 +30,18 @@ html {
     flex-direction: column;
     width: 30%;
     padding: 20px;
+    min-width: 350px;
 }
 
 .category-title-container {
     height: 5%;
     display: flex;
     align-items: center;
+    min-height: 41px;
 }
 
 .category-title {
+    display: flex;
     color: #EBFFFA;
     font-family: Roboto;
     font-size: 26px;
@@ -69,10 +72,11 @@ html {
 }
 
 .content-container {
-    flex: 1;
     display: flex;
     flex-direction: column;
+    width: 70%;
     padding: 20px;
+    min-width: 777px;
 }
 
 .content-header {
@@ -362,6 +366,7 @@ body::-webkit-scrollbar-thumb {
     padding-right: 450px;
     margin-bottom: 5px;
     min-height: 65px;
+    min-width: 317px;
 }
 
 .create-post-container {

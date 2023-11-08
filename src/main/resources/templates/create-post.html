@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:hx="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/index-header-style.css}">
+    <link rel="stylesheet" th:href="@{/css/index-body-style.css}">
+    <link rel="stylesheet" th:href="@{/css/onPost-style.css}">
+    <link rel="stylesheet" th:href="@{/css/create-post-style.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.tiny.cloud/1/a6s1gdmkv6w4g231wj6og4iexltdf811yhjpo8a4r36yl458/tinymce/5/tinymce.min.js"
+        referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: '#contenido-post',
+            width: '1200',
+            menubar: false,
+            statusbar: false,
+            content_style: "body { background-color: #cfcfcf; color: #083C30;}",
+            toolbar: 'undo redo | bold italic | alignleft aligncenter alignright'
+        });
+    </script>
+
+    <title>Crear publicación | Rebbird</title>
+</head>
+
+<body>
+    <!-- Header -->
+    <header th:insert="~{fragments/general.html :: header}"></header>
+
+    <main class="main main-bg">
+
+        <!-- Sidebar -->
+        <div th:replace="~{fragments/general.html :: sidebar}"></div>
+
+        <div class="w-100">
+
+            <div class="w-100">
+                <form th:action="@{/post/save-post}" th:object="${post}" method="post" class="main-div">
+                    <div class="title-div pt-5">
+                        <label class="text-post mx-5" for="input-up">Título publicación:<span
+                                style="color: red;">*</span></label>
+                        <input th:value="${title}" name="title" id="input-up" type="text" class="input-design ms-5"
+                            oninvalid="invalidMsg(this);" oninput="invalidMsg(this);" required>
+                    </div>
+                    <div class="pt-5">
+                        <label class="text-post mx-5" for="input-post">Contenido:<span
+                                style="color: red;">*</span></label>
+                        <div class="ms-5">
+                            <textarea th:field="*{content}" id="contenido-post"
+                                placeholder="Ingresar aquí el contenido de tu publicación."></textarea>
+                        </div>
+                    </div>
+                    <div class="pt-5 styled-select">
+                        <label class="text-post mx-5" for="button-dropdown">Categoria publicación:<span
+                                style="color: red;">*</span></label>
+                        <select th:field="*{category}" class="button-drop text-post" aria-expanded="false">
+                            <option th:value="1" class="dropdown-item ms-2">Videojuegos</option>
+                            <option th:value="2" class="dropdown-item ms-2">Series</option>
+                            <option th:value="3" class="dropdown-item ms-2">Películas</option>
+                            <option th:value="4" class="dropdown-item ms-2">Música</option>
+                            <option th:value="5" class="dropdown-item ms-2">Ciencia</option>
+                            <option th:value="6" class="dropdown-item ms-2">Deportes</option>
+                            <option th:value="7" class="dropdown-item ms-2">Mundo</option>
+                            <option th:value="8" class="dropdown-item ms-2">Política</option>
+                            <option th:value="9" class="dropdown-item ms-2">Programación</option>
+                        </select>
+                    </div>
+                    <div class="pt-5">
+                        <p class="text-post ms-5">(<span style="color: red;">*</span>) Campo obligatorio</p>
+                    </div>
+                    <div class="py-5">
+                        <button class="button-realizar text-post p-2 ms-5">Realizar publicación</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    <script type="text/javascript" th:src="@{~/js/invalidMsg.js}"></script>
+</body>
+
+</html>

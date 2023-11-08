@@ -30,16 +30,19 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(
                         authRequest -> {
-                            authRequest.requestMatchers("/css/**", "/img/**").permitAll();
+                            authRequest.requestMatchers("/css/**", "/img/**", "/js/**", "/favicon.ico").permitAll();
                             authRequest
                                     .requestMatchers("/", "/auth/**", "/index/**", "/register/**", "/new-user/**",
                                             "/login/**",
+                                            "/password-reset/**",
+                                            "/new-password/**",
                                             "/post",
                                             "/search/**",
-                                            "/error")
+                                            "/error",
+                                    "/profile/**")
                                     .permitAll();
                             // authRequest.requestMatchers("/index-login/**").hasRole("USER");
-                            authRequest.anyRequest().authenticated(); // TODO: REMOVE THIS BEFORE RELEASE
+                            authRequest.anyRequest().authenticated();
                         })
                 .formLogin((form) -> form
                         .loginPage("/login")
