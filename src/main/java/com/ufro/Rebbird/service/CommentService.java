@@ -20,4 +20,8 @@ public class CommentService {
     public void save(Comment comment) {
         commentRepository.save(comment);
     }
+    
+    public int countAllByPostId(Long postId) {
+        return commentRepository.countAllByPostId(postId);
+    }
 }

@@ -2,10 +2,13 @@ package com.ufro.Rebbird.controller;
 
 import java.security.Principal;
 
+<<<<<<< HEAD
 import jakarta.servlet.http.HttpSession;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+=======
+>>>>>>> ftr_25_10
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

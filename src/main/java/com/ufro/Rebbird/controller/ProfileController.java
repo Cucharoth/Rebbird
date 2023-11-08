@@ -4,9 +4,7 @@ import java.security.Principal;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import com.ufro.Rebbird.model.User;
 import com.ufro.Rebbird.service.UserService;
@@ -30,5 +28,63 @@ public class ProfileController {
 
         return "panel-usuario-historial";
     }
+
+    @GetMapping(path = "/conf")
+    public String configuracion(@RequestParam(value = "id") int userId, Model model, Principal principal) {
+        if (principal != null) {
+            String userName = principal.getName();
+            User user = userService.findByUserName(userName);
+            model.addAttribute("user", user);
+        }
+        return "panel-usuario-conf";
+    }
+    @GetMapping(path = "/edit-perfil")
+    public String editPerfil(@RequestParam(value = "id") int userId, Model model, Principal principal) {
+        if (principal != null) {
+            String userName = principal.getName();
+            User user = userService.findByUserName(userName);
+            model.addAttribute("user", user);
+        }
+        return "panel-usuario-edit-perfil";
+    }
+    @GetMapping(path = "/edit-avatar")
+    public String editAvatar(@RequestParam(value = "id") int userId, Model model, Principal principal) {
+        if (principal != null) {
+            String userName = principal.getName();
+            User user = userService.findByUserName(userName);
+            model.addAttribute("user", user);
+        }
+        return "panel-usuario-edit-avatar";
+    }
+
+    @GetMapping(path = "/eliminar-cuenta")
+    public String eliminarCuenta(@RequestParam(value = "id") int userId, Model model, Principal principal) {
+        if (principal != null) {
+            String userName = principal.getName();
+            User user = userService.findByUserName(userName);
+            model.addAttribute("user", user);
+        }
+        return "panel-usuario-eliminar-cuenta";
+    }
+
+    @PostMapping("/updateProfile")
+    public String updateProfile(@RequestParam(value = "id") int userId, Model model, Principal principal,
+                                @RequestParam(value = "descripcion") String descripcion,
+                                @RequestParam(value = "username") String username) {
+        if (principal != null) {
+            String userName = principal.getName();
+            User user = userService.findByUserName(userName);
+            model.addAttribute("user", user);
+
+            if (descripcion != "") {
+                userService.changeDescripcion(userId, descripcion);
+            }
+            if (username != "") {
+                userService.changeUsername(userId, username);
+            }
+        }
+        return "redirect:/profile?id=" + userId;
+    }
+
 
 }

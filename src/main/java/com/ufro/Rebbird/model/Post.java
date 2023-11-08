@@ -18,16 +18,16 @@ public class Post {
     @Column(name = "titulo_publicacion", nullable = false, length = 70)
     private String title;
 
-    @Column(name = "fecha_publicacion", nullable = false, columnDefinition = "DATE")
+    @Column(name = "fecha_publicacion")
     private Date date;
 
     @Column(name = "content_publicacion", nullable = false, columnDefinition = "TEXT")
     private String content;
 
-    @Column(name = "cant_comentarios", nullable = false)
+    @Column(name = "cant_comentarios", columnDefinition = "INT default 0")
     private int commentsAmount;
 
-    @Column(name = "cant_reaccion", nullable = false)
+    @Column(name = "cant_reaccion", columnDefinition = "INT default 0")
     private int reactionAmount;
 
     @ManyToOne

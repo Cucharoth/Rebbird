@@ -1,10 +1,10 @@
 package com.ufro.Rebbird.controller;
 
 import java.security.Principal;
+import java.sql.Date;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -79,6 +79,7 @@ public class PostController {
         User user = userService.findByUserName(principal.getName());
         Post post = postService.findById(postId);
         if (post != null && user != null) {
+            post.setCommentsAmount(post.getCommentsAmount() + 1);
             comment.setPost(post);
             comment.setAuthor(user);
             commentService.save(comment);
@@ -86,5 +87,45 @@ public class PostController {
             return "error";
         }
         return "redirect:/post?id=" + postId;
+    }
+
+    @GetMapping(path = "/create-post")
+    public String createPost(@RequestParam(value = "title") String title, Model model, Principal principal) {
+        System.out.println(title);
+        if (principal != null) {
+            String userName = principal.getName();
+            User user = userService.findByUserName(userName);
+            model.addAttribute("userId", user.getId());
+            model.addAttribute("userName", user.getName());
+            model.addAttribute("userProfileImg", user.getProfileImg().getLink());
+            model.addAttribute("userLogin", true);
+
+            model.addAttribute("title", title);
+
+            Post post = new Post();
+            model.addAttribute("post", post);
+        }
+        return "create-post";
+    }
+
+    @PostMapping(path = "/save-post")
+    public String savePost(
+            @RequestParam(value = "title") String title,
+            @ModelAttribute Post post,
+            Principal principal) {
+
+        if (principal != null && post != null) {
+            String userName = principal.getName();
+            User user = userService.findByUserName(userName);
+            Long millis = System.currentTimeMillis();
+            Date date = new Date(millis);
+            post.setDate(date);
+            post.setTitle(title);
+            post.setAuthor(user);
+
+            Post savedPost = postService.save(post);
+            return "redirect:/post?id=" + savedPost.getId();
+        }
+        return "error";
     }
 }

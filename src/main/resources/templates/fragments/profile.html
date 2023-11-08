@@ -26,9 +26,7 @@
         </div>
         <div class="col-9">
             <h1 th:text="${user.name}">My name</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus ducimus commodi,
-                incidunt culpa consequuntur obcaecati tempora quisquam amet cupiditate accusamus
-                maiores dolore impedit architecto accusantium dolores? Laboriosam aperiam et velit!</p>
+            <p th:text="${user.descripcion}">Descripcion</p>
         </div>
     </div>
 
@@ -40,16 +38,65 @@
                     <a class="nav-link text-white" th:href="@{/index?id=1}">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="panel_usuario_historial.html">Historial</a>
+                    <a class="nav-link text-white" th:href="@{/profile(id=${user.id})}">Historial</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="panel_usuario_conf.html">Configuración</a>
+                    <a class="nav-link text-white" th:href="@{/profile/conf(id=${user.id})}">Configuración</a>
                 </li>
                 <li class="nav-item">
                     <form th:action="@{/logout}" method="post" class="logout-div">
                         <button type="submit" value="Sign Out" class="sign-out-btn">Logout</button>
                     </form>
                 </li>
+            </div>
+        </div>
+    </div>
+
+    <!-- Post de panel usuario historial -->
+    <div th:fragment="post" class="col-9">
+        <div class="publicacion">
+            <div class="row">
+                <div class="col-10">
+                    <!-- <h5>titulo publicacion -->
+                </div>
+                <div class="col-2">
+                    <!-- <p>categoria -->
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- <p> content post -->
+            </div>
+            <div class="row">
+                <div class="col-9">
+                    <div class="d-inline-flex align-items-center">
+                        <div class="p-2">
+                            <!-- <img> img autor post -->
+                        </div>
+                        <div class="p-2">
+
+                            <!-- <h6> nombre autor -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="d-flex flex-row-reverse">
+                        <div class="p-2">
+                            <!-- <h6> contador likes -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-9">
+                    <!-- <p> Comentarios: contador comentarios -->
+                </div>
+                <div class="col-1">
+                    <!-- btn delete post -->
+                </div>
+                <div class="col-2">
+                    <!-- <p> fecha publicacion -->
+                </div>
             </div>
         </div>
     </div>
