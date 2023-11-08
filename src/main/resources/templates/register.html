@@ -27,7 +27,7 @@
                 <p th:text="${error}"></p>
             </div>
         -->
-        <form id="myForm" method="post" th:action="@{/confirm-password}" th:object="${user}">
+        <form id="myForm" method="post" th:action="@{/new-user}" th:object="${user}">
             <div class="form-card px-5 pt-3 col-lg">
                 <div class="input_usuario">
                     <div>
@@ -60,7 +60,7 @@
                     </div>
                 </div>
                 <div class="container-fluid py-5 px-0">
-                    <a th:href="@{/login}">
+                    <a>
                         <button class="btn btn-outline-success boton texto-fuente" type="submit">Registrar</button>
                     </a>
                 </div>

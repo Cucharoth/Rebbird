@@ -105,7 +105,7 @@ public class authController {
     public String confirmPassword(@ModelAttribute User user, @RequestParam String confirmPassword, Model model,
             RedirectAttributes redirectAttributes) {
         if (user.getPassword().equals(confirmPassword)) {
-            return "redirect:/new-user";
+            return "redirect:/new-user" + user;
         } else {
             redirectAttributes.addFlashAttribute("error", "Las contraseñas no coinciden");
             return "redirect:/register";
@@ -113,14 +113,22 @@ public class authController {
     }
 
     @PostMapping("/new-user")
-    public String newUser(@ModelAttribute User user) {
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        ProfileImg profileImg = profileImgService.findById(1);
-        user.setPassword(encoder.encode(user.getPassword()));
-        user.setRole(Role.USER);
-        if (profileImg != null)
-            user.setProfileImg(profileImg);
-        userService.save(user);
+    public String newUser(@ModelAttribute User user, @RequestParam String confirmPassword, Model model,
+            RedirectAttributes redirectAttributes) {
+        System.out.println(user.getName());
+        if (user.getPassword().equals(confirmPassword)) {
+            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+            ProfileImg profileImg = profileImgService.findById(1);
+            user.setPassword(encoder.encode(user.getPassword()));
+            user.setRole(Role.USER);
+            if (profileImg != null)
+                user.setProfileImg(profileImg);
+            userService.save(user);
         return "redirect:/login";
+    } else {
+        redirectAttributes.addFlashAttribute("error", "Las contraseñas no coinciden");
+        return "redirect:/register";
+    }
+
     }
 }
