@@ -121,7 +121,6 @@ nav {
     color: var(--text_color);
     font-family: 'Roboto', monospace;
     border-radius: 10px;
-
 }
 
 .eliminar_cuenta .advertencia {
@@ -185,6 +184,25 @@ nav {
 
 .categorias_form {
     padding-bottom: 20px;
+}
+
+.logout-div {
+    background-color: var(--primary_color);
+    display: flex;
+    justify-content: center;
+    padding: 8px 16px;
+    border-radius: 30px;
+}
+
+.sign-out-btn {
+    background-color: var(--primary_color);
+    color: var(--text_color);
+    display: flex;
+    padding: 0 !important;
+    margin: 0 !important;
+    border-width: 0 !important;
+    width: 100%;
+    justify-content: center;
 }
 
 .main-profile-img {

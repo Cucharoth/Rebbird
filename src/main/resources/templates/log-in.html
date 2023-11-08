@@ -3,7 +3,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <link rel="stylesheet" href="../styles/style-log-sign-pass.css" />
+    <link rel="stylesheet" href="../static/styles/style-log-sign-pass.css" />
     <link rel="stylesheet" th:href="@{/css/style-log-sign-pass.css}">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -51,11 +51,11 @@
                     </div>
                 </div>
                 <div class="container-fluid py-4 px-0 mt-4 d-flex justify-content-between">
-                    <a href="">
-                        <button value="Sign In" class="btn btn-outline-success boton texto-fuente"
+                    <a>
+                        <button class="btn btn-outline-success boton texto-fuente"
                             type="submit">Acceder</button>
                     </a>
-                    <a class="acceso texto-fuente" href="password-recovery.html">Olvide mi contraseña</a>
+                    <a class="acceso texto-fuente" th:href="@{/password-reset}">Olvide mi contraseña</a>
                 </div>
             </div>
         </form>
