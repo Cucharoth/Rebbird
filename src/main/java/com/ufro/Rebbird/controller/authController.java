@@ -1,7 +1,6 @@
 package com.ufro.Rebbird.controller;
 
 import java.security.Principal;
-
 import jakarta.servlet.http.HttpSession;
 import java.util.UUID;
 
@@ -105,7 +104,7 @@ public class authController {
     public String confirmPassword(@ModelAttribute User user, @RequestParam String confirmPassword, Model model,
             RedirectAttributes redirectAttributes) {
         if (user.getPassword().equals(confirmPassword)) {
-            return "redirect:/new-user" + user;
+            return "redirect:/new-user";
         } else {
             redirectAttributes.addFlashAttribute("error", "Las contraseñas no coinciden");
             return "redirect:/register";
