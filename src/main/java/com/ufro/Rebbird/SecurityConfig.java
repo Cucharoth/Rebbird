@@ -34,6 +34,8 @@ public class SecurityConfig {
                             authRequest
                                     .requestMatchers("/", "/auth/**", "/index/**", "/register/**", "/new-user/**",
                                             "/login/**",
+                                            "/password-reset/**",
+                                            "/new-password/**",
                                             "/post",
                                             "/search/**",
                                             "/error",
