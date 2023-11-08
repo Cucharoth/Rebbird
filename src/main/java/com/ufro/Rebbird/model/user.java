@@ -43,7 +43,7 @@ public class User implements UserDetails {
     @JoinColumn(name = "img_perfil_id", columnDefinition = "int default 1")
     private ProfileImg profileImg;
 
-    @Column(name = "descripcion", columnDefinition = "TEXT", nullable = false)
+    @Column(name = "descripcion", columnDefinition = "TEXT", nullable = true)
     private String descripcion;
 
     @Enumerated(EnumType.STRING)

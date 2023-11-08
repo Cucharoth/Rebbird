@@ -1,14 +1,14 @@
 package com.ufro.Rebbird.controller;
 
 import java.security.Principal;
-
-<<<<<<< HEAD
 import jakarta.servlet.http.HttpSession;
 import java.util.UUID;
 
+
+import jakarta.servlet.http.HttpSession;
+import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
-=======
->>>>>>> ftr_25_10
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -116,14 +116,22 @@ public class authController {
     }
 
     @PostMapping("/new-user")
-    public String newUser(@ModelAttribute User user) {
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        ProfileImg profileImg = profileImgService.findById(1);
-        user.setPassword(encoder.encode(user.getPassword()));
-        user.setRole(Role.USER);
-        if (profileImg != null)
-            user.setProfileImg(profileImg);
-        userService.save(user);
+    public String newUser(@ModelAttribute User user, @RequestParam String confirmPassword, Model model,
+            RedirectAttributes redirectAttributes) {
+        System.out.println(user.getName());
+        if (user.getPassword().equals(confirmPassword)) {
+            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+            ProfileImg profileImg = profileImgService.findById(1);
+            user.setPassword(encoder.encode(user.getPassword()));
+            user.setRole(Role.USER);
+            if (profileImg != null)
+                user.setProfileImg(profileImg);
+            userService.save(user);
         return "redirect:/login";
+    } else {
+        redirectAttributes.addFlashAttribute("error", "Las contraseñas no coinciden");
+        return "redirect:/register";
+    }
+
     }
 }
