@@ -35,8 +35,18 @@ public class authController {
     private final ProfileImgService profileImgService;
 
     @RequestMapping("/login")
-    public String logIn(Model model) {
+    public String logIn(Model model, HttpSession session) {
+        if (session.getAttribute("message") != null) {
+            model.addAttribute("message", session.getAttribute("message").toString());
+            session.removeAttribute("message");
+        }
         return "log-in";
+    }
+
+    @GetMapping("/auth-failure")
+    public String authFailureHandler(HttpSession session) {
+        session.setAttribute("message", "¡Credenciales incorrectas!");
+        return "redirect:/login";
     }
 
     @GetMapping("/login/from-create-post")
@@ -70,9 +80,10 @@ public class authController {
         if (existingUser != null) {
             String token = generatePasswordResetToken();
             session.setAttribute("resetToken", token);
+            session.setAttribute("user", existingUser);
             return "redirect:/new-password";
         } else {
-            model.addAttribute("error", "No se encontró ningún usuario con ese nombre de usuario");
+            model.addAttribute("error", "¡El usuario no ha sido encontrado!");
             return "password-reset";
         }
     }
@@ -88,19 +99,21 @@ public class authController {
     }
 
     @PostMapping("/new-password")
-    public String handleNewPassword(@ModelAttribute User user, @RequestParam String token, Model model,
+    public String handleNewPassword(@ModelAttribute User userFromModel, Model model,
             HttpSession session) {
         String resetToken = (String) session.getAttribute("resetToken");
-        if (resetToken != null && resetToken.equals(token)) {
-            User existingUser = userService.findByUserName(user.getUsername());
+        User existingUser = (User) session.getAttribute("user");
+        if (resetToken != null && existingUser != null) {
             BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-            existingUser.setPassword(encoder.encode(user.getPassword()));
+            existingUser.setPassword(encoder.encode(userFromModel.getPassword()));
             userService.saveOrUpdate(existingUser);
             session.removeAttribute("resetToken");
+            session.removeAttribute("user");
+            session.setAttribute("message", "¡Contraseña reiniciada exitosamente!");
             return "redirect:/login";
         } else {
             model.addAttribute("error", "El token de restablecimiento de contraseña no es válido");
-            return "new-password";
+            return "redirect:/password-reset";
         }
     }
 
@@ -116,22 +129,32 @@ public class authController {
     }
 
     @PostMapping("/new-user")
-    public String newUser(@ModelAttribute User user, @RequestParam String confirmPassword, Model model,
+    public String newUser(
+            @ModelAttribute User user,
+            @RequestParam String confirmPassword,
+            Model model,
             RedirectAttributes redirectAttributes) {
-        System.out.println(user.getName());
+
         if (user.getPassword().equals(confirmPassword)) {
             BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
             ProfileImg profileImg = profileImgService.findById(1);
-            user.setPassword(encoder.encode(user.getPassword()));
+            user.setNombre(normaliseString(user.getName()));
+            user.setPassword(encoder.encode(normaliseString(user.getPassword())));
             user.setRole(Role.USER);
-            if (profileImg != null)
+            if (profileImg != null) {
                 user.setProfileImg(profileImg);
-            userService.save(user);
-        return "redirect:/login";
-    } else {
-        redirectAttributes.addFlashAttribute("error", "Las contraseñas no coinciden");
-        return "redirect:/register";
+                userService.save(user);
+            } else {
+                return "error";
+            }
+            return "redirect:/login";
+        } else {
+            redirectAttributes.addFlashAttribute("error", "Las contraseñas no coinciden");
+            return "redirect:/register";
+        }
     }
 
+    private String normaliseString(String name) {
+        return name.replaceAll("\\s", "");
     }
 }

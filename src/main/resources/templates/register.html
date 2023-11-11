@@ -27,6 +27,7 @@
                 <p th:text="${error}"></p>
             </div>
         -->
+        <!-- todo: controlar imput, no espacios-->
         <form id="myForm" method="post" th:action="@{/new-user}" th:object="${user}">
             <div class="form-card px-5 pt-3 col-lg">
                 <div class="input_usuario">
@@ -36,7 +37,7 @@
                     </div>
                     <div>
                         <input th:field="*{username}" type="text" class="form-control " name="userName" id="userName"
-                            aria-describedby="inputGroupPrepend2" required placeholder="usuario" />
+                            aria-describedby="inputGroupPrepend2" placeholder="usuario" pattern="[^' ']+" minlength="3" maxlength="13" title="El nombre de usuario debe tener entre 3 y 15 caracteres y no contener espacios en blanco." required/>
                     </div>
                 </div>
                 <div class="input_contraseña">
@@ -46,7 +47,7 @@
                     </div>
                     <div>
                         <input th:field="*{password}" type="password" class="form-control" name="password" id="password"
-                            aria-describedby="passwordHelp" placeholder="contraseña" required />
+                            aria-describedby="passwordHelp" placeholder="contraseña" pattern="[^' ']+" minlength="4" maxlength="18" required />
                     </div>
                 </div>
                 <div class="input_contraseña">
@@ -56,7 +57,7 @@
                     </div>
                     <div>
                         <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
-                            aria-describedby="passwordConfirmHelp" placeholder="confirme contraseña" required />
+                            aria-describedby="passwordConfirmHelp" placeholder="confirme contraseña" pattern="[^' ']+" minlength="4" maxlength="18" required />
                     </div>
                 </div>
                 <div class="container-fluid py-5 px-0">

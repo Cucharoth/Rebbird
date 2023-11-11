@@ -39,13 +39,14 @@ public class SecurityConfig {
                                             "/post",
                                             "/search/**",
                                             "/error",
-                                    "/profile/**")
+                                            "/auth-failure")
                                     .permitAll();
                             // authRequest.requestMatchers("/index-login/**").hasRole("USER");
                             authRequest.anyRequest().authenticated();
                         })
                 .formLogin((form) -> form
                         .loginPage("/login")
+                        .failureUrl("/auth-failure")
                         .defaultSuccessUrl("/index?id=1", true)
                         .permitAll())
                 .logout((logout) -> logout
