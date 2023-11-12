@@ -1,14 +1,9 @@
 package com.ufro.Rebbird.controller;
 
-import java.security.Principal;
 import jakarta.servlet.http.HttpSession;
 import java.util.UUID;
 
 
-import jakarta.servlet.http.HttpSession;
-import java.util.UUID;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,46 +29,88 @@ public class authController {
     private final UserService userService;
     private final ProfileImgService profileImgService;
 
+    /**
+     * Maneja el <i>Login</i> del usuario
+     * 
+     * @param model   modelo proporcionado por Spring.
+     * @param session session proporcionada por Spring.
+     * @return <i>View</i> manejado por Thymeleaf.
+     * 
+     */
     @RequestMapping("/login")
     public String logIn(Model model, HttpSession session) {
-        if (session.getAttribute("message") != null) {
-            model.addAttribute("message", session.getAttribute("message").toString());
-            session.removeAttribute("message");
-        }
         return "log-in";
     }
 
+    /**
+     * Maneja la verificación de credenciales fallida.
+     * 
+     * @param redirectAttributes proporcionado por Spring, nos permite enviar
+     *                           atributos a otras direcciones, util para redirigir.
+     * @return <i>View</i> manejado por Thymeleaf.
+     * 
+     */
     @GetMapping("/auth-failure")
-    public String authFailureHandler(HttpSession session) {
-        session.setAttribute("message", "¡Credenciales incorrectas!");
+    public String authFailureHandler(RedirectAttributes redirectAttributes) {
+        redirectAttributes.addFlashAttribute("message", "¡Credenciales incorrectas!");
         return "redirect:/login";
     }
 
+    /**
+     * Maneja redirección desde el botón 'crear publicación' en index.
+     * 
+     * @param model modelo proporcionado por Spring.
+     * @return <i>View</i> manejado por Thymeleaf.
+     * 
+     */
     @GetMapping("/login/from-create-post")
     public String fromCreatePost(Model model) {
         model.addAttribute("fromCreatePost", true);
         return "log-in";
     }
 
+    /**
+     * Maneja registro de usuarios.
+     * 
+     * @param model modelo proporcionado por Spring.
+     * @return <i>View</i> manejado por Thymeleaf.
+     * 
+     */
     @RequestMapping("/register")
-    public String register(Model model, Principal p) {
+    public String register(Model model) {
         model.addAttribute("user", new User());
-
-        if (p != null) {
-            // Logged user info
-            int userId = userService.findByUserName(p.getName()).getId();
-            model.addAttribute("userId", userId);
-        }
-
         return "register";
     }
 
+    // remueve todos los atributos de una session.
+    // private void removeAllSessionAtrr(HttpSession session) {
+    // session.getAttributeNames().asIterator().forEachRemaining(name ->
+    // session.removeAttribute(name));
+    // }
+
+    /**
+     * Muestra vista reinicio de contraseñas.
+     * 
+     * @param model modelo proporcionado por Spring.
+     * @return <i>View</i> manejado por Thymeleaf.
+     * 
+     */
     @GetMapping("/password-reset")
     public String showPasswordResetForm(Model model) {
         model.addAttribute("user", new User());
         return "password-reset";
     }
 
+    /**
+     * Maneja la búsqueda del usuario que desea reiniciar contraseña..
+     * 
+     * @param user    <i>User</i> que posee el nombre de usuario a ser procesado.
+     * @param model   modelo proporcionado por Spring.
+     * @param session sesión, utilizado para mantener parámetros por periodos
+     *                extensos.
+     * @return <i>View</i> manejado por Thymeleaf.
+     * 
+     */
     @PostMapping("/password-reset")
     public String handlePasswordReset(@ModelAttribute User user, Model model, HttpSession session) {
         User existingUser = userService.findByUserName(user.getUsername());
@@ -92,15 +129,35 @@ public class authController {
         return UUID.randomUUID().toString();
     }
 
+    /**
+     * Muestra y prepara la vista para reiniciar contraseña.
+     * 
+     * @param model modelo proporcionado por Spring.
+     * @return <i>View</i> manejado por Thymeleaf.
+     * 
+     */
     @GetMapping("/new-password")
     public String showNewPasswordForm(Model model) {
         model.addAttribute("user", new User());
         return "new-password";
     }
 
+    /**
+     * Maneja el reinicio de contraseña.
+     * 
+     * @param userFromModel      <i>User</i> que posee la nueva contraseña a ser
+     *                           guardada.
+     * @param model              modelo proporcionado por Spring.
+     * @param session            sesión, utilizado para mantener parámetros por
+     *                           periodos extensos.
+     * @param redirectAttributes proporcionado por Spring, nos permite enviar
+     *                           atributos a otras direcciones, util para redirigir.
+     * @return <i>View</i> manejado por Thymeleaf.
+     * 
+     */
     @PostMapping("/new-password")
     public String handleNewPassword(@ModelAttribute User userFromModel, Model model,
-            HttpSession session) {
+            HttpSession session, RedirectAttributes redirectAttributes) {
         String resetToken = (String) session.getAttribute("resetToken");
         User existingUser = (User) session.getAttribute("user");
         if (resetToken != null && existingUser != null) {
@@ -109,7 +166,7 @@ public class authController {
             userService.saveOrUpdate(existingUser);
             session.removeAttribute("resetToken");
             session.removeAttribute("user");
-            session.setAttribute("message", "¡Contraseña reiniciada exitosamente!");
+            redirectAttributes.addFlashAttribute("message", "¡Contraseña reiniciada exitosamente!");
             return "redirect:/login";
         } else {
             model.addAttribute("error", "El token de restablecimiento de contraseña no es válido");
@@ -128,12 +185,30 @@ public class authController {
         }
     }
 
+    /**
+     * Maneja la creación de nuevos usuarios.
+     * 
+     * @param user               <i>User</i> con los datos del usuario a ser
+     *                           registrado.
+     * @param confirmPassword    contraseña ingresada por el usuario, utilizada para
+     *                           evitar errores de ingreso.
+     * @param model              modelo proporcionado por Spring.
+     * @param redirectAttributes proporcionado por Spring, nos permite enviar
+     *                           atributos a otras direcciones, util para redirigir.
+     * @return <i>View</i> manejado por Thymeleaf.
+     * 
+     */
     @PostMapping("/new-user")
     public String newUser(
             @ModelAttribute User user,
             @RequestParam String confirmPassword,
             Model model,
             RedirectAttributes redirectAttributes) {
+
+        if (userExist(user.getUsername())) {
+            redirectAttributes.addFlashAttribute("message", "¡El nombre de usuario no esta disponible!");
+            return "redirect:/register";
+        }
 
         if (user.getPassword().equals(confirmPassword)) {
             BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -144,6 +219,7 @@ public class authController {
             if (profileImg != null) {
                 user.setProfileImg(profileImg);
                 userService.save(user);
+                redirectAttributes.addFlashAttribute("message", "¡Cuenta creada exitosamente!");
             } else {
                 return "error";
             }
@@ -156,5 +232,9 @@ public class authController {
 
     private String normaliseString(String name) {
         return name.replaceAll("\\s", "");
+    }
+
+    private boolean userExist(String username) {
+        return userService.findByUserName(username) != null;
     }
 }

@@ -34,7 +34,8 @@
                         <h6>Cambiar nombre</h6>
                         <div class="nombre_form">
                             <label for="username"></label>
-                            <input type="text" id="username" name="username" class="form-control" th:placeholder="${user.name}">
+                            <input type="text" id="username" name="username" class="form-control" th:placeholder="${user.name}" pattern="[^' ']+"
+                                minlength="3" maxlength="13">
                         </div>
                         <div class="categorias_form">
                             <p>Categorías preferidas</p>

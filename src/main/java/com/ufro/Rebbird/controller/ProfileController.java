@@ -2,7 +2,6 @@ package com.ufro.Rebbird.controller;
 
 import java.security.Principal;
 
-import com.ufro.Rebbird.model.ProfileImg;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

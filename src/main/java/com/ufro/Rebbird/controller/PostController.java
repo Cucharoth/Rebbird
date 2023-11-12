@@ -32,6 +32,15 @@ public class PostController {
     private final UserPostReactionService userPostReactionService;
     private final CommentService commentService;
 
+    /**
+     * Muestra pagina dedicada a los <i>Post</i>.
+     * 
+     * @param postId    id del <i>Post</i> seleccionado.
+     * @param model     modelo proporcionado por Spring.
+     * @param principal principal proporcionado por Spring Security, representa el
+     *                  usuario autorizado.
+     * @return <i>View</i> manejado por Thymeleaf.
+     */
     @GetMapping
     public String onPost(@RequestParam(value = "id") Long postId, Model model, Principal principal) {
         Post post = postService.findById(postId);
@@ -55,6 +64,17 @@ public class PostController {
         }
     }
 
+    /**
+     * Maneja la eliminación de un <i>Post</i>.
+     * 
+     * @param postId     id del <i>Post</i> que se desea eliminar.
+     * @param categoryId categoría del <i>Post</i> que se desea eliminar (necesaria
+     *                   para redireccionar a la categoría correspondiente en la
+     *                   vista Index)
+     * @param principal  principal proporcionado por Spring Security, representa el
+     *                   usuario autorizado.
+     * @return <i>View</i> manejado por Thymeleaf.
+     */
     @PostMapping(path = "/delete")
     public String deletePost(@RequestParam(value = "postId") Long postId,
             @RequestParam(value = "categoryId") int categoryId,
@@ -71,6 +91,15 @@ public class PostController {
         return "redirect:/index?id=" + categoryId;
     }
 
+    /**
+     * Maneja el registro de <i>Comentario</i> en el <i>Post</i> correspondiente.
+     * 
+     * @param postId    id del <i>Post</i> al que pertenece el <i>Comentario</i>.
+     * @param comment   <i>Comentario</i> realizado.
+     * @param principal principal proporcionado por Spring Security, representa el
+     *                  usuario autorizado.
+     * @return <i>View</i> manejado por Thymeleaf.
+     */
     @PostMapping(path = "/comment/save")
     public String saveComment(
             @RequestParam(value = "postId") Long postId,
@@ -89,6 +118,15 @@ public class PostController {
         return "redirect:/post?id=" + postId;
     }
 
+    /**
+     * Muestra la vista para el registro de <i>Post</i>.
+     * 
+     * @param title     titulo del <i>Post</i> a registrar.
+     * @param model     modelo proporcionado por Spring.
+     * @param principal principal proporcionado por Spring Security, representa el
+     *                  usuario autorizado.
+     * @return <i>View</i> manejado por Thymeleaf.
+     */
     @GetMapping(path = "/create-post")
     public String createPost(@RequestParam(value = "title") String title, Model model, Principal principal) {
         System.out.println(title);
@@ -108,6 +146,15 @@ public class PostController {
         return "create-post";
     }
 
+    /**
+     * Maneja el registro de <i>Post</i>.
+     * 
+     * @param title     titulo del <i>Post</i> a registrar.
+     * @param post      <i>Post</i> a registrar.
+     * @param principal principal proporcionado por Spring Security, representa el
+     *                  usuario autorizado.
+     * @return <i>View</i> manejado por Thymeleaf.
+     */
     @PostMapping(path = "/save-post")
     public String savePost(
             @RequestParam(value = "title") String title,

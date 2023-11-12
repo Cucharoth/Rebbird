@@ -27,7 +27,11 @@
                 <p th:text="${error}"></p>
             </div>
         -->
-        <!-- todo: controlar imput, no espacios-->
+        <div th:if="${message}"
+            class="text-center d-flex flex-column justify-content-center align-items-center container-fluid message-card col-sm-6 col-md-5 col-lg-3">
+            <p th:text="${message}" class="text-input texto-fuente pt-3"></p>
+        </div>
+
         <form id="myForm" method="post" th:action="@{/new-user}" th:object="${user}">
             <div class="form-card px-5 pt-3 col-lg">
                 <div class="input_usuario">

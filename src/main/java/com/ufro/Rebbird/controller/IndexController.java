@@ -91,7 +91,7 @@ public class IndexController {
     /**
      * Da a <i>Post</i> el formato necesario para ser mostrado en <i>Index</i>
      * 
-     * @param user         usario autentificado
+     * @param user         <i>User</i> autentificado
      * @param currentPosts resultado del query de <i>Posts</i> realizado
      * @return <i>List</i> que posee cada uno de los elementos necesarios para ser
      *         mostrados en <i>Index</i>
@@ -205,9 +205,15 @@ public class IndexController {
         }
     }
 
+    /**
+     * Maneja redirección principal y establece una pagina por defecto.
+     * 
+     * @return <i>View</i> manejado por Thymeleaf.
+     * 
+     */
     @GetMapping(path = "/")
     public String index() {
-        return "redirect:/index?id=1&page=1";
+        return "redirect:/index?id=1";
     }
 
     /**
@@ -305,6 +311,13 @@ public class IndexController {
         return post;
     }
 
+    /**
+     * Muestra pagina '404', se realiza redirección a esta dirección cuando nos
+     * encontramos con algo inesperado.
+     * 
+     * @return <i>View</i> manejado por Thymeleaf.
+     * 
+     */
     @GetMapping(path = "/error")
     public String error() {
         return "error";
