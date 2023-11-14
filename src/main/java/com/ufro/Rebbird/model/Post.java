@@ -35,7 +35,7 @@ public class Post {
     private User author;
 
     @ManyToOne
-    @JoinColumn(name = "categoria_id")
+    @JoinColumn(name = "categoria_id", columnDefinition = "INT default 1")
     private Category category;
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

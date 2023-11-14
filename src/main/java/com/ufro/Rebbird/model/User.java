@@ -46,6 +46,10 @@ public class User implements UserDetails {
     @Column(name = "descripcion", columnDefinition = "TEXT", nullable = true)
     private String descripcion;
 
+    @ManyToOne
+    @JoinColumn(name = "categorias_favoritas", columnDefinition = "int default 1")
+    private Category favCategory;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = true)
     private Role role;

@@ -206,13 +206,18 @@ public class IndexController {
     }
 
     /**
-     * Maneja redirección principal y establece una pagina por defecto.
+     * Maneja redirección principal, tomando en cuenta preferencias del usuario.
      * 
      * @return <i>View</i> manejado por Thymeleaf.
      * 
      */
     @GetMapping(path = "/")
-    public String index() {
+    public String index(Principal principal) {
+        if (principal != null) {
+            User user = userService.findByUserName(principal.getName());
+            int categoryId = user.getFavCategory().getId();
+            return "redirect:/index?id=" + categoryId;
+        }
         return "redirect:/index?id=1";
     }
 
