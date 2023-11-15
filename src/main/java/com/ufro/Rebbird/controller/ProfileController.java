@@ -86,7 +86,8 @@ public class ProfileController {
     @PostMapping("/updateProfile")
     public String updateProfile(@RequestParam(value = "id") int userId, Model model, Principal principal,
                                 @RequestParam(value = "descripcion") String descripcion,
-                                @RequestParam(value = "username") String username) {
+                                @RequestParam(value = "username") String username,
+                                @RequestParam(value = "favCategory") int favCategory){
         if (principal != null) {
             String userName = principal.getName();
             User user = userService.findByUserName(userName);
@@ -99,9 +100,16 @@ public class ProfileController {
                 userService.changeUsername(userId, username);
                 return "redirect:/logout";
             }
+            if (favCategory > 0 && favCategory <= 9) {
+                userService.changeFavCategory(userId, favCategory);
+            }
         }
         return "redirect:/profile?id=" + userId;
     }
+
+
+
+
 
     // todo: cucha: el id del usuario no se esta usando 
     @PostMapping(path = "/updateAvatar")
@@ -118,5 +126,7 @@ public class ProfileController {
         }
         return "redirect:/profile?id=" + userId;
     }
-
 }
+
+
+
