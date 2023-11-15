@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.ufro.Rebbird.model.Category;
 import com.ufro.Rebbird.model.ProfileImg;
 import com.ufro.Rebbird.model.User;
 import com.ufro.Rebbird.model.utils.Role;
+import com.ufro.Rebbird.service.CategoryService;
 import com.ufro.Rebbird.service.ProfileImgService;
 import com.ufro.Rebbird.service.UserService;
 
@@ -28,6 +30,7 @@ public class authController {
 
     private final UserService userService;
     private final ProfileImgService profileImgService;
+    private final CategoryService categoryService;
 
     /**
      * Maneja el <i>Login</i> del usuario
@@ -213,10 +216,13 @@ public class authController {
         if (user.getPassword().equals(confirmPassword)) {
             BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
             ProfileImg profileImg = profileImgService.findById(1);
+            Category favCategory = categoryService.findCategoryByid(1);
             user.setNombre(normaliseString(user.getName()));
             user.setPassword(encoder.encode(normaliseString(user.getPassword())));
             user.setRole(Role.USER);
-            if (profileImg != null) {
+
+            if (profileImg != null && favCategory != null) {
+                user.setFavCategory(favCategory);
                 user.setProfileImg(profileImg);
                 userService.save(user);
                 redirectAttributes.addFlashAttribute("message", "¡Cuenta creada exitosamente!");
