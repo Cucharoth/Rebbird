@@ -34,7 +34,7 @@
             <div class="search-container">
                 <div class="header-search-bar">
                     <form th:action="@{/search}" class="input-group" method="get">
-                        <input class="form-control mr-sm-2" type="search" size="30" name="keyword"
+                        <input class="form-control mr-sm-2" type="search" size="30" name="keyword" maxlength="80"
                             placeholder="Buscar en Rebbird" aria-label="Search" oninvalid="invalidMsg(this);" oninput="invalidMsg(this);" required>
                         <button class="search-button primary-bg" type="submit">
                             <img th:src="@{/img/Magnifying Glass.png}" alt="search-icon" class="search-icon">
