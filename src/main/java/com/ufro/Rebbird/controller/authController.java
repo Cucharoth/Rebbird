@@ -224,6 +224,7 @@ public class authController {
             if (profileImg != null && favCategory != null) {
                 user.setFavCategory(favCategory);
                 user.setProfileImg(profileImg);
+                user.setDescripcion("");
                 userService.save(user);
                 redirectAttributes.addFlashAttribute("message", "¡Cuenta creada exitosamente!");
             } else {
