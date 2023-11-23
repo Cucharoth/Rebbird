@@ -11,7 +11,7 @@ con la finalidad de aprender y poner en practica las tecnologías mencionadas.
 
 - Los usuarios podrán visitar el sitio y decidir si desean o no registrarse.
 - Los usuarios registrados son capaces de ver y crear publicaciones, ademas de poder realizar comentarios en las mismas.
-- Los usuarios registrados poseen un perfil de usuario en el cual pueden modificar tanto sus nombre de perfil, descripcion e imágenes de perfil.
+- Los usuarios registrados poseen un perfil de usuario en el cual pueden modificar tanto sus nombre de perfil e imágenes de perfil.
 
 ## Tecnologías Utilizadas
 
