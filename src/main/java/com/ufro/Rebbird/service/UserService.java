@@ -1,5 +1,6 @@
 package com.ufro.Rebbird.service;
 
+import com.ufro.Rebbird.model.Category;
 import com.ufro.Rebbird.model.ProfileImg;
 import com.ufro.Rebbird.repository.UserRepository;
 
@@ -19,6 +20,8 @@ public class UserService extends GenericService<User, Integer> {
     UserRepository userRepository;
     @Autowired
     ProfileImgService profileImgService;
+    @Autowired
+    CategoryService categoryService;
 
     public UserService(UserRepository repository) {
         super(repository);
@@ -64,6 +67,15 @@ public class UserService extends GenericService<User, Integer> {
     public void changeUsername(int id, String username) {
         userRepository.findById(id).map(x -> {
             x.setUsername(username);
+            return userRepository.save(x);
+        });
+    }
+
+    public void changeFavCategory(int id, int favCategory) {
+        Category category;
+        category = categoryService.findCategoryByid(favCategory);
+        userRepository.findById(id).map(x -> {
+            x.setFavCategory(category);
             return userRepository.save(x);
         });
     }

@@ -77,10 +77,10 @@ public class IndexController {
                 model.addAttribute("userProfileImg", user.getProfileImg().getLink());
                 model.addAttribute("userLogin", true);
                 model.addAttribute("isAdmin", user.getRole() == Role.ADMIN);
-                model.addAttribute("posts", giveFormatPost(user, postsResult));
+                model.addAttribute("posts", postService.giveFormatPost(user, postsResult));
             } else {
                 model.addAttribute("userLogin", false);
-                model.addAttribute("posts", giveFormatPost(null, postsResult));
+                model.addAttribute("posts", postService.giveFormatPost(null, postsResult));
             }
             return "index";
         } else {
@@ -88,52 +88,7 @@ public class IndexController {
         }
     }
 
-    /**
-     * Da a <i>Post</i> el formato necesario para ser mostrado en <i>Index</i>
-     * 
-     * @param user         usario autentificado
-     * @param currentPosts resultado del query de <i>Posts</i> realizado
-     * @return <i>List</i> que posee cada uno de los elementos necesarios para ser
-     *         mostrados en <i>Index</i>
-     * 
-     */
-    private List<List<Object>> giveFormatPost(User user, Iterable<Post> currentPosts) {
-        List<List<Object>> posts = new ArrayList<List<Object>>();
-        if (user != null) {
-            for (Post post : currentPosts) {
-                List<Object> postInfo = new ArrayList<Object>();
-                boolean hasReacted = false, isLike = false;
-                UserPostReaction userPostReaction = userPostReactionService.findByPostAndUser(post.getId(),
-                        user.getId());
-                if (userPostReaction != null) {
-                    hasReacted = true;
-                    isLike = userPostReaction.getReactionType().equals(ReactionType.LIKE);
-                }
 
-                // no necesita null handling, JDBC retorna 0 para int vacios.
-                int commentAmount = commentService.countAllByPostId(post.getId());
-
-                postInfo.add(post);
-                postInfo.add(commentAmount);
-                postInfo.add(hasReacted);
-                postInfo.add(isLike);
-                posts.add(postInfo);
-            }
-        } else {
-            // se hace de esta forma para mantener formato en vista 'index'.
-            for (Post post : currentPosts) {
-                List<Object> postInfo = new ArrayList<Object>();
-
-                // no necesita null handling, JDBC retorna 0 para int vacios.
-                int commentAmount = commentService.countAllByPostId(post.getId());
-
-                postInfo.add(post);
-                postInfo.add(commentAmount);
-                posts.add(postInfo);
-            }
-        }
-        return posts;
-    }
 
     /**
      * Maneja búsqueda de publicación según titulo.
@@ -160,9 +115,9 @@ public class IndexController {
                 model.addAttribute("userName", user.getName());
                 model.addAttribute("userProfileImg", user.getProfileImg().getLink());
                 model.addAttribute("userLogin", true);
-                model.addAttribute("posts", giveFormatPost(user, postsResult));
+                model.addAttribute("posts", postService.giveFormatPost(user, postsResult));
             } else {
-                model.addAttribute("posts", giveFormatPost(null, postsResult));
+                model.addAttribute("posts", postService.giveFormatPost(null, postsResult));
             }
             return "index";
         } else {
@@ -197,7 +152,7 @@ public class IndexController {
             // creamos una lista de post para satisfacer la funcion.
             List<Post> posts = new ArrayList<>();
             posts.add(postUpdated);
-            model.addAttribute("posts", giveFormatPost(user, posts));
+            model.addAttribute("posts", postService.giveFormatPost(user, posts));
 
             return "fragments/post.html :: reaction";
         } else {
@@ -205,9 +160,20 @@ public class IndexController {
         }
     }
 
+    /**
+     * Maneja redirección principal, tomando en cuenta preferencias del usuario.
+     * 
+     * @return <i>View</i> manejado por Thymeleaf.
+     * 
+     */
     @GetMapping(path = "/")
-    public String index() {
-        return "redirect:/index?id=1&page=1";
+    public String index(Principal principal) {
+        if (principal != null) {
+            User user = userService.findByUserName(principal.getName());
+            int categoryId = user.getFavCategory().getId();
+            return "redirect:/index?id=" + categoryId;
+        }
+        return "redirect:/index?id=1";
     }
 
     /**
@@ -240,10 +206,10 @@ public class IndexController {
                 User user = userService.findByUserName(userName);
                 model.addAttribute("userLogin", true);
                 model.addAttribute("userId", user.getId());
-                model.addAttribute("posts", giveFormatPost(user, postsResult));
+                model.addAttribute("posts", postService.giveFormatPost(user, postsResult));
                 model.addAttribute("isAdmin", user.getRole() == Role.ADMIN);
             } else {
-                model.addAttribute("posts", giveFormatPost(null, postsResult));
+                model.addAttribute("posts", postService.giveFormatPost(null, postsResult));
             }
             try {
                 Thread.sleep(500);
@@ -305,6 +271,13 @@ public class IndexController {
         return post;
     }
 
+    /**
+     * Muestra pagina '404', se realiza redirección a esta dirección cuando nos
+     * encontramos con algo inesperado.
+     * 
+     * @return <i>View</i> manejado por Thymeleaf.
+     * 
+     */
     @GetMapping(path = "/error")
     public String error() {
         return "error";

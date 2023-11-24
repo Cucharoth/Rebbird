@@ -20,7 +20,7 @@
             <!-- logo -->
             <div class="header-logo-container main-bg">
                 <div class="header-logo">
-                    <a th:href="@{/index?id=1}" class="rebbird-logo">Rebbird</a>
+                    <a th:href="@{/}" class="rebbird-logo">Rebbird</a>
                 </div>
             </div>
 
@@ -34,7 +34,7 @@
             <div class="search-container">
                 <div class="header-search-bar">
                     <form th:action="@{/search}" class="input-group" method="get">
-                        <input class="form-control mr-sm-2" type="search" size="30" name="keyword"
+                        <input class="form-control mr-sm-2" type="search" size="30" name="keyword" maxlength="80"
                             placeholder="Buscar en Rebbird" aria-label="Search" oninvalid="invalidMsg(this);" oninput="invalidMsg(this);" required>
                         <button class="search-button primary-bg" type="submit">
                             <img th:src="@{/img/Magnifying Glass.png}" alt="search-icon" class="search-icon">
@@ -46,7 +46,7 @@
             <!-- User Login -->
             <div th:if="${userLogin}" class="header-user-log">
                 <div class="user-profile">
-                    <a th:href="@{/profile(id=${userId})}" class="user-profile-btn">
+                    <a th:href="@{/profile}" class="user-profile-btn">
                         <div class="user-profile-img-div">
                             <img th:src="@{${userProfileImg}}" alt="user-profile-img" class="user-profile-img">
                         </div>

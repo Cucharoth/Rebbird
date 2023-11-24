@@ -34,31 +34,32 @@
                         <h6>Cambiar nombre</h6>
                         <div class="nombre_form">
                             <label for="username"></label>
-                            <input type="text" id="username" name="username" class="form-control" th:placeholder="${user.name}">
+                            <input type="text" id="username" name="username" class="form-control" th:placeholder="${user.name}" pattern="[^' ']+"
+                                minlength="3" maxlength="13">
                         </div>
                         <div class="categorias_form">
-                            <p>Categorías preferidas</p>
                             <div class="dropdown">
-                                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
-                                    Categorias
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><input class="form-check-input" type="checkbox" checked>
-                                        <label class="form-check-label">Videojuegos</label>
-                                    </li>
-                                    <li><input class="form-check-input" type="checkbox" checked>
-                                        <label class="form-check-label">Deportes</label>
-                                    </li>
-                                    <li><input class="form-check-input" type="checkbox" checked>
-                                        <label class="form-check-label">Arte</label>
-                                    </li>
-                                    <li><input class="form-check-input" type="checkbox" checked>
-                                        <label class="form-check-label">Música</label>
-                                    </li>
-                                    <li><input class="form-check-input" type="checkbox" checked>
-                                        <label class="form-check-label">Programación</label>
-                                    </li>
-                                </ul>
+                                <p>Categoría preferida</p>
+                                <select name="favCategory" class="form-selected">
+                                    <option th:value="1">Videojuegos
+                                    </option>
+                                    <option th:value="2">Series
+                                    </option>
+                                    <option th:value="3">Películas
+                                    </option>
+                                    <option th:value="4">Música
+                                    </option>
+                                    <option th:value="5">Ciencia
+                                    </option>
+                                    <option th:value="6">Deportes
+                                    </option>
+                                    <option th:value="7">Mundo
+                                    </option>
+                                    <option th:value="8">Política
+                                    </option>
+                                    <option th:value="9">Programación
+                                    </option>
+                                </select>
                             </div>
                         </div>
                         <div class="descripcion_form">
