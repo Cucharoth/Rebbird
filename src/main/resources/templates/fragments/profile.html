@@ -7,6 +7,8 @@
     <title>Document</title>
     <link rel="stylesheet" href="../styles/panel_usuario_style.css">
     <link rel="stylesheet" th:href="@{/css/panel_usuario_style.css}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 </head>
 
 <body>
@@ -14,7 +16,7 @@
     <header th:fragment="header">
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" th:href="@{/index?id=1}">Rebbird</a>
+                <a class="navbar-brand" th:href="@{/}">Rebbird</a>
             </div>
         </nav>
     </header>
@@ -35,7 +37,7 @@
         <div class="menu-panel">
             <div class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link text-white" th:href="@{/index?id=1}">Inicio</a>
+                    <a class="nav-link text-white" th:href="@{/}">Inicio</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" th:href="@{/profile(id=${user.id})}">Historial</a>
@@ -52,55 +54,74 @@
         </div>
     </div>
 
-    <!-- Post de panel usuario historial -->
+
+
     <div th:fragment="post" class="col-9">
         <div class="publicacion">
-            <div class="row">
-                <div class="col-10">
-                    <!-- <h5>titulo publicacion -->
-                </div>
-                <div class="col-2">
-                    <!-- <p>categoria -->
-                </div>
-            </div>
+            <div th:if="${postsEmpty}">No has realizado ninguna publicacion :[</div>
+            
+            <div th:each="postInfo: ${posts}" class="post">
+                <div th:id="borrar-publicacion-modal+${postInfo[0].id}" class="modal fade" id="borrar-publicacion-modal" tabindex="-1"
+                    role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header primary-bg">
+                                <h5 class="modal-title" id="borrarPublicacionModalLabel">Borrar publicación</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body third-bg">
+                                <span>¿Desea borrar esta publicación?</span>
+                                <span th:text="${postInfo[0].title}" class="modal-post-title"></span>
+                                <span class="warning-color">¡Esta acción es permanente!</span>
+                            </div>
+                            <div class="modal-footer third-bg">
+                                <button type="button" class="secondary-btn" data-dismiss="modal">Volver</button>
+                                <form th:action="@{/post/delete(postId=${postInfo[0].id}, categoryId=${postInfo[0].category.id})}" th:method="post">
+                                    <button type="submit" class="primary-btn">Borrar</button>
+                                </form>
+                                            
+                            </div>
 
-            <div class="row">
-                <!-- <p> content post -->
-            </div>
-            <div class="row">
-                <div class="col-9">
-                    <div class="d-inline-flex align-items-center">
-                        <div class="p-2">
-                            <!-- <img> img autor post -->
                         </div>
-                        <div class="p-2">
 
-                            <!-- <h6> nombre autor -->
+                    </div>
+        
+                </div>
+                <div class="post-header">
+                    <div class="post-title-div">
+                        <a th:text="${postInfo[0].getTitle()}" th:href="@{/post(id=${postInfo[0].getId()}) }" class="post-title">
+                            In-game ignore…let’s make it better!</a>
+                    </div>
+                    <div th:text="${postInfo[0].category.name}" class="post-category">Videojuegos</div>
+                </div>
+                <div class="post-content">
+                    <div class="post-user-div">
+                        <div class="post-user-img">
+                            <img th:src="@{${postInfo[0].author.profileImg.link}}" alt="post-user-img" class="user-pfl-img">
+                        </div>
+                        <div class="post-user-name" th:text="${postInfo[0].getAuthor().getName()}">
+                            Perl
                         </div>
                     </div>
                 </div>
-                <div class="col-3">
-                    <div class="d-flex flex-row-reverse">
-                        <div class="p-2">
-                            <!-- <h6> contador likes -->
-                        </div>
+                <div class="post-footer">
+                    <div class="post-comments-div">
+                        <div class="post-comments">Comentarios:</div>
+                        <div th:text="${postInfo[1]}" class="post-comments-value">6</div>
                     </div>
+                    <div class="delete-post-container">
+                        <a type="button" data-toggle="modal" data-target="#borrar-publicacion-modal" class="delete-post-btn"
+                            th:attr="data-target='#borrar-publicacion-modal'+${postInfo[0].id}">
+                            <span class="material-icons block-icon">block</span>
+                        </a>
+                    </div>
+                    <div class="post-date" th:text="${postInfo[0].getDate()}">23-03-22</div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-9">
-                    <!-- <p> Comentarios: contador comentarios -->
                 </div>
-                <div class="col-1">
-                    <!-- btn delete post -->
                 </div>
-                <div class="col-2">
-                    <!-- <p> fecha publicacion -->
-                </div>
-            </div>
-        </div>
     </div>
-
 </body>
 
 </html>

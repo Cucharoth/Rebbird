@@ -32,6 +32,7 @@ nav {
 
 .contenedor {
     background-color: var(--third_color);
+    height: 95%;
 }
 
 .container {
@@ -39,7 +40,7 @@ nav {
     color: var(--text_color);
     padding-top: 50px;
     padding-left: 20px;
-    padding-right: 20px;
+    padding-right: 23px !important;
     padding-bottom: 20px;
     text-align: justify;
     color: var(--text_color);
@@ -51,7 +52,8 @@ nav {
 
 .publicacion {
     background-color: var(--third_color);
-    display: inline-block;
+    display: flex;
+        flex-direction: column;
     font-size: 12px;
     font-weight: normal;
     padding-top: 10px;
@@ -60,7 +62,25 @@ nav {
     padding-bottom: 10px;
     border-radius: 20px 20px 20px 20px;
     border: 5px solid #001F18;
-
+    overflow-y: scroll;
+        scroll-behavior: smooth;
+        max-height: 600px;
+    }
+    
+        .publicacion::-webkit-scrollbar {
+            width: 0.5em;
+        }
+    
+        .publicacion::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        }
+    
+        .publicacion::-webkit-scrollbar-thumb {
+            background-color: #029270;
+            outline: 1px solid #212529;
+            border-radius: 10px;
+            margin-left: 10px;
+            padding-left: 10px;
 }
 
 
@@ -219,4 +239,315 @@ nav {
     color: var(--text_color);
     font-family: 'Roboto mono';
     text-decoration: none;
+}
+.post {
+    display: flex;
+    flex-direction: column;
+    height: 174px;
+    border-radius: 20px;
+    border-color: #EBFFFA;
+    padding-left: 15px;
+    padding-right: 15px;
+    min-height: 174px;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.post-header {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.post-title-div {
+    flex: 1;
+    display: flex;
+}
+
+.post-title {
+    color: #EBFFFA;
+    height: 30px;
+    font-family: Roboto;
+    font-size: 24px;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    overflow-wrap: break-word;
+    white-space: normal;
+    overflow: hidden;
+}
+
+.post-category {
+    color: #EBFFFA;
+    font-family: Roboto;
+    font-size: 20px;
+}
+
+.post-content {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.post-user-div {
+    display: flex;
+}
+
+.post-user-name-div {
+    display: flex;
+    align-items: center;
+}
+
+.post-user-name {
+    display: flex;
+    color: #EBFFFA;
+    font-family: Roboto;
+    font-size: 20px;
+    text-decoration: none;
+    align-items: center;
+}
+
+.post-user-img {
+    display: flex;
+    margin-right: 10px;
+}
+
+.user-pfl-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+}
+
+.post-reaction-div {
+    display: flex;
+}
+
+.reactions {
+    display: flex;
+    flex-direction: row;
+    margin-left: 10px;
+}
+
+.reaction-value {
+    color: #EBFFFA;
+    display: flex;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-family: Roboto;
+    font-size: 20px;
+    align-items: center;
+}
+
+.like-btn {
+    display: flex;
+    background-color: #02927000;
+    justify-content: center;
+    align-items: center;
+    border: none;
+}
+
+.like-btn-icon {
+    display: flex;
+    font-size: 35px !important;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+}
+
+.like-btn-icon-active {
+    display: flex;
+    color: #D23C3C;
+    font-size: 35px !important;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+}
+
+.like-btn-icon:hover {
+    opacity: 0.5;
+}
+
+.like-btn-icon-active:hover {
+    opacity: 0.7;
+}
+
+.reaction-form {
+    display: flex;
+}
+
+.dislike-btn {
+    display: flex;
+    background-color: #02927000;
+    justify-content: center;
+    align-items: center;
+    border: none;
+}
+
+.dislike-btn-icon {
+    display: flex;
+    font-size: 35px !important;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+}
+
+.dislike-btn-icon-active {
+    display: flex;
+    color: #D23C3C;
+    font-size: 35px !important;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+}
+
+.dislike-btn-icon:hover {
+    opacity: 0.5;
+}
+
+.dislike-btn-icon-active:hover {
+    opacity: 0.7;
+}
+
+.post-footer {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.post-comments-div {
+    color: #EBFFFA;
+    flex: 1;
+    display: flex;
+    font-family: Roboto;
+    font-size: 16px;
+}
+
+.post-comments-value {
+    margin-left: 4px;
+    font-family: Roboto;
+    font-size: 16px;
+}
+
+.post-date {
+    color: #EBFFFA;
+    font-family: Roboto;
+    font-size: 20px;
+}
+
+.delete-post-container {
+    display: flex;
+    align-items: center;
+    padding: 0 30px;
+}
+
+.delete-post-btn {
+    text-decoration: none;
+    background-color: #21252900;
+    display: flex;
+    border: none;
+    --visibility: hidden;
+}
+
+.block-icon {
+    color: #D23C3C;
+    font-size: 30px !important;
+}
+
+.close {
+    border-style: none;
+    border-radius: 50%;
+    font-size: 15px;
+}
+
+#borrar-publicacion-modal {
+    color: #EBFFFA;
+    border-color: #212529 !important;
+}
+
+.modal-footer {
+    background-color: #083C30 !important;
+    border-color: #212529 !important;
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    color: #EBFFFA;
+    justify-content: center;
+}
+
+.modal-post-title {
+    display: flex;
+    font-style: italic;
+    margin: 0 10px;
+    height: 40px;
+    align-items: center;
+}
+
+.content-message-container {
+    padding: 10px 10px;
+    border-radius: 10px;
+}
+
+.content-message {
+    display: flex;
+    font-size: 20px;
+    color: #EBFFFA;
+}
+
+.primary-bg {
+    background-color: #029270;
+}
+
+.main-bg {
+    background-color: #001E17;
+}
+
+.third-bg {
+    background-color: #083C30;
+}
+
+.secondary-btn {
+    display: flex;
+    background-color: #333;
+    color: #EBFFFA;
+    font-family: Roboto;
+    font-size: 18px;
+    font-weight: bold;
+    align-items: center;
+    border-radius: 15px !important;
+    border: none;
+    padding: 5px 10px;
+    margin: 0;
+    transition: color 0.25s, background-color 0.35s;
+}
+
+.secondary-btn:hover {
+    background-color: #87FDE1;
+    color: #212529;
+}
+
+.primary-btn {
+    display: flex;
+    background-color: #029270;
+    color: #EBFFFA;
+    font-family: Roboto;
+    font-size: 18px;
+    font-weight: bold;
+    align-items: center;
+    border-radius: 20px !important;
+    border: none;
+    padding: 5px 10px;
+    margin: 0;
+    transition: color 0.25s, background-color 0.35s;
+}
+
+.primary-btn:hover {
+    background-color: #87FDE1;
+    color: #212529;
 }

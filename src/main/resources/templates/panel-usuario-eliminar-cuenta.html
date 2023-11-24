@@ -20,9 +20,7 @@
         <h6>¿Desea eliminar su cuenta de usuario?</h6>
         <p class="advertencia">¡Esta acción es irreversible!</p>
         <form th:action="@{/profile/deleteAccount(id=${user.id})}" method="post" class="eliminar_botones">
-            <button class="eliminar_btn" type="submit"><a th:href="@{/profile/deleteAccount(id=${user.id})}"
-                    class="eliminar-cuenta-btn">Eliminar
-                cuenta</a></button>
+            <button class="eliminar_btn" type="submit">Eliminar cuenta</button>
             <button class="regresar_btn"><a th:href="@{/profile/conf(id=${user.id})}"
                                             class="nav-link text-white">Regresar</a></button>
             </form>

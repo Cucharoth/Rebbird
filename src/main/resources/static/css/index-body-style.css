@@ -452,10 +452,11 @@ body::-webkit-scrollbar-thumb {
 }
 
 .modal-body {
-    display: flex;
-    flex-direction: column;
-    color: #EBFFFA;
-    justify-content: center;
+    display: flex !important;
+        flex-direction: column !important;
+        background-color: #001E17 !important;
+        color: #EBFFFA !important;
+        justify-content: center !important;
 }
 
 .modal-post-title {
@@ -472,14 +473,14 @@ body::-webkit-scrollbar-thumb {
 }
 
 .content-message {
-    display: flex;
-    font-size: 20px;
-    color: #EBFFFA;
+    display: flex !important;
+        font-size: 20px !important;
+        color: #EBFFFA !important;
 }
 
 .warning-color {
-    color: #D23C3C;
-    font-weight: bold;
+    color: #D23C3C !important;
+        font-weight: bold !important;
 }
 
 .indicator-container {
