@@ -13,6 +13,9 @@ con la finalidad de aprender y poner en practica las tecnologías mencionadas.
 - Los usuarios registrados son capaces de ver y crear publicaciones, ademas de poder realizar comentarios en las mismas.
 - Los usuarios registrados poseen un perfil de usuario en el cual pueden modificar tanto sus nombre de perfil e imágenes de perfil.
 
+## Uso
+Para su inicialización, se requiere de una base de datos vacía con nombre 'project_rebbird'.
+
 ## Tecnologías Utilizadas
 
 - **[Spring](https://spring.io)**
