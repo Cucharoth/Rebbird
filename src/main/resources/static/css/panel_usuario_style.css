@@ -267,11 +267,11 @@ nav {
 }
 
 .post-title {
+    text-decoration: none;
     color: #EBFFFA;
     height: 30px;
-    font-family: Roboto;
+    font-family: "Roboto Mono", sans-serif;
     font-size: 24px;
-    text-decoration: none;
     text-overflow: ellipsis;
     overflow-wrap: break-word;
     white-space: normal;
@@ -280,7 +280,7 @@ nav {
 
 .post-category {
     color: #EBFFFA;
-    font-family: Roboto;
+    font-family: "Roboto Mono", monospace;
     font-size: 20px;
 }
 
@@ -302,11 +302,11 @@ nav {
 }
 
 .post-user-name {
+    text-decoration: none;
     display: flex;
     color: #EBFFFA;
-    font-family: Roboto;
+    font-family: "Roboto Mono", monospace;
     font-size: 20px;
-    text-decoration: none;
     align-items: center;
 }
 
@@ -336,7 +336,7 @@ nav {
     display: flex;
     margin-left: 10px;
     margin-right: 10px;
-    font-family: Roboto;
+    font-family: "Roboto Mono", monospace;
     font-size: 20px;
     align-items: center;
 }
@@ -423,19 +423,19 @@ nav {
     color: #EBFFFA;
     flex: 1;
     display: flex;
-    font-family: Roboto;
+    font-family: "Roboto Mono", sans-serif !important;
     font-size: 16px;
 }
 
 .post-comments-value {
     margin-left: 4px;
-    font-family: Roboto;
+    font-family: "Roboto Mono", sans-serif !important;
     font-size: 16px;
 }
 
 .post-date {
     color: #EBFFFA;
-    font-family: Roboto;
+    font-family: "Roboto Mono", sans-serif;
     font-size: 20px;
 }
 
@@ -516,7 +516,7 @@ nav {
     display: flex;
     background-color: #333;
     color: #EBFFFA;
-    font-family: Roboto;
+    font-family: "Roboto Mono", monospace;
     font-size: 18px;
     font-weight: bold;
     align-items: center;
@@ -536,7 +536,7 @@ nav {
     display: flex;
     background-color: #029270;
     color: #EBFFFA;
-    font-family: Roboto;
+    font-family: "Roboto Mono", monospace;
     font-size: 18px;
     font-weight: bold;
     align-items: center;

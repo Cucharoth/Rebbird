@@ -80,11 +80,11 @@ li a {
 }
 
 .rebbird-logo {
+    text-decoration: none;
     color: #EBFFFA;
-    font-family: Roboto;
+    font-family: "Roboto Mono", monospace;
     font-size: 32px;
     font-weight: bold;
-    text-decoration: none;
     transition: opacity 0.1s;
 }
 
@@ -167,7 +167,7 @@ li a {
     display: flex;
     text-decoration: none;
     justify-content: center;
-    font-family: Roboto;
+    font-family: "Roboto Mono", sans-serif;
     font-size: 24px;
     font-weight: bold;
 }
@@ -176,7 +176,7 @@ li a {
     display: flex;
     text-decoration: none;
     justify-content: center;
-    font-family: Roboto;
+    font-family: "Roboto Mono", sans-serif;
     font-size: 24px;
 }
 
@@ -264,7 +264,7 @@ li a {
     display: flex;
     color: #212529;
     height: 30px;
-    font-family: Roboto;
+    font-family: "Roboto Mono", sans-serif;
     font-size: 20px;
     font-weight: bold;
     text-decoration: none;
@@ -280,7 +280,7 @@ li a {
     display: flex;
     background-color: #029270;
     color: #EBFFFA;
-    font-family: Roboto;
+    font-family: "Roboto Mono", sans-serif;
     font-size: 18px;
     font-weight: bold;
     align-items: center;
@@ -300,7 +300,7 @@ li a {
     display: flex;
     background-color: #333;
     color: #EBFFFA;
-    font-family: Roboto;
+    font-family: "Roboto Mono", sans-serif;
     font-size: 18px;
     font-weight: bold;
     align-items: center;

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
+
 :root {
     --bg_color: #001E17;
     --primary_color: #029270;
@@ -43,7 +45,7 @@ html {
 .category-title {
     display: flex;
     color: #EBFFFA;
-    font-family: Roboto;
+    font-family: "Roboto Mono", monospace !important;
     font-size: 26px;
     font-weight: bold;
 }
@@ -58,7 +60,7 @@ html {
     text-decoration: none;
     background-color: #02927000;
     color: #EBFFFA;
-    font-family: Roboto;
+    font-family: "Roboto Mono", sans-serif;
     font-size: 24px;
     padding: 15px;
     text-align: left;
@@ -95,9 +97,9 @@ html {
     text-decoration: none;
     background-color: #029270;
     color: #212529;
-    font-family: Roboto;
+    font-family: "Roboto Mono", sans-serif;
     font-size: 24px !important;
-    font-weight: 520;
+    font-weight: bolder;
     border-radius: 20px;
     border: none;
     padding-left: 10px;
@@ -156,9 +158,10 @@ html {
 }
 
 .post-title {
+    text-decoration: none;
     color: #EBFFFA;
     height: 30px;
-    font-family: Roboto;
+    font-family: "Roboto Mono", sans-serif;
     font-size: 24px;
     text-decoration: none;
     text-overflow: ellipsis;
@@ -169,7 +172,7 @@ html {
 
 .post-category {
     color: #EBFFFA;
-    font-family: Roboto;
+    font-family: "Roboto Mono", monospace;
     font-size: 20px;
 }
 
@@ -193,7 +196,7 @@ html {
 .post-user-name {
     display: flex;
     color: #EBFFFA;
-    font-family: Roboto;
+    font-family: "Roboto Mono", monospace;
     font-size: 20px;
     text-decoration: none;
     align-items: center;
@@ -225,7 +228,7 @@ html {
     display: flex;
     margin-left: 10px;
     margin-right: 10px;
-    font-family: Roboto;
+    font-family: "Roboto Mono", sans-serif;
     font-size: 20px;
     align-items: center;
 }
@@ -312,19 +315,19 @@ html {
     color: #EBFFFA;
     flex: 1;
     display: flex;
-    font-family: Roboto;
+    font-family: "Roboto Mono", sans-serif;
     font-size: 16px;
 }
 
 .post-comments-value {
     margin-left: 4px;
-    font-family: Roboto;
+    font-family: "Roboto Mono", sans-serif;
     font-size: 16px;
 }
 
 .post-date {
     color: #EBFFFA;
-    font-family: Roboto;
+    font-family: "Roboto Mono", sans-serif;
     font-size: 20px;
 }
 
