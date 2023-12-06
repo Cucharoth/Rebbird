@@ -52,7 +52,8 @@ INSERT IGNORE INTO `usuario` (usuario_id, nombre_usuario, password_usuario, perf
 (25,'Breadisfunny','Breadisfunny',NULL,'USER',1,'',1),
 (26,'Sarama','Sarama',NULL,'USER',3,'',1),
 (31,'Caramelo','$2a$10$dyTI7P69CrAV0hBS7zta6OKie2DHXi.qDTMnFoOARFwyp0.fZpHSO',NULL,'USER',1,NULL,1),
-(33,'notCaramelo','$2a$10$/6xirUtTv5cJ4I..PvdoE.YiHFYoZlRR9F1PHa2BWeF4iojrS3VXy',NULL,'USER',1,NULL,1);
+(33,'notCaramelo','$2a$10$/6xirUtTv5cJ4I..PvdoE.YiHFYoZlRR9F1PHa2BWeF4iojrS3VXy',NULL,'USER',1,NULL,1),
+(34,'Admin','$2a$10$LhSiDzaO148o5/nCrzu6oOW1jEGpQ3moYCLox9h01DyWBZjpmxkXe',NULL,'ADMIN',1,NULL,1);
 
 INSERT IGNORE INTO `publicacion` (publicacion_id, author_id, content_publicacion, fecha_publicacion, titulo_publicacion, categoria_id, cant_comentarios, cant_reaccion) VALUES
 (1,1,'Chris Metzen is back?','2022-02-23','Chris Metzen is back?',1,0,7),
